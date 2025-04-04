@@ -1,1 +1,46 @@
-<p>register works!</p>
+<h1>Créer un compte</h1>
+
+<!-- Formulaire de connexion -->
+<form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+
+    <!-- Champs prenom -->
+    <label for="prenom">Prénom</label>
+    <input type="text" id="prenom" class="form-control" formControlName=prenom [class.is-invalid]="isSubmitted && registerForm.controls['prenom'].invalid">
+    <div *ngIf="isSubmitted && registerForm.controls['prenom'].invalid" class="invalid-feedback">
+        <small>Le prénom est requis</small>
+    </div>
+
+    <!-- Champs nom -->
+    <label for="nom">Nom</label>
+    <input type="text" id="nom" class="form-control" formControlName=nom [class.is-invalid]="isSubmitted && registerForm.controls['nom'].invalid">
+    <div *ngIf="isSubmitted && registerForm.controls['nom'].invalid" class="invalid-feedback">
+        <small>Le nom est requis</small>
+    </div>
+
+    <!-- Champs email -->
+    <label for="email">Email</label>
+    <input type="email" id="email" class="form-control" formControlName=email [class.is-invalid]="isSubmitted && registerForm.controls['email'].invalid">
+    <div *ngIf="isSubmitted && registerForm.controls['email'].invalid" class="invalid-feedback">
+        <small *ngIf="hasError('email', 'required')">L'email est requis.</small>
+        <small *ngIf="hasError('email', 'email')">L'email n'est pas valide.</small>
+    </div>
+
+    <!-- Champs mot de passe -->
+    <label for="password">Mot de passe</label>
+    <input type="password" id="password" class="form-control" formControlName=password [class.is-invalid]="isSubmitted && registerForm.controls['password'].invalid">
+    <div *ngIf="isSubmitted && registerForm.controls['password'].invalid" class="invalid-feedback">
+        <small *ngIf="hasError('password', 'required')">Le mot de passe est requis.</small>
+        <small *ngIf="hasError('password', 'minlength')">Le mot de passe doit contenir au moins 6 caractères.</small><br>
+        <small *ngIf="hasError('password', 'pattern')">Le mot de passe doit contenir au moins un chiffre.</small>
+    </div>
+
+    <!-- Champs de de naissance -->
+    <label for="dateDeNaissance">Date de naissance</label>
+    <input type="date" id="dateDeNaissance" class="form-control" formControlName=dateDeNaissance [class.is-invalid]="isSubmitted && registerForm.controls['dateDeNaissance'].invalid">
+    <div *ngIf="isSubmitted && registerForm.controls['dateDeNaissance'].invalid" class="invalid-feedback">
+        <small>La date de naissance est requise</small>
+    </div>
+
+    <!-- Bouton valider -->
+    <button type="submit" class="btn-custom">Créer un compte</button>
+</form>
