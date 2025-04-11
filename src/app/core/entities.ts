@@ -13,4 +13,5 @@ export interface RegisterInterface {
     nom: string;
     prenom: string;
     dateDeNaissance: string;
+    roles: string[];
 }

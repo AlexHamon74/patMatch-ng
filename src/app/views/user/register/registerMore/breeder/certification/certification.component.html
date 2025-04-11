@@ -1,0 +1,15 @@
+<div class="container">
+
+    <h1>Documents et certifications</h1>
+    <!-- Formulaire d'inscription, partie 4 -->
+    <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+
+        <!-- Certificat d'élevage / Autorisation d'association -->
+        <label for="certification">Certificat d'élevage / Autorisation d'association</label>
+        <input type="text" id="certification" class="form-control" formControlName=certification>
+
+        <!-- Bouton suivant -->
+        <button type="submit" class="btn btn-primary mt-3">Suivant</button>
+
+    </form>
+</div>

@@ -1,0 +1,20 @@
+<div class="container">
+
+    <h1>Coordonnées</h1>
+    <!-- Formulaire d'inscription, partie 2 -->
+    <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+
+        <!-- Adresse -->
+        <label for="adresse">Adresse</label>
+        <input type="text" id="adresse" class="form-control" formControlName=adresse>
+
+        <!-- Numéro de téléphone -->
+        <label for="numeroDeTelephone">Numéro de téléphone</label>
+        <input type="text" id="numeroDeTelephone" class="form-control" formControlName=numeroDeTelephone>
+
+        <!-- Bouton suivant -->
+        <button type="submit" class="btn btn-primary mt-3">Suivant</button>
+
+    </form>
+</div>
+

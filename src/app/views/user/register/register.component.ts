@@ -1,7 +1,6 @@
 import { NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,7 +15,6 @@ export class RegisterComponent {
     isSubmitted = false;
 
     // Services
-    authService = inject(AuthService);
     router = inject(Router);
 
     // Formulaire avec validations
@@ -26,19 +24,19 @@ export class RegisterComponent {
         nom: new FormControl('', [Validators.required]),
         prenom: new FormControl('', [Validators.required]),
         dateDeNaissance: new FormControl('', [Validators.required]),
+        roles: new FormControl([], [Validators.required]),
     });
 
     // Soumission du formulaire
+    // Récupère les données du formulaire et les envoie à la page suivante
     onSubmit() {
         this.isSubmitted = true;
         if (this.registerForm.valid) {
-            console.log(this.registerForm.value);
-            this.authService.register(this.registerForm.value).subscribe({
-                next: () => {
-                    this.router.navigate(['login']);
-                },
+            const formData = this.registerForm.value;
+            this.router.navigate(['register/breeder/generalInformation'], {
+                state: { formData }
             });
-        };
+        }
     };
 
     // Vérification des champs
