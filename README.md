@@ -1,5 +1,7 @@
 # PatMatchNg
 
+[Pat'Match API](https://github.com/AlexHamon74/patMatch_api_sf), pour voir l'API Symfony
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.16.
 
 ## Development server
