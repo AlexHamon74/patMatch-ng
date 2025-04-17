@@ -1,13 +1,13 @@
 import { Routes } from '@angular/router';
 import { UserComponent } from './views/user/user.component';
-import { AuthComponent } from './views/user/auth/auth.component';
-import { LoginComponent } from './views/user/login/login.component';
-import { RegisterComponent } from './views/user/register/register.component';
-import { HomeComponent } from './views/user/home/home.component';
-import { GeneralInformationComponent } from './views/user/register/registerMore/breeder/general-information/general-information.component';
-import { ContactDetailsComponent } from './views/user/register/registerMore/breeder/contact-details/contact-details.component';
-import { PresentationComponent } from './views/user/register/registerMore/breeder/presentation/presentation.component';
-import { CertificationComponent } from './views/user/register/registerMore/breeder/certification/certification.component';
+import { AuthComponent } from './views/guest/auth/auth.component';
+import { LoginComponent } from './views/guest/login/login.component';
+import { RegisterComponent } from './views/guest/register/register.component';
+import { HomeComponent } from './views/guest/home/home.component';
+import { GeneralInformationComponent } from './views/guest/register/registerMore/breeder/general-information/general-information.component';
+import { ContactDetailsComponent } from './views/guest/register/registerMore/breeder/contact-details/contact-details.component';
+import { PresentationComponent } from './views/guest/register/registerMore/breeder/presentation/presentation.component';
+import { CertificationComponent } from './views/guest/register/registerMore/breeder/certification/certification.component';
 
 export const routes: Routes = [
     {
