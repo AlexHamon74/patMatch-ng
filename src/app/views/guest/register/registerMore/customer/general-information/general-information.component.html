@@ -1,0 +1,15 @@
+<div class="container">
+
+    <h1>Informations générales</h1>
+    <!-- Formulaire d'inscription, partie 2 -->
+    <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+
+        <!-- Nom elevage / association -->
+        <label for="nomElevege">Nom de l'elevage / association</label>
+        <input type="text" id="nomElevege" class="form-control" formControlName=nomElevege>
+
+        <!-- Bouton suivant -->
+        <button type="submit" class="btn btn-primary mt-3">Suivant</button>
+
+    </form>
+</div>

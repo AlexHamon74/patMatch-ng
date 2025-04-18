@@ -3,13 +3,13 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-general-information-breeder',
+    selector: 'app-housing-information',
     standalone: true,
     imports: [ReactiveFormsModule],
-    templateUrl: './general-information.component.html',
+    templateUrl: './housing-information.component.html',
     styleUrl: '../../../register.component.css'
 })
-export class GeneralInformationBreederComponent {
+export class HousingInformationComponent {
     // Propriétés
     formData: any;
 
@@ -20,14 +20,13 @@ export class GeneralInformationBreederComponent {
         // Récupération des données du formulaire depuis la navigation
         const navigation = this.router.getCurrentNavigation();
         this.formData = navigation?.extras?.state?.['formData'];
-        console.log('Données du formulaire :', this.formData);
+        console.log('Données du formulaire partie 2 :', this.formData);
     };
 
     // Formulaire avec validations
     public registerForm: FormGroup = new FormGroup({
-        typeCompte: new FormControl,
-        nomElevege: new FormControl,
-        numeroEnregistrement: new FormControl        
+        adresse: new FormControl,
+        numeroDeTelephone: new FormControl,
     });
 
     // Soumission du formulaire
@@ -37,7 +36,7 @@ export class GeneralInformationBreederComponent {
         // Si des données existent déjà, les fusionner avec les nouvelles
         const mergedData = { ...this.formData, ...formData };
 
-        this.router.navigate(['register/breeder/contactDetails'], {
+        this.router.navigate(['register/breeder/presentation'], {
             state: { formData: mergedData }
         });
     };

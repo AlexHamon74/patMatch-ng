@@ -33,9 +33,15 @@ export class RegisterComponent {
         this.isSubmitted = true;
         if (this.registerForm.valid) {
             const formData = this.registerForm.value;
-            this.router.navigate(['register/breeder/generalInformation'], {
-                state: { formData }
-            });
+            if (formData.roles.includes('ROLE_ELEVEUR')) {
+                this.router.navigate(['register/breeder/generalInformation'], {
+                    state: { formData }
+                });
+            } else {
+                this.router.navigate(['register/customer/generalInformation'], {
+                    state: { formData }
+                });
+            }
         }
     };
 

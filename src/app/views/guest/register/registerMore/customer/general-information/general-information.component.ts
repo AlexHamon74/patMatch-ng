@@ -3,13 +3,13 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-general-information-breeder',
+    selector: 'app-general-information-customer',
     standalone: true,
     imports: [ReactiveFormsModule],
     templateUrl: './general-information.component.html',
     styleUrl: '../../../register.component.css'
 })
-export class GeneralInformationBreederComponent {
+export class GeneralInformationCustomerComponent {
     // Propriétés
     formData: any;
 
@@ -37,7 +37,7 @@ export class GeneralInformationBreederComponent {
         // Si des données existent déjà, les fusionner avec les nouvelles
         const mergedData = { ...this.formData, ...formData };
 
-        this.router.navigate(['register/breeder/contactDetails'], {
+        this.router.navigate(['register/breeder/housingInformation'], {
             state: { formData: mergedData }
         });
     };
