@@ -2,16 +2,18 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from '../../../../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-certification',
     standalone: true,
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, NgIf],
     templateUrl: './certification.component.html',
     styleUrl: '../../../register.component.css'
 })
 export class CertificationComponent {
     // Propriétés
+    errorMessage: string | null = null;
     formData: any;
     isSubmitted = false;
 
@@ -42,6 +44,15 @@ export class CertificationComponent {
             next: () => {
                 this.router.navigate(['login']);
             },
+            error: (error) => {
+                if (error?.error?.violations?.length) {
+                    const violation = error.error.violations.find((v: any) => v.propertyPath === 'email');
+                    this.errorMessage = violation?.message || 'Une erreur est survenue.';
+                } else {
+                    this.errorMessage = 'Une erreur est survenue lors de l’inscription.';
+                }
+                console.error('Erreur API :', error);
+            }
         });
     };
 

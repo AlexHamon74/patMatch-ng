@@ -1,6 +1,10 @@
 <div class="container">
 
     <h1>Documents et certifications</h1>
+
+    <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
     <!-- Formulaire d'inscription, partie 4 -->
     <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
 
