@@ -1,0 +1,27 @@
+nav {
+    font-family: "Poppins", sans-serif;
+    background-color: #D9D9D9;
+    height: 80px;
+    width: 90%;
+    margin: 10px auto;
+    border-radius: 40px;
+}
+
+nav ul li a {
+    color: black;
+}
+
+.bg-i {
+    background-color: #EBEBEB;
+    border-radius: 15px;
+    margin-bottom: 6px;
+}
+
+nav ul li a i {
+    font-size: 24px;
+}
+
+nav ul li a p {
+    font-size: 12px;
+    font-weight: 600;
+}
