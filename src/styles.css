@@ -8,3 +8,11 @@
 body {
     background-color: #F5F5F5;
 }
+
+.rounded-10 {
+    border-radius: 10px;
+}
+
+.bg-pink {
+    background-color: #EF9BC9;
+}

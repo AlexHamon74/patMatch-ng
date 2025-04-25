@@ -1,0 +1,31 @@
+.bg-i {
+    background-color: #EBEBEB;
+}
+
+.border-pink{
+ border: 1px #EF9BC9 solid;
+}
+
+.icon-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #F5F5F5;
+    cursor: pointer;
+}
+
+.like {
+    background-color: #EF9BC9;
+}
+
+.pass {
+    background-color: #6C60D2;
+}
+
+.see-more {
+    background-color: #B6DEFF;
+}
