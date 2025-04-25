@@ -1,0 +1,28 @@
+.profile-picture {
+    border: 1px solid #EF9BC9;
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+}
+
+.notif-icon {
+    background-color: #EBEBEB;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.notif-icon:hover {
+    background-color: #ddd;
+}
+
+.notif-dot {
+    width: 6px;
+    height: 6px;
+    top: 10px;
+    right: 10px;
+}
+
+  
