@@ -1,80 +1,65 @@
+<app-header></app-header>
+
 <app-navbar></app-navbar>
 
-
-<section class="py-4 top">
-    <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-2">
-                <img src="images/profile_picture.jpg" alt="" class="img-fluid border-pink rounded-10">
-            </div>
-            <div class="col-6 d-flex justify-content-end align-items-center gap-4">
-                <span>Bonjour, <strong>Julie</strong></span>
-                <div class="bg-i rounded-10">
-                    <i class="fa-solid fa-bell p-3"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
+<!-- BARRE DE RECHERCHE + BOUTON FILTRE -->
 <section class="pb-3 recherche">
     <div class="container">
         <div class="row">
-            <div class="col-12 d-flex align-items-center gap-4">
-                <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="rechercher"><i class="fas fa-search"></i></span>
-                    <input type="text" class="form-control" aria-label="rechercher" aria-describedby="rechercher" />
+            <div class="col-12 d-flex align-items-center justify-content-between gap-3">
+                <div class="input-group flex-grow-1">
+                    <span class="input-recherche input-group-text rounded-10" id="rechercher"><i class="fas fa-search"></i></span>
+                    <input type="text" class="input-recherche form-control rounded-10" aria-label="rechercher" aria-describedby="rechercher" />
                 </div>
-                <div class="bg-i rounded-10">
-                    <i class="fa-solid fa-filter p-3"></i>
+                <div class="filter-btn rounded-10 d-flex justify-content-center align-items-center flex-shrink-0">
+                    <i class="fa-solid fa-filter"></i>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<!-- Boutons intéractifs -->
 <section class="pb-3 recherche-plus">
     <div class="container">
-        <div class="row align-items-center text-center">
+        <div class="row">
             <div class="col-6">
-                <div class="mb-2">
-                    <div class="bg-pink rounded-10 py-2">
-                        Derniers ajouts
-                    </div>
-                </div>
+                <button class="w-100 py-2 bg-pink rounded-10 border-0 fw-semibold text-white">
+                    <span class="btn-interactif">Derniers ajouts</span>
+                </button>
             </div>
             <div class="col-6">
-                <div class="mb-2">
-                    <div class="bg-pink rounded-10 py-2">
-                        Les plus populaires
-                    </div>
-                </div>
+                <button class="w-100 py-2 bg-pink rounded-10 border-0 fw-semibold text-white">
+                    <span class="btn-interactif">Les plus populaires</span>
+                </button>
             </div>
         </div>
     </div>
 </section>
 
-<section class="main">
-    <div class="container d-flex flex-column align-items-center">
-        <!-- Image + Nom + Distance -->
-            <img src="images/animal_home.jpg" alt="" class="img-fluid rounded-4 mb-3" style="height: 40vh; object-fit: cover;">
-            <div class="text-center">
-                <h3 class="mb-1">Nougat</h3>
-                <p><i class="fa-solid fa-location-dot me-1"></i>À 2 km</p>
-            </div>
 
-        <!-- Boutons -->
-        <div class="d-flex justify-content-center gap-5">
-            <div class="icon-btn see-more">
+<!-- IMAGE + INFOS -->
+<section class="main">
+    <div class="container d-flex flex-column align-items-center text-center">
+        <img src="images/animal_home.jpg" alt="" class="img-fluid rounded-10 mb-3 animal-img">
+        <h1 class="animal-nom">Nougat</h1>
+        <p class="d-flex align-items-center justify-content-center gap-2">
+            <span class="location-icon d-flex justify-content-center align-items-center rounded-circle">
+              <i class="fa-solid fa-location-dot"></i>
+            </span>
+            À 2 km
+          </p>
+        <!-- BOUTONS -->
+        <div class="d-flex justify-content-center gap-4 mt-3">
+            <div class="icon-btn see-more shadow-sm">
                 <i class="fa-solid fa-eye"></i>
             </div>
-            <div class="icon-btn pass">
+            <div class="icon-btn pass shadow-sm">
                 <i class="fa-solid fa-xmark"></i>
             </div>
-            <div class="icon-btn like">
+            <div class="icon-btn like shadow-sm">
                 <i class="fa-solid fa-heart"></i>
             </div>
         </div>
-
     </div>
 </section>
