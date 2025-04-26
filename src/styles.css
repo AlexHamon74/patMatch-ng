@@ -18,3 +18,16 @@ body {
 .bg-pink {
     background-color: #EF9BC9;
 }
+
+.btn-premier {
+    font-family: "Lilita One", sans-serif;
+    font-size: 17px;
+    border-radius: 15px;
+    padding: 10px 18px;
+    background-color: #6C60D2;
+    color: #FEFEFE;
+}
+
+.btn-premier:hover {
+    color: #FEFEFE;
+}

@@ -10,6 +10,7 @@ import { ContactDetailsComponent } from './views/guest/register/registerMore/bre
 import { PresentationComponent } from './views/guest/register/registerMore/breeder/presentation/presentation.component';
 import { CertificationComponent } from './views/guest/register/registerMore/breeder/certification/certification.component';
 import { HousingInformationComponent } from './views/guest/register/registerMore/customer/housing-information/housing-information.component';
+import { BreederListComponent } from './views/guest/breeder-list/breeder-list.component';
 
 export const routes: Routes = [
     {
@@ -20,6 +21,7 @@ export const routes: Routes = [
             { path: 'login', component: LoginComponent },
             { path: 'register', component: RegisterComponent },
             { path: 'home', component: HomeComponent },
+            { path: 'breederList', component: BreederListComponent },
             { path: 'register/customer/generalInformation', component: GeneralInformationCustomerComponent },
             { path: 'register/customer/housingInformation', component: HousingInformationComponent },
             { path: 'register/breeder/generalInformation', component: GeneralInformationBreederComponent },

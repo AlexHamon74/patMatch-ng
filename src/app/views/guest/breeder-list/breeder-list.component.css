@@ -1,0 +1,36 @@
+/* Section Recherche et filtres */
+.filter-btn {
+    background-color: #EBEBEB;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    border: 1px solid #7189FF;
+}
+
+.input-recherche {
+    border: 1px solid #7189FF;
+    height: 50px;
+    background-color: #EBEBEB;
+}
+
+.filter-btn:hover {
+    background-color: #ddd;
+}
+
+/* Section liste associations / eleveurs */
+.breeder-list h1 {
+    font-family: "Lilita One", sans-serif;
+    font-size: 15px;
+}
+
+.breeder-list h2 {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.container-liste {
+    border: 1px solid #EF9BC9;
+    background-color: #E6E6E6;
+}
