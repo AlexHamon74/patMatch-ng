@@ -12,6 +12,7 @@ import { CertificationComponent } from './views/guest/register/registerMore/bree
 import { HousingInformationComponent } from './views/guest/register/registerMore/customer/housing-information/housing-information.component';
 import { BreederListComponent } from './views/guest/breeder-list/breeder-list.component';
 import { BreederDetailsComponent } from './views/guest/breeder-details/breeder-details.component';
+import { MatchsComponent } from './views/user/matchs/matchs.component';
 
 export const routes: Routes = [
     {
@@ -24,6 +25,7 @@ export const routes: Routes = [
             { path: 'home', component: HomeComponent },
             { path: 'breederList', component: BreederListComponent },
             { path: 'breederList/breederDetails', component: BreederDetailsComponent },
+            { path: 'matchs', component: MatchsComponent },
             { path: 'register/customer/generalInformation', component: GeneralInformationCustomerComponent },
             { path: 'register/customer/housingInformation', component: HousingInformationComponent },
             { path: 'register/breeder/generalInformation', component: GeneralInformationBreederComponent },
