@@ -1,0 +1,57 @@
+h1 {
+    font-size: 20px;
+}
+
+h2 {
+    font-size: 18px;
+}
+
+h3 {
+    font-size: 15px;
+    font-family: "Lilita One", sans-serif;
+}
+
+.location-icon {
+    width: 26px;
+    height: 26px;
+    background-color: #D9D9D9;
+}
+
+.img-breeder_details {
+    max-height: 400px;
+    object-fit: cover;
+}
+
+/* Section Information contact */
+.contact-btn {
+    background-color: #EBEBEB;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    border: 1px solid #7189FF;
+}
+
+.contact-btn:hover {
+    background-color: #7189FF;
+    color: white;
+}
+
+/* Section liste des animaux */
+.animal-scroll {
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;  /* Internat Explorer 10+ */
+    scrollbar-width: none;     /* Firefox */
+}
+.animal-scroll::-webkit-scrollbar {
+    display: none;             /* Chrome, Safari, Opera */
+}
+
+.animal-card {
+    width: 30%;
+    min-width: 30%;
+    scroll-snap-align: start;
+}
