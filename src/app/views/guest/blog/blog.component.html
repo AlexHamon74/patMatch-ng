@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+<app-navbar></app-navbar>
+
+<!-- Section Conseils -->
+<section class="advice mb-5">
+    <div class="container">
+        <h1 class="mb-4">Nos conseils</h1>
+        <div class="advice-scroll d-flex overflow-auto gap-3">
+
+            <div class="advice-card flex-shrink-0 position-relative rounded-10 overflow-hidden">
+                <img src="images/breeder_details.jpg" alt="" class="img-fluid w-100 h-100">
+                <div class="gradient-overlay position-absolute top-0 start-0 w-100 h-100"></div>
+                <div class="badges position-absolute top-0 start-0 m-3 d-flex gap-2">
+                    <span class="badge text-bg-primary">À faire</span>
+                    <span class="badge text-bg-primary">Démarches clé</span>
+                </div>
+                <h2 class="position-absolute bottom-0 start-0 m-3">Démarches & étapes</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Blog -->
+<section class="blog mb-4">
+    <div class="container">
+        <h1 class="mb-4">Blog</h1>
+        <!-- Filtre + input de recherche -->
+        <div class="row mb-4">
+            <div class="col-12 d-flex align-items-center justify-content-between gap-3">
+                <div class="input-group flex-grow-1">
+                    <span class="input-recherche input-group-text rounded-10" id="rechercher"><i
+                            class="fas fa-search"></i></span>
+                    <input type="text" class="input-recherche form-control rounded-10" aria-label="rechercher"
+                        aria-describedby="rechercher" />
+                </div>
+                <div class="filter-btn rounded-10 d-flex justify-content-center align-items-center flex-shrink-0">
+                    <i class="fa-solid fa-filter"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Listes des articles -->
+        <div class="row mb-4">
+            <div class="col-4">
+                <img src="images/animal_home.jpg" alt="" class="img-fluid rounded-10">
+            </div>
+            <div class="col-8">
+                <div class="pt-2">
+
+                    <div class="d-flex gap-2 mb-2">
+                        <span class="badge text-bg-primary">À faire</span>
+                        <span class="badge text-bg-primary">Démarches clé</span>
+                    </div>
+                    <h2>Lorem ipsum quis nostrud exercitation</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

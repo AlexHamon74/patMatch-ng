@@ -13,6 +13,7 @@ import { HousingInformationComponent } from './views/guest/register/registerMore
 import { BreederListComponent } from './views/guest/breeder-list/breeder-list.component';
 import { BreederDetailsComponent } from './views/guest/breeder-details/breeder-details.component';
 import { MatchsComponent } from './views/user/matchs/matchs.component';
+import { BlogComponent } from './views/guest/blog/blog.component';
 
 export const routes: Routes = [
     {
@@ -26,6 +27,7 @@ export const routes: Routes = [
             { path: 'breederList', component: BreederListComponent },
             { path: 'breederList/breederDetails', component: BreederDetailsComponent },
             { path: 'matchs', component: MatchsComponent },
+            { path: 'blog', component: BlogComponent },
             { path: 'register/customer/generalInformation', component: GeneralInformationCustomerComponent },
             { path: 'register/customer/housingInformation', component: HousingInformationComponent },
             { path: 'register/breeder/generalInformation', component: GeneralInformationBreederComponent },
