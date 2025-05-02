@@ -1,0 +1,84 @@
+/* CSS général de la page */
+h1 {
+    font-family: "Lilita One", sans-serif;
+    font-size: 25px;
+}
+
+h2 {
+    font-family: "Lilita One", sans-serif;
+    font-size: 22px;
+}
+
+h3 {
+    font-family: "Lilita One", sans-serif;
+    font-size: 18px;
+}
+
+/* Section header image avec caroussel */
+.carousel-img-wrapper {
+    height: 70vh;
+    background-color: #F5F5F5;
+}
+
+.animal-img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.header-img .back-btn {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background-color: #7189FF;
+    color: white;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+::ng-deep .carousel-control-prev-icon,
+::ng-deep .carousel-control-next-icon {
+    filter: invert(200%);
+}
+
+/* Section information de l'animal */
+.animal-information {
+    background-color: #FFFDF4;
+    position: relative;
+    z-index: 2;
+    margin-top: 70vh;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+}
+
+.title {
+    color: #1E1E1B;
+    background-color: #EF9BC9;
+}
+
+.border-custom {
+    border: #7189FF 1px solid;
+    border-radius: 20px;
+}
+
+.pills-button {
+    border-radius: 15px;
+    background-color: #E6E6E6;
+    font-size: 18px;
+    font-family: "Lilita One", sans-serif;
+    color: #1E1E1B;
+}
+
+.pills-button.active {
+    background-color: #D6EAFA;
+    color: #1E1E1B;
+}
+
+.pills-content {
+    background-color: #EBEBEB99;
+    border-radius: 20px;
+    height: 180px;
+}
