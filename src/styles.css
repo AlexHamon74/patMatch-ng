@@ -6,8 +6,11 @@
 
 body {
     background-color: #F5F5F5;
-    padding-bottom: 90px;
     font-family: "Poppins", sans-serif;
+}
+
+body:not(.no-padding) {
+    padding-bottom: 90px;
 }
 
 a {
