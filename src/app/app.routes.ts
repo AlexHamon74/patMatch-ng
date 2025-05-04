@@ -15,6 +15,7 @@ import { BreederDetailsComponent } from './views/guest/breeder-details/breeder-d
 import { MatchsComponent } from './views/user/matchs/matchs.component';
 import { BlogComponent } from './views/guest/blog/blog.component';
 import { AnimalDetailsComponent } from './views/guest/animal-details/animal-details.component';
+import { ProfilComponent } from './views/user/profil/profil.component';
 
 export const routes: Routes = [
     {
@@ -30,6 +31,7 @@ export const routes: Routes = [
             { path: 'breederList/breederDetails', component: BreederDetailsComponent },
             { path: 'matchs', component: MatchsComponent },
             { path: 'blog', component: BlogComponent },
+            { path: 'profil', component: ProfilComponent },
             { path: 'register/customer/generalInformation', component: GeneralInformationCustomerComponent },
             { path: 'register/customer/housingInformation', component: HousingInformationComponent },
             { path: 'register/breeder/generalInformation', component: GeneralInformationBreederComponent },
