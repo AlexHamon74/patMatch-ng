@@ -1,0 +1,29 @@
+.login-container {
+    background-color: #92A8FF;
+    height: 100vh;
+}
+
+.conteneur {
+    width: 320px;
+}
+
+.login-container h1 {
+    font-family: "Lilita One", sans-serif;
+    font-size: 25px;
+    color: #FEFEFE;
+}
+
+.login-container label {
+    font-family: "Lilita One", sans-serif;
+    font-size: 18px;
+    color: #F5F5F5;
+}
+
+.login-container input {
+    background-color: #F5F5F5CC;
+}
+
+.form-pwd {
+    font-size: 14px;
+    color: #FEFEFE;
+}

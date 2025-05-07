@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -11,7 +11,7 @@ import { NgIf } from '@angular/common';
     templateUrl: './login.component.html',
     styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit, OnDestroy {
     // Propriétés
     errorMessage: string | null = null;
     isSubmitted = false;
@@ -19,6 +19,15 @@ export class LoginComponent {
     // Services
     authService = inject(AuthService);
     router = inject(Router);
+    renderer = inject(Renderer2);
+
+    ngOnInit(): void {
+        this.renderer.addClass(document.body, 'no-padding');
+    }
+    ngOnDestroy(): void {
+        this.renderer.removeClass(document.body, 'no-padding');
+    }
+
 
     // Formulaire avec validations
     public loginForm: FormGroup = new FormGroup({
