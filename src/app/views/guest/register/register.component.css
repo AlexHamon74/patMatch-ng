@@ -1,0 +1,31 @@
+.register-container {
+    background-color: #EF9BC9;
+    height: 100vh;
+}
+
+.conteneur {
+    width: 320px;
+}
+
+.register-container h1 {
+    font-family: "Lilita One", sans-serif;
+    font-size: 25px;
+    color: #FEFEFE;
+}
+
+.register-container label {
+    font-family: "Lilita One", sans-serif;
+    font-size: 18px;
+    color: #F5F5F5;
+}
+
+.register-container input
+.register-container select
+.register-container option {
+    background-color: #F5F5F5CC;
+}
+
+.form-pwd {
+    font-size: 14px;
+    color: #FEFEFE;
+}

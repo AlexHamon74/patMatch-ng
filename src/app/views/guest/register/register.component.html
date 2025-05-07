@@ -1,62 +1,50 @@
+<section class="register-container d-flex flex-column justify-content-center align-items-center p-4">
+    <div class="conteneur">
+        <h1 class="mb-5 text-center">Inscription</h1>
 
-<div class="container">
-
-    <h1>Inscription</h1>
-    <!-- Formulaire de d'inscription -->
-    <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
-
-        <!-- Champs prenom -->
-        <label for="prenom">Prénom</label>
-        <input type="text" id="prenom" class="form-control" formControlName=prenom [class.is-invalid]="isSubmitted && registerForm.controls['prenom'].invalid">
-        <div *ngIf="isSubmitted && registerForm.controls['prenom'].invalid" class="invalid-feedback">
-            <small>Le prénom est requis</small>
+        <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
         </div>
+        <!-- Formulaire de d'inscription -->
+        <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
 
-        <!-- Champs nom -->
-        <label for="nom">Nom</label>
-        <input type="text" id="nom" class="form-control" formControlName=nom [class.is-invalid]="isSubmitted && registerForm.controls['nom'].invalid">
-        <div *ngIf="isSubmitted && registerForm.controls['nom'].invalid" class="invalid-feedback">
-            <small>Le nom est requis</small>
-        </div>
+            <!-- Champs email -->
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" formControlName=email
+                [class.is-invalid]="isSubmitted && registerForm.controls['email'].invalid">
+            <div *ngIf="isSubmitted && registerForm.controls['email'].invalid" class="invalid-feedback">
+                <small *ngIf="hasError('email', 'required')">L'email est requis.</small>
+                <small *ngIf="hasError('email', 'email')">L'email n'est pas valide.</small>
+            </div>
 
-        <!-- Champs email -->
-        <label for="email">Email</label>
-        <input type="email" id="email" class="form-control" formControlName=email [class.is-invalid]="isSubmitted && registerForm.controls['email'].invalid">
-        <div *ngIf="isSubmitted && registerForm.controls['email'].invalid" class="invalid-feedback">
-            <small *ngIf="hasError('email', 'required')">L'email est requis.</small>
-            <small *ngIf="hasError('email', 'email')">L'email n'est pas valide.</small>
-        </div>
-
-        <!-- Champs mot de passe -->
-        <label for="password">Mot de passe</label>
-        <input type="password" id="password" class="form-control" formControlName=password [class.is-invalid]="isSubmitted && registerForm.controls['password'].invalid">
-        <div *ngIf="isSubmitted && registerForm.controls['password'].invalid" class="invalid-feedback">
-            <small *ngIf="hasError('password', 'required')">Le mot de passe est requis.</small>
-            <small *ngIf="hasError('password', 'minlength')">Le mot de passe doit contenir au moins 6 caractères.</small><br>
-            <small *ngIf="hasError('password', 'pattern')">Le mot de passe doit contenir au moins un chiffre.</small>
-        </div>
-
-            <!-- Champs de de naissance -->
-            <label for="dateDeNaissance">Date de naissance</label>
-            <input type="date" id="dateDeNaissance" class="form-control" formControlName=dateDeNaissance [class.is-invalid]="isSubmitted && registerForm.controls['dateDeNaissance'].invalid">
-            <div *ngIf="isSubmitted && registerForm.controls['dateDeNaissance'].invalid" class="invalid-feedback">
-                <small>La date de naissance est requise</small>
+            <!-- Champs mot de passe -->
+            <label class="mt-3" for="password">Mot de passe</label>
+            <input type="password" id="password" class="form-control" formControlName=password
+                [class.is-invalid]="isSubmitted && registerForm.controls['password'].invalid">
+            <div class="form-pwd">
+                6 caractères minimum, 1 chiffre
+            </div>
+            <div *ngIf="isSubmitted && registerForm.controls['password'].invalid" class="invalid-feedback">
+                <small *ngIf="hasError('password', 'required')">Le mot de passe est requis.</small>
+                <small *ngIf="hasError('password', 'minlength')">Le mot de passe doit contenir au moins 6
+                    caractères.</small><br>
+                <small *ngIf="hasError('password', 'pattern')">Le mot de passe doit contenir au moins un
+                    chiffre.</small>
             </div>
 
             <!-- Champs de role -->
             <label for="roles">Role</label>
             <select id="roles" class="form-select" formControlName=roles [class.is-invalid]="isSubmitted && registerForm.controls['roles'].invalid">
-                <option disabled selected value="">Choisissez votre role</option>
-                <option [ngValue]="['ROLE_ELEVEUR']">Éleveur ou association</option>
+                <option disabled selected value="">Choisissez votre profil</option>
                 <option [ngValue]="['ROLE_USER']">Adoptant</option>
+                <option [ngValue]="['ROLE_ELEVEUR']">Éleveur ou association</option>
             </select>
             <div *ngIf="isSubmitted && registerForm.controls['roles'].invalid" class="invalid-feedback">
                 <small>Ce champs est requis</small>
             </div>
 
-        <!-- Bouton suivant -->
-        <button type="submit" class="btn btn-primary mt-3">Suivant</button>
-
-    </form>
-
-</div>
+            <!-- Bouton suivant -->
+            <button type="submit" class="btn-premier w-100 mt-5">S'inscrire</button>
+        </form>
+    </div>
+</section>
