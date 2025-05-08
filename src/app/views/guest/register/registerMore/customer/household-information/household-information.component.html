@@ -1,0 +1,50 @@
+<section class="register-container register-container-2 d-flex flex-column justify-content-center align-items-center p-4">
+    <div class="conteneur">
+
+        <div class="progress-custom mb-5 rounded"></div>
+
+        <h1 class="mb-5 text-center">Informations sur le foyer</h1>
+        <!-- Formulaire d'inscription, partie 3 -->
+        <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+
+            <!-- Autres animaux -->
+            <label for="autresAnimaux">Autres animaux<span>*</span></label>
+            <div class="form-switch p-0 d-flex mb-2">
+                <span class="me-2 text-light">Oui</span>
+                <input type="checkbox" role="switch" id="autresAnimaux" class="form-check-input mx-2" formControlName="autresAnimaux">
+                <span class="ms-2 text-light">Non</span>
+            </div>
+
+            <!-- Liste des autres animaux -->
+            <label for="animauxDescription">Si oui, lesquels</label>
+            <input type="text" id="animauxDescription" class="form-control mb-4" formControlName=animauxDescription>
+
+            <!-- Présence d'enfant -->
+            <label for="presenceEnfant">Présence d'enfant<span>*</span></label>
+            <div class="form-switch p-0 d-flex mb-2">
+                <span class="me-2 text-light">Oui</span>
+                <input type="checkbox" role="switch" id="presenceEnfant" class="form-check-input mx-2" formControlName="presenceEnfant">
+                <span class="ms-2 text-light">Non</span>
+            </div>
+
+            <!-- Age des enfants -->
+            <label for="enfantDescription">Si oui, âge des enfants</label>
+            <input type="text" id="enfantDescription" class="form-control" formControlName=enfantDescription>
+
+            <!-- Bouton continuer et précédent -->
+            <div class="row">
+                <div class="col-6">
+                    <button type="button" (click)="goBack()" class="d-flex align-items-center justify-content-center btn-back mt-5 w-100">
+                        <i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp; Précédent
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button type="submit" class="d-flex align-items-center justify-content-center btn-premier mt-5 w-100">Continuer
+                        &nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>

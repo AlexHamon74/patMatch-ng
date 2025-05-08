@@ -1,0 +1,65 @@
+<section class="register-container register-container-2 d-flex flex-column justify-content-center align-items-center p-4">
+    <div class="conteneur">
+
+        <div class="progress-custom mb-5 rounded"></div>
+
+        <h1 class="mb-5 text-center">Préférences d'adoption</h1>
+        <!-- Formulaire d'inscription, partie 4 -->
+        <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+
+            <!-- Liste des autres animaux -->
+            <label for="animauxPreferes">Les animaux qui vous feront pat'matcher<span>*</span></label>
+            <select id="animauxPreferes" class="form-select mb-3" formControlName=animauxPreferes>
+                <option disabled selected ngvalue="">Choisissez vos animaux préférés</option>
+                <option ngvalue="chien">Chiens</option>
+                <option ngvalue="chat">Chats</option>
+                <option ngvalue="all">Les deux</option>
+            </select>
+
+            <label for="raceSouhaite">Race souhaité<span>*</span></label>
+            <select id="raceSouhaite" class="form-select mb-3" formControlName=raceSouhaite>
+                <option disabled selected ngvalue="">Choisissez la race souhaité</option>
+                <option ngvalue="golden">Golden retriever</option>
+                <option ngvalue="bichon">Bichon</option>
+                <option ngvalue="chiwawa">Chiwawa</option>
+                <option ngvalue="husky">Husky</option>
+                <option ngvalue="all">Indifférent</option>
+            </select>
+
+            <label for="ageSouhaite">Âge souhaité<span>*</span></label>
+            <select id="ageSouhaite" class="form-select mb-3" formControlName=ageSouhaite>
+                <option disabled selected ngvalue="">Choisissez la tranche d'âge souhaité</option>
+                <option ngvalue="1-2">1-2</option>
+                <option ngvalue="2-5">2-5</option>
+                <option ngvalue="5-10">5-10</option>
+                <option ngvalue="10+">10+</option>
+                <option ngvalue="all">Indifférent</option>
+            </select>
+
+            <label for="sexeSouhaite">Sexe souhaité<span>*</span></label>
+            <select id="sexeSouhaite" class="form-select" formControlName=sexeSouhaite>
+                <option disabled selected ngvalue="">Choisissez le sexe de l'animal</option>
+                <option ngvalue="mâle">Mâle</option>
+                <option ngvalue="femelle">Femelle</option>
+                <option ngvalue="all">Indifférent</option>
+            </select>
+
+            <!-- Bouton continuer et précédent -->
+            <div class="row">
+                <div class="col-6">
+                    <button type="button" (click)="goBack()"
+                        class="d-flex align-items-center justify-content-center btn-back mt-5 w-100">
+                        <i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp; Précédent
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button type="submit"
+                        class="d-flex align-items-center justify-content-center btn-premier mt-5 w-100">Continuer
+                        &nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>

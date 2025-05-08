@@ -4,13 +4,13 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../../../../core/services/auth.service';
 
 @Component({
-    selector: 'app-housing-information',
+    selector: 'app-engagement',
     standalone: true,
     imports: [ReactiveFormsModule],
-    templateUrl: './housing-information.component.html',
+    templateUrl: './engagement.component.html',
     styleUrl: '../../../register.component.css'
 })
-export class HousingInformationComponent implements OnInit, OnDestroy{
+export class EngagementComponent implements OnInit, OnDestroy{
     // Propriétés
     formData: any;
 
@@ -21,7 +21,7 @@ export class HousingInformationComponent implements OnInit, OnDestroy{
 
     ngOnInit(): void {
         this.renderer.addClass(document.body, 'no-padding');
-        const savedData = this.authService.loadStepData('step2');
+        const savedData = this.authService.loadStepData('step5');
         if (savedData) {
             this.registerForm.patchValue(savedData);
         }
@@ -38,22 +38,22 @@ export class HousingInformationComponent implements OnInit, OnDestroy{
     });
 
     goBack() {
-        this.authService.saveStepData('step2', this.registerForm.value);
-        this.router.navigate(['register/customer/generalInformation']);
+        this.authService.saveStepData('step5', this.registerForm.value);
+        this.router.navigate(['register/customer/adoptionPreferences']);
     }
 
     // Soumission du formulaire
     onSubmit() {
         const formData = this.registerForm.value;
 
-        this.authService.saveStepData('step2', formData);
+        this.authService.saveStepData('step5', formData);
     
         this.authService.updateClient(formData).subscribe({
             next: () => {
-                this.router.navigate(['/register/customer/householdInformation']);
+                this.router.navigate(['/login']);
             },
             error: (err) => {
-                console.error('Erreur update step 2 :', err);
+                console.error('Erreur update step 5 :', err);
             }
         });
     };

@@ -30,14 +30,30 @@
     background-color: #F5F5F5CC;
 }
 
+.register-container select,
+.form-check-label {
+    font-size: 14px !important;
+    font-family: "Poppins", sans-serif !important;
+}
+
 .form-pwd {
     font-size: 14px;
     color: #FEFEFE;
 }
-
-.progress-custom {
+.progress {
     height: 5px;
     background-color: #DDEDFA;
+}
+
+.progress-bar {
+    width: 25%;
+    background-color: #B6DEFF;
+}
+.progress-icon-step2 {
+    position: absolute;
+    top: -12px;
+    left: 25%;
+    transform: translateX(-50%);
 }
 
 .btn-back {
@@ -54,4 +70,14 @@
 .btn-back:hover {
     background-color: #F5F5F5;
     color: #574bcf;
+}
+
+label span {
+    color: red;
+    font-size: 15px;
+}
+
+.div-engagement {
+    border: 1px solid #FEFEFE;
+    border-radius: 20px;
 }

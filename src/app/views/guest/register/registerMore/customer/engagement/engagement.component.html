@@ -1,0 +1,68 @@
+<section
+    class="register-container register-container-2 d-flex flex-column justify-content-center align-items-center p-4">
+    <div class="conteneur">
+
+        <div class="progress-custom mb-5 rounded"></div>
+
+        <h1 class="mb-5 text-center">Engagement</h1>
+        <!-- Formulaire d'inscription, partie 4 -->
+        <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+
+            <!-- Liste des autres animaux -->
+            <label for="animauxPreferes">Expérience avec les animaux<span>*</span></label>
+            <select id="animauxPreferes" class="form-select mb-3" formControlName=animauxPreferes>
+                <option disabled selected ngvalue="">Choisissez vos niveau d'expérience</option>
+                <option ngvalue="debutant">Débutant</option>
+                <option ngvalue="intermediaire">Intermédiaire</option>
+                <option ngvalue="expert">Expert</option>
+            </select>
+
+            <div class="div-engagement py-3 px-2 italic">
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                    <label class="form-check-label" for="checkDefault">
+                        <em>J'ai lu et j'accepte les conditions générales d'utilisation.</em>
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                    <label class="form-check-label" for="checkDefault">
+                        <em>J'autorise le traitement de mes données conformément à la politique de confidentialité de
+                            Pat'Match</em>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Bouton continuer et précédent -->
+            <div class="row">
+                <div class="col-6">
+                    <button type="button" (click)="goBack()"
+                        class="d-flex align-items-center justify-content-center btn-back mt-5 w-100">
+                        <i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp; Précédent
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button type="submit"
+                        class="d-flex align-items-center justify-content-center btn-premier mt-5 w-100">Pat'matcher
+                        &nbsp;
+                        <svg width="17" height="13" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_1416_210)">
+                                <path
+                                    d="M18 5.15855C18 6.07884 17.7649 6.94588 17.352 7.69352C17.3064 7.77718 17.2313 7.84259 17.1413 7.87301C16.8214 7.98216 16.477 8.04224 16.1193 8.04224C15.8123 8.04224 15.5168 7.99699 15.2346 7.91637C14.7366 7.77224 14.2878 7.50908 13.919 7.15846C13.772 7.01928 13.7575 6.79149 13.8716 6.62378C14.0771 6.32526 14.1589 5.93129 14.0412 5.51906C13.8894 4.99427 13.4061 4.64403 12.8722 4.64403C12.5374 4.64403 12.2323 4.78321 12.012 5.00606C11.7898 5.2308 11.6513 5.54073 11.6495 5.88451C11.6428 7.59122 12.8822 9.00132 14.4866 9.20743C14.6451 9.22911 14.7366 9.40366 14.6629 9.5493C14.5618 9.74705 14.4522 9.93986 14.3348 10.1243C13.3813 11.6165 11.8516 12.6828 10.0709 12.9928C9.7965 13.0395 9.53878 12.8418 9.50619 12.5585L9.19885 9.81741C9.14441 9.33216 9.30883 8.84844 9.64505 8.50314L9.64839 8.50162C9.73652 8.40959 9.78058 8.29057 9.78058 8.17154C9.78058 8.05251 9.73503 7.93006 9.64505 7.83803C9.48027 7.66728 9.2181 7.65549 9.03851 7.80076C9.01555 7.81939 8.98519 7.81939 8.96223 7.80076C8.87891 7.73383 8.77968 7.70037 8.67859 7.70037C8.5612 7.70037 8.44345 7.74562 8.35384 7.83803C8.17573 8.02094 8.17572 8.31757 8.35236 8.502L8.35421 8.50391C8.69006 8.84882 8.85448 9.33254 8.80041 9.81741L8.49418 12.5589C8.46159 12.8422 8.2035 13.0399 7.92948 12.9932C6.14836 12.6828 4.6172 11.6169 3.66554 10.1247C3.54631 9.93871 3.43707 9.74743 3.33746 9.54969C3.26414 9.40366 3.35524 9.22949 3.51372 9.20781C5.13006 8.99979 6.37536 7.56993 6.34943 5.84648C6.33981 5.18099 5.81399 4.64441 5.16597 4.64441C4.82975 4.64441 4.51611 4.78017 4.28616 5.00301C4.05768 5.22434 3.91068 5.53465 3.90586 5.87995C3.90105 6.15641 3.98437 6.41463 4.12804 6.62416C4.24394 6.79187 4.22765 7.01966 4.08249 7.15884C3.71183 7.50908 3.26303 7.77262 2.76499 7.91675C2.4843 7.99737 2.18696 8.04262 1.88035 8.04262C1.52931 8.04262 1.19161 7.98406 0.874635 7.87834C0.776507 7.84563 0.693561 7.77452 0.642831 7.68211C0.232545 6.93676 0 6.07579 0 5.15855C0 5.06956 0.00148118 4.98248 0.0066653 4.89539C0.0733183 3.51078 0.672454 2.26991 1.59819 1.38499C2.4943 0.526313 3.69776 0 5.02156 0C5.67439 0 6.29833 0.128916 6.8697 0.360509C7.55696 0.640398 8.16906 1.06974 8.66859 1.61126C8.8467 1.80559 9.15182 1.80559 9.33141 1.61126C9.83094 1.06974 10.443 0.640398 11.1288 0.360509C11.7017 0.129296 12.3256 0 12.9784 0C14.3008 0 15.5038 0.526313 16.4018 1.38499C17.3275 2.27029 17.9248 3.51078 17.9933 4.89577C17.9981 4.98286 18 5.07032 18 5.15893V5.15855Z"
+                                    fill="#F5F5F5" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_1416_210">
+                                    <rect width="18" height="13" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>

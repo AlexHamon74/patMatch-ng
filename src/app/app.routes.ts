@@ -12,6 +12,9 @@ import { MatchsComponent } from './views/user/matchs/matchs.component';
 import { BlogComponent } from './views/guest/blog/blog.component';
 import { AnimalDetailsComponent } from './views/guest/animal-details/animal-details.component';
 import { ProfilComponent } from './views/user/profil/profil.component';
+import { HouseholdInformationComponent } from './views/guest/register/registerMore/customer/household-information/houshold-information.component';
+import { AdoptionPreferencesComponent } from './views/guest/register/registerMore/customer/adoption-preferences/adoption-preferences.component';
+import { EngagementComponent } from './views/guest/register/registerMore/customer/engagement/engagement.component';
 
 export const routes: Routes = [
     {
@@ -30,6 +33,9 @@ export const routes: Routes = [
             { path: 'profil', component: ProfilComponent },
             { path: 'register/customer/generalInformation', component: GeneralInformationCustomerComponent },
             { path: 'register/customer/housingInformation', component: HousingInformationComponent },
+            { path: 'register/customer/householdInformation', component: HouseholdInformationComponent },
+            { path: 'register/customer/adoptionPreferences', component: AdoptionPreferencesComponent },
+            { path: 'register/customer/engagement', component: EngagementComponent },
         ]
     },
 
