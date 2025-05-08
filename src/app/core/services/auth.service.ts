@@ -15,10 +15,52 @@ export class AuthService {
     http = inject(HttpClient);
 
     // Méthode pour enregistrer un nouvel utilisateur
-    register(user: RegisterInterface): Observable<any> {
+    registerClient(user: RegisterInterface): Observable<any> {
         const headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });
-        return this.http.post(`${this.url}/users`, user, { headers });
+        return this.http.post(`${this.url}/clients`, user, { headers });
     };
+
+    registerEleveur(user: RegisterInterface): Observable<any> {
+        const headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });
+        return this.http.post(`${this.url}/eleveurs`, user, { headers });
+    };
+
+    // Sauvegarde temporaire de l'utilisateur en cours d'inscription
+    saveRegisteringUserId(id: string) {
+        localStorage.setItem('registeringUserId', id);
+    }
+
+    getRegisteringUserId(): string | null {
+        return localStorage.getItem('registeringUserId');
+    }
+
+    updateClient(data: any): Observable<any> {
+        const headers = new HttpHeaders({ 'Content-Type': 'application/merge-patch+json' });
+        const userId = this.getRegisteringUserId();
+        return this.http.patch(`${this.url}/clients/${userId}`, data, { headers });
+    }
+
+    updateEleveur(data: any): Observable<any> {
+        const headers = new HttpHeaders({ 'Content-Type': 'application/merge-patch+json' });
+        const userId = this.getRegisteringUserId();
+        return this.http.patch(`${this.url}/eleveurs/${userId}`, data, { headers });
+    }
+
+    // Pour les données temporaires entre étapes
+    saveStepData(stepKey: string, data: any) {
+        localStorage.setItem(stepKey, JSON.stringify(data));
+    }
+
+    loadStepData(stepKey: string): any {
+        const stored = localStorage.getItem(stepKey);
+        return stored ? JSON.parse(stored) : null;
+    }
+
+    clearRegisteringUser() {
+        localStorage.removeItem('registeringUserId');
+        localStorage.removeItem('step1');
+        localStorage.removeItem('step2');
+    }
 
     // Méthode pour effectuer la connexion
     login(loginCheck: { username: string; password: string }): Observable<Token> {

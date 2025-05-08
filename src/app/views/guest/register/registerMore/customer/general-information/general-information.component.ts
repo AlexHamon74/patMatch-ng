@@ -1,6 +1,7 @@
 import { Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../../../../core/services/auth.service';
 
 @Component({
     selector: 'app-general-information-customer',
@@ -16,37 +17,43 @@ export class GeneralInformationCustomerComponent implements OnInit, OnDestroy{
     // Services
     router = inject(Router);
     renderer = inject(Renderer2);
+    authService = inject(AuthService);
 
     ngOnInit(): void {
         this.renderer.addClass(document.body, 'no-padding');
+        const savedData = this.authService.loadStepData('step1');
+        if (savedData) {
+            this.registerForm.patchValue(savedData);
+        }
     }
     ngOnDestroy(): void {
         this.renderer.removeClass(document.body, 'no-padding');
     }
 
-    constructor() {
-        // Récupération des données du formulaire depuis la navigation
-        const navigation = this.router.getCurrentNavigation();
-        this.formData = navigation?.extras?.state?.['formData'];
-        console.log('Données du formulaire :', this.formData);
-    };
-
     // Formulaire avec validations
     public registerForm: FormGroup = new FormGroup({
-        typeCompte: new FormControl,
-        nomElevege: new FormControl,
-        numeroEnregistrement: new FormControl        
+        prenom: new FormControl,
+        nom: new FormControl,
+        dateDeNaissance: new FormControl,     
+        numeroDeTelephone: new FormControl,     
+        adresse: new FormControl,     
     });
 
     // Soumission du formulaire
     onSubmit() {
         const formData = this.registerForm.value;
 
-        // Si des données existent déjà, les fusionner avec les nouvelles
-        const mergedData = { ...this.formData, ...formData };
-
-        this.router.navigate(['register/breeder/housingInformation'], {
-            state: { formData: mergedData }
+        // Sauvegarde temporaire (utile pour bouton retour)
+        this.authService.saveStepData('step1', formData);
+    
+        // Envoie la mise à jour à l'API
+        this.authService.updateClient(formData).subscribe({
+            next: () => {
+                this.router.navigate(['register/customer/housingInformation']);
+            },
+            error: (err) => {
+                console.error('Erreur update step 1 :', err);
+            }
         });
     };
 

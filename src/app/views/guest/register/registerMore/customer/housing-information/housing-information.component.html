@@ -1,20 +1,38 @@
-<div class="container">
+<section class="register-container d-flex flex-column justify-content-center align-items-center p-4">
+    <div class="conteneur">
 
-    <h1>Coordonnées</h1>
-    <!-- Formulaire d'inscription, partie 2 -->
-    <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+        <div class="progress-custom mb-5 rounded"></div>
 
-        <!-- Adresse -->
-        <label for="adresse">Adresse</label>
-        <input type="text" id="adresse" class="form-control" formControlName=adresse>
+        <h1 class="mb-5 text-center">Informations sur le logement</h1>
+        <!-- Formulaire d'inscription, partie 2 -->
+        <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
 
-        <!-- Numéro de téléphone -->
-        <label for="numeroDeTelephone">Numéro de téléphone</label>
-        <input type="text" id="numeroDeTelephone" class="form-control" formControlName=numeroDeTelephone>
+            <!-- Type de logement -->
+            <label for="typeLogement">Type de logement</label>
+            <input type="text" id="typeLogement" class="form-control mb-3" formControlName=typeLogement>
 
-        <!-- Bouton suivant -->
-        <button type="submit" class="btn btn-primary mt-3">Suivant</button>
+            <!-- Espace extérieur -->
+            <label for="espaceExterieur">Espace extérieur</label>
+            <input type="text" id="espaceExterieur" class="form-control mb-3" formControlName=espaceExterieur>
+            
+            <!-- Type d'environnement -->
+            <label for="typeEnvironnement">Type d'environnement</label>
+            <input type="text" id="typeEnvironnement" class="form-control" formControlName=typeEnvironnement>
 
-    </form>
-</div>
+            <!-- Bouton continuer et précédent -->
+            <div class="row">
+                <div class="col-6">
+                    <button type="button" (click)="goBack()" class="d-flex align-items-center justify-content-center btn-back mt-5 w-100">
+                        <i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp; Précédent
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button type="submit" class="d-flex align-items-center justify-content-center btn-premier mt-5 w-100">Continuer
+                        &nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
 
+        </form>
+    </div>
+</section>

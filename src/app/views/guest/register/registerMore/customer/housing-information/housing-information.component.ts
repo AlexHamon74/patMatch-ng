@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../../../../core/services/auth.service';
 
 @Component({
     selector: 'app-housing-information',
@@ -9,35 +10,51 @@ import { Router } from '@angular/router';
     templateUrl: './housing-information.component.html',
     styleUrl: '../../../register.component.css'
 })
-export class HousingInformationComponent {
+export class HousingInformationComponent implements OnInit, OnDestroy{
     // Propriétés
     formData: any;
 
     // Services
     router = inject(Router);
+    renderer = inject(Renderer2);
+    authService = inject(AuthService);
 
-    constructor() {
-        // Récupération des données du formulaire depuis la navigation
-        const navigation = this.router.getCurrentNavigation();
-        this.formData = navigation?.extras?.state?.['formData'];
-        console.log('Données du formulaire partie 2 :', this.formData);
-    };
+    ngOnInit(): void {
+        this.renderer.addClass(document.body, 'no-padding');
+        const savedData = this.authService.loadStepData('step2');
+        if (savedData) {
+            this.registerForm.patchValue(savedData);
+        }
+    }
+    ngOnDestroy(): void {
+        this.renderer.removeClass(document.body, 'no-padding');
+    }
 
     // Formulaire avec validations
     public registerForm: FormGroup = new FormGroup({
-        adresse: new FormControl,
-        numeroDeTelephone: new FormControl,
+        typeLogement: new FormControl,
+        espaceExterieur: new FormControl,
+        typeEnvironnement: new FormControl,
     });
+
+    goBack() {
+        this.authService.saveStepData('step2', this.registerForm.value);
+        this.router.navigate(['register/customer/generalInformation']);
+    }
 
     // Soumission du formulaire
     onSubmit() {
         const formData = this.registerForm.value;
 
-        // Si des données existent déjà, les fusionner avec les nouvelles
-        const mergedData = { ...this.formData, ...formData };
-
-        this.router.navigate(['register/breeder/presentation'], {
-            state: { formData: mergedData }
+        this.authService.saveStepData('step2', formData);
+    
+        this.authService.updateClient(formData).subscribe({
+            next: () => {
+                this.router.navigate(['/home']);
+            },
+            error: (err) => {
+                console.error('Erreur update step 2 :', err);
+            }
         });
     };
 

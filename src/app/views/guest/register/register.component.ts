@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     router = inject(Router);
     renderer = inject(Renderer2);
     authService = inject(AuthService);
-    
+
     ngOnInit(): void {
         this.renderer.addClass(document.body, 'no-padding');
     }
@@ -39,30 +39,52 @@ export class RegisterComponent implements OnInit, OnDestroy {
     // Redirection en fonction du profil de l'utilisateur
     onSubmit() {
         this.isSubmitted = true;
+
         if (this.registerForm.valid) {
             const formData = this.registerForm.value;
-            this.authService.register(formData).subscribe({
-                next: () => {
-                    if (formData.roles.includes('ROLE_ELEVEUR')) {
-                        this.router.navigate(['register/breeder/generalInformation'], {
-                            state: { formData }
-                        });
-                    } else {
-                        this.router.navigate(['register/customer/generalInformation'], {
-                            state: { formData }
-                        });
-                    }
-                },
-                error: (error) => {
-                    if (error.error.violations) {
-                        const violation = error.error.violations.find((v: any) => v.propertyPath === 'email');
-                        this.errorMessage = violation.message;
-                    } 
-                }
-            });
 
+            // On récupère le rôle principal dès le départ
+            const isEleveur = formData.roles.includes('ROLE_ELEVEUR');
+
+            // On appelle la méthode spécifique en fonction du rôle
+            if (isEleveur) {
+                this.registerEleveur(formData);
+            } else {
+                this.registerClient(formData);
+            }
         }
-    };
+    }
+
+    private registerEleveur(formData: any) {
+        this.authService.registerEleveur(formData).subscribe({
+            next: (createdUser) => {
+                this.authService.saveRegisteringUserId(createdUser.id);
+                this.router.navigate(['register/breeder/generalInformation'], {
+                    state: { formData }
+                });
+            },
+            error: (error) => this.handleRegisterError(error)
+        });
+    }
+
+    private registerClient(formData: any) {
+        this.authService.registerClient(formData).subscribe({
+            next: (createdUser) => {
+                this.authService.saveRegisteringUserId(createdUser.id);
+                this.router.navigate(['register/customer/generalInformation'], {
+                    state: { formData }
+                });
+            },
+            error: (error) => this.handleRegisterError(error)
+        });
+    }
+
+    private handleRegisterError(error: any) {
+        if (error.error.violations) {
+            const violation = error.error.violations.find((v: any) => v.propertyPath === 'email');
+            this.errorMessage = violation?.message || 'Une erreur est survenue.';
+        }
+    }
 
     // Vérification des champs
     public hasError(controlName: string, errorName: string) {

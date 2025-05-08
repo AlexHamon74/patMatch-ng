@@ -10,8 +10,5 @@ export interface Token {
 export interface RegisterInterface {
     email: string;
     password: string;
-    nom: string;
-    prenom: string;
-    dateDeNaissance: string;
     roles: string[];
 }
