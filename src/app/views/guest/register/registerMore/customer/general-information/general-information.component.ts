@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -9,12 +9,20 @@ import { Router } from '@angular/router';
     templateUrl: './general-information.component.html',
     styleUrl: '../../../register.component.css'
 })
-export class GeneralInformationCustomerComponent {
+export class GeneralInformationCustomerComponent implements OnInit, OnDestroy{
     // Propriétés
     formData: any;
 
     // Services
     router = inject(Router);
+    renderer = inject(Renderer2);
+
+    ngOnInit(): void {
+        this.renderer.addClass(document.body, 'no-padding');
+    }
+    ngOnDestroy(): void {
+        this.renderer.removeClass(document.body, 'no-padding');
+    }
 
     constructor() {
         // Récupération des données du formulaire depuis la navigation

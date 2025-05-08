@@ -3,6 +3,11 @@
     height: 100vh;
 }
 
+.register-container-2 {
+    background-color: #B19FFF;
+    height: 100vh;
+}
+
 .conteneur {
     width: 320px;
 }
@@ -28,4 +33,9 @@
 .form-pwd {
     font-size: 14px;
     color: #FEFEFE;
+}
+
+.progress-custom {
+    height: 5px;
+    background-color: #DDEDFA;
 }
