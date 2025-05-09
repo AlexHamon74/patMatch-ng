@@ -5,13 +5,13 @@ import { AuthService } from '../../../../../../core/services/auth.service';
 import { NgIf } from '@angular/common';
 
 @Component({
-    selector: 'app-engagement',
+    selector: 'app-engagement-breeder',
     standalone: true,
     imports: [ReactiveFormsModule, NgIf],
-    templateUrl: './engagement.component.html',
+    templateUrl: './engagement-breeder.component.html',
     styleUrl: '../../../register.component.css'
 })
-export class EngagementComponent implements OnInit, OnDestroy{
+export class EngagementBreederComponent implements OnInit, OnDestroy{
     // Propriétés
     formData: any;
     isSubmitted = false;
@@ -36,36 +36,27 @@ export class EngagementComponent implements OnInit, OnDestroy{
 
     // Formulaire avec validations
     public registerForm: FormGroup = new FormGroup({
-        niveauExperience: new FormControl('', [Validators.required]),
-        cgu: new FormControl('', [Validators.required]),
-        traitementDonnees: new FormControl('', [Validators.requiredTrue]),
+        charteQualite: new FormControl(false, [Validators.requiredTrue]),
+        cgu: new FormControl(false, [Validators.requiredTrue]),
+        traitementDonnees: new FormControl(false, [Validators.requiredTrue]),
     });
 
     // Fonction attachée au bouton précédent
     goBack() {
         this.authService.saveStepData('step5', this.registerForm.value);
-        this.router.navigate(['register/customer/adoptionPreferences']);
+        this.router.navigate(['register/breeder/praticalInformationPart2']);
     }
 
     // Soumission du formulaire
     onSubmit() {
         this.isSubmitted = true;
+    
         if (this.registerForm.valid) {
-            const formData = this.registerForm.value;
-
-            this.authService.saveStepData('step5', formData);
-        
-            this.authService.updateClient(formData).subscribe({
-                next: () => {
-                    this.authService.clearRegisteringUser();
-                    this.router.navigate(['/login'], {
-                        state: { accountCreated: true }
-                    });
-                },
-                error: (err) => {
-                    console.error('Erreur update step 5 :', err);
-                }
+            this.authService.clearRegisteringUser();
+    
+            this.router.navigate(['/login'], {
+                state: { accountCreated: true }
             });
         }
-    };
+    }
 }

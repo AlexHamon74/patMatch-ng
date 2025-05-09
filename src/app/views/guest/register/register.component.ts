@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         this.authService.registerEleveur(formData).subscribe({
             next: (createdUser) => {
                 this.authService.saveRegisteringUserId(createdUser.id);
-                this.router.navigate(['register/breeder/generalInformation'], {
+                this.router.navigate(['register/breeder/generalInformationBreeder'], {
                     state: { formData }
                 });
             },

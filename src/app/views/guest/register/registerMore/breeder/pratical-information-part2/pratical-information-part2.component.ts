@@ -5,13 +5,13 @@ import { AuthService } from '../../../../../../core/services/auth.service';
 import { NgIf } from '@angular/common';
 
 @Component({
-    selector: 'app-engagement',
+    selector: 'app-pratical-information-part2',
     standalone: true,
     imports: [ReactiveFormsModule, NgIf],
-    templateUrl: './engagement.component.html',
+    templateUrl: './pratical-information-part2.component.html',
     styleUrl: '../../../register.component.css'
 })
-export class EngagementComponent implements OnInit, OnDestroy{
+export class praticalInformationPart2Component implements OnInit, OnDestroy{
     // Propriétés
     formData: any;
     isSubmitted = false;
@@ -24,8 +24,8 @@ export class EngagementComponent implements OnInit, OnDestroy{
     ngOnInit(): void {
         this.renderer.addClass(document.body, 'no-padding');
 
-        // Pré remplis les champs si retour
-        const savedData = this.authService.loadStepData('step5');
+        // Pré-remplis les champ si retour
+        const savedData = this.authService.loadStepData('step4');
         if (savedData) {
             this.registerForm.patchValue(savedData);
         }
@@ -36,15 +36,15 @@ export class EngagementComponent implements OnInit, OnDestroy{
 
     // Formulaire avec validations
     public registerForm: FormGroup = new FormGroup({
-        niveauExperience: new FormControl('', [Validators.required]),
-        cgu: new FormControl('', [Validators.required]),
-        traitementDonnees: new FormControl('', [Validators.requiredTrue]),
+        conditionAdoption: new FormControl('', [Validators.required]),
+        suiviPostAdoption: new FormControl,
+        suiviPostAdoptionDuree: new FormControl,
     });
 
     // Fonction attachée au bouton précédent
     goBack() {
-        this.authService.saveStepData('step5', this.registerForm.value);
-        this.router.navigate(['register/customer/adoptionPreferences']);
+        this.authService.saveStepData('step4', this.registerForm.value);
+        this.router.navigate(['register/breeder/praticalInformationPart1']);
     }
 
     // Soumission du formulaire
@@ -53,17 +53,14 @@ export class EngagementComponent implements OnInit, OnDestroy{
         if (this.registerForm.valid) {
             const formData = this.registerForm.value;
 
-            this.authService.saveStepData('step5', formData);
+            this.authService.saveStepData('step4', formData);
         
-            this.authService.updateClient(formData).subscribe({
+            this.authService.updateEleveur(formData).subscribe({
                 next: () => {
-                    this.authService.clearRegisteringUser();
-                    this.router.navigate(['/login'], {
-                        state: { accountCreated: true }
-                    });
+                    this.router.navigate(['/register/breeder/engagementBreeder']);
                 },
                 error: (err) => {
-                    console.error('Erreur update step 5 :', err);
+                    console.error('Erreur update step 4 :', err);
                 }
             });
         }

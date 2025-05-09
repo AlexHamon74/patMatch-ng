@@ -5,13 +5,13 @@ import { AuthService } from '../../../../../../core/services/auth.service';
 import { NgIf } from '@angular/common';
 
 @Component({
-    selector: 'app-engagement',
+    selector: 'app-general-information-breeder',
     standalone: true,
     imports: [ReactiveFormsModule, NgIf],
-    templateUrl: './engagement.component.html',
+    templateUrl: './general-information-breeder.component.html',
     styleUrl: '../../../register.component.css'
 })
-export class EngagementComponent implements OnInit, OnDestroy{
+export class GeneralInformationBreederComponent implements OnInit, OnDestroy{
     // Propriétés
     formData: any;
     isSubmitted = false;
@@ -24,8 +24,8 @@ export class EngagementComponent implements OnInit, OnDestroy{
     ngOnInit(): void {
         this.renderer.addClass(document.body, 'no-padding');
 
-        // Pré remplis les champs si retour
-        const savedData = this.authService.loadStepData('step5');
+        // Pré-remplis les champ si on fais retour
+        const savedData = this.authService.loadStepData('step1');
         if (savedData) {
             this.registerForm.patchValue(savedData);
         }
@@ -36,34 +36,29 @@ export class EngagementComponent implements OnInit, OnDestroy{
 
     // Formulaire avec validations
     public registerForm: FormGroup = new FormGroup({
-        niveauExperience: new FormControl('', [Validators.required]),
-        cgu: new FormControl('', [Validators.required]),
-        traitementDonnees: new FormControl('', [Validators.requiredTrue]),
+        nomElevageAssociation: new FormControl('', [Validators.required]),
+        numeroEnregistrement: new FormControl('', [Validators.required]),
+        presentation: new FormControl('', [Validators.required]),
+        certificat: new FormControl,
     });
-
-    // Fonction attachée au bouton précédent
-    goBack() {
-        this.authService.saveStepData('step5', this.registerForm.value);
-        this.router.navigate(['register/customer/adoptionPreferences']);
-    }
 
     // Soumission du formulaire
     onSubmit() {
         this.isSubmitted = true;
         if (this.registerForm.valid) {
+
             const formData = this.registerForm.value;
 
-            this.authService.saveStepData('step5', formData);
+            // Sauvegarde temporaire
+            this.authService.saveStepData('step1', formData);
         
-            this.authService.updateClient(formData).subscribe({
+            // Envoie la mise à jour à l'API
+            this.authService.updateEleveur(formData).subscribe({
                 next: () => {
-                    this.authService.clearRegisteringUser();
-                    this.router.navigate(['/login'], {
-                        state: { accountCreated: true }
-                    });
+                    this.router.navigate(['register/breeder/contactDetails']);
                 },
                 error: (err) => {
-                    console.error('Erreur update step 5 :', err);
+                    console.error('Erreur update step 1 :', err);
                 }
             });
         }

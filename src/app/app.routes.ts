@@ -15,6 +15,11 @@ import { ProfilComponent } from './views/user/profil/profil.component';
 import { HouseholdInformationComponent } from './views/guest/register/registerMore/customer/household-information/houshold-information.component';
 import { AdoptionPreferencesComponent } from './views/guest/register/registerMore/customer/adoption-preferences/adoption-preferences.component';
 import { EngagementComponent } from './views/guest/register/registerMore/customer/engagement/engagement.component';
+import { GeneralInformationBreederComponent } from './views/guest/register/registerMore/breeder/general-information-breeder/general-information.component-breeder';
+import { ContactDetailsComponent } from './views/guest/register/registerMore/breeder/contact-details/contact-details.component';
+import { praticalInformationPart1Component } from './views/guest/register/registerMore/breeder/pratical-information-part1/pratical-information-part1.component';
+import { praticalInformationPart2Component } from './views/guest/register/registerMore/breeder/pratical-information-part2/pratical-information-part2.component';
+import { EngagementBreederComponent } from './views/guest/register/registerMore/breeder/engagement-breeder/engagement-breeder.component';
 
 export const routes: Routes = [
     {
@@ -36,6 +41,11 @@ export const routes: Routes = [
             { path: 'register/customer/householdInformation', component: HouseholdInformationComponent },
             { path: 'register/customer/adoptionPreferences', component: AdoptionPreferencesComponent },
             { path: 'register/customer/engagement', component: EngagementComponent },
+            { path: 'register/breeder/generalInformationBreeder', component: GeneralInformationBreederComponent },
+            { path: 'register/breeder/contactDetails', component: ContactDetailsComponent },
+            { path: 'register/breeder/praticalInformationPart1', component: praticalInformationPart1Component },
+            { path: 'register/breeder/praticalInformationPart2', component: praticalInformationPart2Component },
+            { path: 'register/breeder/engagementBreeder', component: EngagementBreederComponent },
         ]
     },
 

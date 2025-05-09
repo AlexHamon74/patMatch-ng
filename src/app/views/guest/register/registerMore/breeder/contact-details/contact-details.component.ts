@@ -5,13 +5,13 @@ import { AuthService } from '../../../../../../core/services/auth.service';
 import { NgIf } from '@angular/common';
 
 @Component({
-    selector: 'app-engagement',
+    selector: 'app-contact-details',
     standalone: true,
     imports: [ReactiveFormsModule, NgIf],
-    templateUrl: './engagement.component.html',
+    templateUrl: './contact-details.component.html',
     styleUrl: '../../../register.component.css'
 })
-export class EngagementComponent implements OnInit, OnDestroy{
+export class ContactDetailsComponent implements OnInit, OnDestroy {
     // Propriétés
     formData: any;
     isSubmitted = false;
@@ -24,8 +24,8 @@ export class EngagementComponent implements OnInit, OnDestroy{
     ngOnInit(): void {
         this.renderer.addClass(document.body, 'no-padding');
 
-        // Pré remplis les champs si retour
-        const savedData = this.authService.loadStepData('step5');
+        // Pré-remplis les champ si on fais retour
+        const savedData = this.authService.loadStepData('step2');
         if (savedData) {
             this.registerForm.patchValue(savedData);
         }
@@ -34,17 +34,17 @@ export class EngagementComponent implements OnInit, OnDestroy{
         this.renderer.removeClass(document.body, 'no-padding');
     }
 
-    // Formulaire avec validations
+    // Formulaire
     public registerForm: FormGroup = new FormGroup({
-        niveauExperience: new FormControl('', [Validators.required]),
-        cgu: new FormControl('', [Validators.required]),
-        traitementDonnees: new FormControl('', [Validators.requiredTrue]),
+        adresse: new FormControl('', [Validators.required]),
+        numeroDeTelephone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+        adresseElevage: new FormControl('', [Validators.required]),
     });
 
     // Fonction attachée au bouton précédent
     goBack() {
-        this.authService.saveStepData('step5', this.registerForm.value);
-        this.router.navigate(['register/customer/adoptionPreferences']);
+        this.authService.saveStepData('step2', this.registerForm.value);
+        this.router.navigate(['register/breeder/generalInformationBreeder']);
     }
 
     // Soumission du formulaire
@@ -53,19 +53,21 @@ export class EngagementComponent implements OnInit, OnDestroy{
         if (this.registerForm.valid) {
             const formData = this.registerForm.value;
 
-            this.authService.saveStepData('step5', formData);
+            this.authService.saveStepData('step2', formData);
         
-            this.authService.updateClient(formData).subscribe({
+            this.authService.updateEleveur(formData).subscribe({
                 next: () => {
-                    this.authService.clearRegisteringUser();
-                    this.router.navigate(['/login'], {
-                        state: { accountCreated: true }
-                    });
+                    this.router.navigate(['/register/breeder/praticalInformationPart1']);
                 },
                 error: (err) => {
-                    console.error('Erreur update step 5 :', err);
+                    console.error('Erreur update step 2 :', err);
                 }
             });
         }
+    };
+
+    // Vérification des champs a validation multiples
+    public hasError(controlName: string, errorName: string) {
+        return this.registerForm.controls[controlName].hasError(errorName);
     };
 }
