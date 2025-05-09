@@ -1,32 +1,100 @@
+/* Style container pages register */
+/* ------------------------------ */
 .register-container {
-    background-color: #EF9BC9;
     height: 100vh;
 }
 
-.register-container-2 {
+.register-container-pink {
+    background-color: #EF9BC9;
+}
+
+.register-container-violet {
     background-color: #B19FFF;
-    height: 100vh;
+}
+
+.register-container-lightblue {
+    background-color: #92A8FF;
 }
 
 .conteneur {
     width: 320px;
 }
 
+
+/* Style progress bar */
+/* ----------- */
+.progress {
+    height: 5px;
+    background-color: #DDEDFA;
+}
+
+.progress-bar {
+    background-color: #B6DEFF;
+}
+
+.progress-bar-step1 {
+    width: 0%;
+}
+
+.progress-bar-step2 {
+    width: 25%;
+}
+
+.progress-bar-step3 {
+    width: 50%;
+}
+
+.progress-bar-step4 {
+    width: 75%;
+}
+
+.progress-bar-step5 {
+    width: 100%;
+}
+
+.progress-icon {
+    position: absolute;
+    top: -12px;
+    transform: translateX(-50%);
+}
+
+.progress-icon-step1 {
+    left: 0%;
+}
+
+.progress-icon-step2 {
+    left: 25%;
+}
+
+.progress-icon-step3 {
+    left: 50%;
+}
+
+.progress-icon-step4 {
+    left: 75%;
+}
+
+.progress-icon-step5 {
+    left: 100%;
+}
+
+/* Style Titer h1 */
+/* -------------- */
 .register-container h1 {
     font-family: "Lilita One", sans-serif;
     font-size: 25px;
     color: #FEFEFE;
 }
 
+/* Style Formulaire */
+/* ---------------- */
 .register-container label {
     font-family: "Lilita One", sans-serif;
     font-size: 18px;
     color: #F5F5F5;
 }
 
-.register-container input
-.register-container select
-.register-container option {
+.register-container input .register-container select .register-container option {
     background-color: #F5F5F5CC;
 }
 
@@ -36,26 +104,23 @@
     font-family: "Poppins", sans-serif !important;
 }
 
+label span {
+    color: red;
+    font-size: 15px;
+}
+
 .form-pwd {
     font-size: 14px;
     color: #FEFEFE;
 }
-.progress {
-    height: 5px;
-    background-color: #DDEDFA;
+
+.div-engagement {
+    border: 1px solid #FEFEFE;
+    border-radius: 20px;
 }
 
-.progress-bar {
-    width: 25%;
-    background-color: #B6DEFF;
-}
-.progress-icon-step2 {
-    position: absolute;
-    top: -12px;
-    left: 25%;
-    transform: translateX(-50%);
-}
-
+/* Style Boutons Précédent */
+/* ----------------------- */
 .btn-back {
     background-color: transparent;
     border: 1px solid #F5F5F5;
@@ -70,14 +135,4 @@
 .btn-back:hover {
     background-color: #F5F5F5;
     color: #574bcf;
-}
-
-label span {
-    color: red;
-    font-size: 15px;
-}
-
-.div-engagement {
-    border: 1px solid #FEFEFE;
-    border-radius: 20px;
 }

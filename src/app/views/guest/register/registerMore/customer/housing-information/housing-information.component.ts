@@ -21,6 +21,8 @@ export class HousingInformationComponent implements OnInit, OnDestroy{
 
     ngOnInit(): void {
         this.renderer.addClass(document.body, 'no-padding');
+
+        // Pré-remplis les champ si on fais retour
         const savedData = this.authService.loadStepData('step2');
         if (savedData) {
             this.registerForm.patchValue(savedData);
@@ -30,13 +32,14 @@ export class HousingInformationComponent implements OnInit, OnDestroy{
         this.renderer.removeClass(document.body, 'no-padding');
     }
 
-    // Formulaire avec validations
+    // Formulaire
     public registerForm: FormGroup = new FormGroup({
         typeLogement: new FormControl,
         espaceExterieur: new FormControl,
         typeEnvironnement: new FormControl,
     });
 
+    // Fonction attachée au bouton précédent
     goBack() {
         this.authService.saveStepData('step2', this.registerForm.value);
         this.router.navigate(['register/customer/generalInformation']);
@@ -57,5 +60,4 @@ export class HousingInformationComponent implements OnInit, OnDestroy{
             }
         });
     };
-
 }

@@ -1,18 +1,20 @@
 import { Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../../../core/services/auth.service';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-engagement',
     standalone: true,
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, NgIf],
     templateUrl: './engagement.component.html',
     styleUrl: '../../../register.component.css'
 })
 export class EngagementComponent implements OnInit, OnDestroy{
     // Propriétés
     formData: any;
+    isSubmitted = false;
 
     // Services
     router = inject(Router);
@@ -21,6 +23,8 @@ export class EngagementComponent implements OnInit, OnDestroy{
 
     ngOnInit(): void {
         this.renderer.addClass(document.body, 'no-padding');
+
+        // Pré remplis les champs si retour
         const savedData = this.authService.loadStepData('step5');
         if (savedData) {
             this.registerForm.patchValue(savedData);
@@ -32,11 +36,12 @@ export class EngagementComponent implements OnInit, OnDestroy{
 
     // Formulaire avec validations
     public registerForm: FormGroup = new FormGroup({
-        typeLogement: new FormControl,
-        espaceExterieur: new FormControl,
-        typeEnvironnement: new FormControl,
+        niveauExperience: new FormControl('', [Validators.required]),
+        cgu: new FormControl('', [Validators.required]),
+        traitementDonnees: new FormControl('', [Validators.required]),
     });
 
+    // Fonction attachée au bouton précédent
     goBack() {
         this.authService.saveStepData('step5', this.registerForm.value);
         this.router.navigate(['register/customer/adoptionPreferences']);
@@ -44,18 +49,23 @@ export class EngagementComponent implements OnInit, OnDestroy{
 
     // Soumission du formulaire
     onSubmit() {
-        const formData = this.registerForm.value;
+        this.isSubmitted = true;
+        if (this.registerForm.valid) {
+            const formData = this.registerForm.value;
 
-        this.authService.saveStepData('step5', formData);
-    
-        this.authService.updateClient(formData).subscribe({
-            next: () => {
-                this.router.navigate(['/login']);
-            },
-            error: (err) => {
-                console.error('Erreur update step 5 :', err);
-            }
-        });
+            this.authService.saveStepData('step5', formData);
+        
+            this.authService.updateClient(formData).subscribe({
+                next: () => {
+                    this.authService.clearRegisteringUser();
+                    this.router.navigate(['/login'], {
+                        state: { accountCreated: true }
+                    });
+                },
+                error: (err) => {
+                    console.error('Erreur update step 5 :', err);
+                }
+            });
+        }
     };
-
 }

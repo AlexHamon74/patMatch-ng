@@ -1,18 +1,20 @@
 import { Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../../../core/services/auth.service';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-adoption-preferences',
     standalone: true,
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, NgIf],
     templateUrl: './adoption-preferences.component.html',
     styleUrl: '../../../register.component.css'
 })
 export class AdoptionPreferencesComponent implements OnInit, OnDestroy{
     // Propriétés
     formData: any;
+    isSubmitted = false;
 
     // Services
     router = inject(Router);
@@ -21,6 +23,8 @@ export class AdoptionPreferencesComponent implements OnInit, OnDestroy{
 
     ngOnInit(): void {
         this.renderer.addClass(document.body, 'no-padding');
+
+        // Pré-remplis les input si retour
         const savedData = this.authService.loadStepData('step4');
         if (savedData) {
             this.registerForm.patchValue(savedData);
@@ -32,11 +36,13 @@ export class AdoptionPreferencesComponent implements OnInit, OnDestroy{
 
     // Formulaire avec validations
     public registerForm: FormGroup = new FormGroup({
-        typeLogement: new FormControl,
-        espaceExterieur: new FormControl,
-        typeEnvironnement: new FormControl,
+        animauxPreferes: new FormControl('', [Validators.required]),
+        raceSouhaite: new FormControl('', [Validators.required]),
+        ageSouhaite: new FormControl('', [Validators.required]),
+        sexeSouhaite: new FormControl('', [Validators.required]),
     });
 
+    // Fonction attachée au bouton précédent
     goBack() {
         this.authService.saveStepData('step4', this.registerForm.value);
         this.router.navigate(['register/customer/householdInformation']);
@@ -44,18 +50,21 @@ export class AdoptionPreferencesComponent implements OnInit, OnDestroy{
 
     // Soumission du formulaire
     onSubmit() {
-        const formData = this.registerForm.value;
+        this.isSubmitted = true;
+            if (this.registerForm.valid) {
 
-        this.authService.saveStepData('step4', formData);
-    
-        this.authService.updateClient(formData).subscribe({
-            next: () => {
-                this.router.navigate(['/register/customer/engagement']);
-            },
-            error: (err) => {
-                console.error('Erreur update step 4 :', err);
-            }
-        });
+            const formData = this.registerForm.value;
+
+            this.authService.saveStepData('step4', formData);
+        
+            this.authService.updateClient(formData).subscribe({
+                next: () => {
+                    this.router.navigate(['/register/customer/engagement']);
+                },
+                error: (err) => {
+                    console.error('Erreur update step 4 :', err);
+                }
+            });
+        }
     };
-
 }

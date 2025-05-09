@@ -36,7 +36,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     });
 
     // Soumission du formulaire et enregistrement de l'utilisateur
-    // Redirection en fonction du profil de l'utilisateur
     onSubmit() {
         this.isSubmitted = true;
 
@@ -55,6 +54,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         }
     }
 
+    // Fonction pour enregistrer un eleveur
     private registerEleveur(formData: any) {
         this.authService.registerEleveur(formData).subscribe({
             next: (createdUser) => {
@@ -67,6 +67,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         });
     }
 
+    // Fonction pour enregistrer un adptant
     private registerClient(formData: any) {
         this.authService.registerClient(formData).subscribe({
             next: (createdUser) => {
@@ -79,6 +80,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         });
     }
 
+    // Fonction pour vérifier si email unique
     private handleRegisterError(error: any) {
         if (error.error.violations) {
             const violation = error.error.violations.find((v: any) => v.propertyPath === 'email');
@@ -86,7 +88,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         }
     }
 
-    // Vérification des champs
+    // Vérification des champs a validation multiples
     public hasError(controlName: string, errorName: string) {
         return this.registerForm.controls[controlName].hasError(errorName);
     };

@@ -21,6 +21,8 @@ export class HouseholdInformationComponent implements OnInit, OnDestroy{
 
     ngOnInit(): void {
         this.renderer.addClass(document.body, 'no-padding');
+
+        // Pré-remplis les champ si retour
         const savedData = this.authService.loadStepData('step3');
         if (savedData) {
             this.registerForm.patchValue(savedData);
@@ -32,11 +34,13 @@ export class HouseholdInformationComponent implements OnInit, OnDestroy{
 
     // Formulaire avec validations
     public registerForm: FormGroup = new FormGroup({
-        typeLogement: new FormControl,
-        espaceExterieur: new FormControl,
-        typeEnvironnement: new FormControl,
+        autresAnimaux: new FormControl,
+        animauxDescription: new FormControl,
+        presenceEnfant: new FormControl,
+        enfantDescription: new FormControl,
     });
 
+    // Fonction attachée au bouton précédent
     goBack() {
         this.authService.saveStepData('step3', this.registerForm.value);
         this.router.navigate(['register/customer/housingInformation']);
@@ -57,5 +61,4 @@ export class HouseholdInformationComponent implements OnInit, OnDestroy{
             }
         });
     };
-
 }

@@ -2,18 +2,18 @@ import { Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [ReactiveFormsModule, NgIf],
+    imports: [ReactiveFormsModule],
     templateUrl: './login.component.html',
     styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit, OnDestroy {
     // Propriétés
     errorMessage: string | null = null;
+    successMessage: string | null = null;
     isSubmitted = false;
 
     // Services
@@ -23,6 +23,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.renderer.addClass(document.body, 'no-padding');
+
+        // Si on arrive sur cette page après register, affiche une alert
+        const state = history.state as { accountCreated?: boolean };
+        
+        if (state?.accountCreated) {
+            this.successMessage = 'Votre compte a bien été créé. Vous pouvez maintenant vous connecter.';
+        }
     }
     ngOnDestroy(): void {
         this.renderer.removeClass(document.body, 'no-padding');
@@ -31,8 +38,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     // Formulaire avec validations
     public loginForm: FormGroup = new FormGroup({
-        username: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', [Validators.required,])
+        username: new FormControl('', Validators.required),
+        password: new FormControl('', Validators.required)
     });
 
     // Soumission du formulaire
@@ -51,10 +58,5 @@ export class LoginComponent implements OnInit, OnDestroy {
                 }
             });
         }
-    };
-
-    // Vérification des champs
-    public hasError(controlName: string, errorName: string) {
-        return this.loginForm.controls[controlName].hasError(errorName);
     };
 }

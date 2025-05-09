@@ -1,4 +1,4 @@
-<section class="register-container d-flex flex-column justify-content-center align-items-center p-4">
+<section class="register-container register-container-pink d-flex flex-column justify-content-center align-items-center p-4">
     <div class="conteneur">
         <h1 class="mb-5 text-center">Inscription</h1>
 
@@ -33,7 +33,7 @@
             </div>
 
             <!-- Champs de role -->
-            <label for="roles">Role</label>
+            <label for="roles">Profil</label>
             <select id="roles" class="form-select" formControlName=roles [class.is-invalid]="isSubmitted && registerForm.controls['roles'].invalid">
                 <option disabled selected value="">Choisissez votre profil</option>
                 <option [ngValue]="['ROLE_USER']">Adoptant</option>

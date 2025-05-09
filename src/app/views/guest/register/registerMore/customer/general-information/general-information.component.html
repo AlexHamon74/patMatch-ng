@@ -1,10 +1,13 @@
 <section
-    class="register-container register-container-2 d-flex flex-column justify-content-center align-items-center p-4">
+    class="register-container register-container-violet d-flex flex-column justify-content-center align-items-center p-4">
     <div class="conteneur">
 
-        <div class="progress-custom mb-5 rounded d-flex align-items-center position-relative">
-            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink">
+        <div class="position-relative mb-5">
+            <div class="progress">
+                <div class="progress-bar progress-bar-step1"></div>
+            </div>
+            <svg class="progress-icon progress-icon-step1" width="30" height="30" viewBox="0 0 30 30" fill="none"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <rect width="30" height="30" fill="url(#pattern0_1315_10309)" />
                 <defs>
                     <pattern id="pattern0_1315_10309" patternContentUnits="objectBoundingBox" width="1" height="1">
@@ -23,27 +26,44 @@
             <div class="row">
                 <div class="col-6">
                     <!-- Prénom -->
-                    <label for="prenom">Prénom</label>
-                    <input type="text" id="prenom" class="form-control" formControlName=prenom>
+                    <label for="prenom">Prénom<span>*</span></label>
+                    <input type="text" id="prenom" class="form-control" formControlName=prenom [class.is-invalid]="isSubmitted && registerForm.controls['prenom'].invalid">
+                    <div *ngIf="isSubmitted && registerForm.controls['prenom'].invalid" class="invalid-feedback">
+                        <small>Ce champs est requis</small>
+                    </div>
                 </div>
                 <div class="col-6">
                     <!-- Nom -->
-                    <label for="nom">Nom</label>
-                    <input type="text" id="nom" class="form-control" formControlName=nom>
+                    <label for="nom">Nom<span>*</span></label>
+                    <input type="text" id="nom" class="form-control" formControlName=nom [class.is-invalid]="isSubmitted && registerForm.controls['nom'].invalid">
+                    <div *ngIf="isSubmitted && registerForm.controls['nom'].invalid" class="invalid-feedback">
+                        <small>Ce champs est requis</small>
+                    </div>
                 </div>
             </div>
 
             <!-- Date de naissance -->
-            <label class="mt-3" for="dateDeNaissance">Date de naissance</label>
-            <input type="text" id="dateDeNaissance" class="form-control" formControlName=dateDeNaissance>
+            <label class="mt-3" for="dateDeNaissance">Date de naissance<span>*</span></label>
+            <input type="date" id="dateDeNaissance" class="form-control" formControlName=dateDeNaissance [class.is-invalid]="isSubmitted && registerForm.controls['dateDeNaissance'].invalid">
+            <div *ngIf="isSubmitted && registerForm.controls['dateDeNaissance'].invalid" class="invalid-feedback">
+                <small>Ce champs est requis</small>
+            </div>
 
             <!-- N° de téléphone -->
-            <label class="mt-3" for="numeroDeTelephone">Numéro de téléphone</label>
-            <input type="text" id="numeroDeTelephone" class="form-control" formControlName=numeroDeTelephone>
+            <label class="mt-3" for="numeroDeTelephone">Numéro de téléphone<span>*</span></label>
+            <input type="text" id="numeroDeTelephone" class="form-control" formControlName=numeroDeTelephone formControlName=numeroDeTelephone [class.is-invalid]="isSubmitted && registerForm.controls['numeroDeTelephone'].invalid">
+            <div *ngIf="isSubmitted && registerForm.controls['numeroDeTelephone'].invalid" class="invalid-feedback">
+                <small *ngIf="hasError('numeroDeTelephone', 'required')">Ce champs est requis</small>
+                <small *ngIf="hasError('numeroDeTelephone', 'minlength')">Ce champ doit faire 10 caractère</small>
+                <small *ngIf="hasError('numeroDeTelephone', 'maxlength')">Ce champ doit faire 10 caractère</small>
+            </div>
 
             <!-- Adresse + Code postal -->
-            <label class="mt-3" for="adresse">Adresse, Code postal</label>
-            <input type="text" id="adresse" class="form-control" formControlName=adresse>
+            <label class="mt-3" for="adresse">Adresse, Code postal<span>*</span></label>
+            <input type="text" id="adresse" class="form-control" formControlName=adresse formControlName=adresse [class.is-invalid]="isSubmitted && registerForm.controls['adresse'].invalid">
+            <div *ngIf="isSubmitted && registerForm.controls['adresse'].invalid" class="invalid-feedback">
+                <small>Ce champs est requis</small>
+            </div>
 
             <!-- Bouton suivant -->
             <div class="row justify-content-end">

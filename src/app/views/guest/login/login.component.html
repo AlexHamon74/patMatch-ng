@@ -9,26 +9,28 @@
                 {{ errorMessage }}
             </div>
             }
+
+            @if(successMessage) {
+                <div class="alert alert-success mb-4">
+                    {{ successMessage }}
+                </div>
+            }
             <!-- Champs Email -->
             <label for="email">Email</label>
             <input id="email" formControlName="username" class="form-control"
                 [class.is-invalid]="isSubmitted && loginForm.controls['username'].invalid">
             @if(isSubmitted && loginForm.controls['username'].invalid) {
-            <div class="invalid-feedback">
-                <small *ngIf="hasError('username', 'required')">L'email est requis.</small>
-                <small *ngIf="hasError('username', 'email')">L'email n'est pas valide.</small>
-            </div>
+                <div class="invalid-feedback">
+                    <small>Ce champs est requis</small>
+                </div>
             }
             <!-- Champs Mot de passe -->
             <label class="mt-3" for="password">Mot de passe</label>
             <input id="password" type="password" formControlName="password" class="form-control"
                 [class.is-invalid]="isSubmitted && loginForm.controls['password'].invalid">
-                <div class="form-pwd">
-                    6 caractères minimum, 1 chiffre
-                </div>
             @if(isSubmitted && loginForm.controls['password'].invalid) {
             <div class="invalid-feedback">
-                <small>Le mot de passe est requis</small>
+                <small>Ce champs est requis</small>
             </div>
             }
             <!-- Bouton valider -->

@@ -60,6 +60,9 @@ export class AuthService {
         localStorage.removeItem('registeringUserId');
         localStorage.removeItem('step1');
         localStorage.removeItem('step2');
+        localStorage.removeItem('step3');
+        localStorage.removeItem('step4');
+        localStorage.removeItem('step5');
     }
 
     // Méthode pour effectuer la connexion
