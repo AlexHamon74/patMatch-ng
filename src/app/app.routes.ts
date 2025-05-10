@@ -20,6 +20,7 @@ import { ContactDetailsComponent } from './views/guest/register/registerMore/bre
 import { praticalInformationPart1Component } from './views/guest/register/registerMore/breeder/pratical-information-part1/pratical-information-part1.component';
 import { praticalInformationPart2Component } from './views/guest/register/registerMore/breeder/pratical-information-part2/pratical-information-part2.component';
 import { EngagementBreederComponent } from './views/guest/register/registerMore/breeder/engagement-breeder/engagement-breeder.component';
+import { DashboardComponent } from './views/breeder/dashboard/dashboard.component';
 
 export const routes: Routes = [
     {
@@ -46,6 +47,7 @@ export const routes: Routes = [
             { path: 'register/breeder/praticalInformationPart1', component: praticalInformationPart1Component },
             { path: 'register/breeder/praticalInformationPart2', component: praticalInformationPart2Component },
             { path: 'register/breeder/engagementBreeder', component: EngagementBreederComponent },
+            { path: 'dashboard', component: DashboardComponent },
         ]
     },
 

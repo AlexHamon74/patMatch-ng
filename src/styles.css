@@ -20,6 +20,12 @@ a {
 .rounded-10 {
     border-radius: 10px;
 }
+.rounded-15 {
+    border-radius: 15px;
+}
+.rounded-20 {
+    border-radius: 20px;
+}
 
 .bg-pink {
     background-color: #EF9BC9;

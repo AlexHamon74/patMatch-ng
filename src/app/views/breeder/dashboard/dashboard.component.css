@@ -1,0 +1,98 @@
+/* Style de base de la page */
+h1 {
+    font-family: "Lilita One", sans-serif;
+    color: #1E1E1B;
+    font-size: 25px;
+}
+
+h2 {
+    font-size: 16px;
+    font-family: "Lilita One", sans-serif;
+    color: #1E1E1B;
+}
+
+p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Style card nombres animaux */
+.nb-animaux {
+    background-color: #E6E6E6;
+}
+
+/* Style card nombres adoptions */
+.nb-adoptions {
+    background-color: #D6EAFA;
+}
+
+.adoption-icon {
+    width: 23px;
+    height: 23px;
+}
+
+.adaption-encours {
+    background-color: #B19FFF;
+}
+
+.adaption-achevees {
+    background-color: #EF9BC9;
+}
+
+.adaption-annulees {
+    background-color: #92A8FF;
+}
+
+/* Style card les plus appréciées */
+.plus-apprecies {
+    background-color: #92A8FFB2;
+}
+
+/* Style card les mois appréciées */
+.moins-apprecies {
+    background-color: #B19FFFB2;
+}
+
+/* Style card notifs */
+.notif {
+    background-color: #D1D7F2;
+}
+
+/* Style bouton ajouter animal */
+
+.btn-ajouter-animal {
+    background-color: #EF9BC9;
+    font-size: 17px;
+    color: #F5F5F5;
+    font-family: "Lilita One", sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.btn-ajouter-animal:hover {
+    background-color: #D77BAF;
+}
+
+
+/* Style link fleche */
+.arrow-link {
+    width: 48px;
+    height: 48px;
+    background-color: #6C60D2;
+    transition: background-color 0.3s ease;
+}
+
+.arrow-link:hover {
+    background-color: #5548A5;
+}
+
+/* Style image animal dans card plus et moins appréciées */
+.img-animal {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.img-animal:hover {
+    transform: scale(1.2);
+}
