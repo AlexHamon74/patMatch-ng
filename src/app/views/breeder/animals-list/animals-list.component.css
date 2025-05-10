@@ -1,0 +1,36 @@
+/* Style générique de la page */
+h1 {
+    font-family: "Lilita One", sans-serif;
+    color: #1E1E1B;
+    font-size: 25px;
+}
+
+h2 {
+    font-size: 18px;
+    font-family: "Lilita One", sans-serif;
+    color: #1E1E1B;
+}
+
+p {
+    font-size: 15px;
+}
+
+/* Style du nombres de like sur cet animal */
+.nb-like {
+    background-color: #7189FF;
+    width: 30px;
+    height: 30px;
+}
+
+/* Style de l'image de l'animal */
+.animal-img {
+    height: 175px;
+    width: 100%;
+    object-fit: cover;
+}
+
+@media (min-width: 992px) {
+    .animal-img {
+        height: 300px;
+    }
+}
