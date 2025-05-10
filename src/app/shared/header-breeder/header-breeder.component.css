@@ -1,0 +1,41 @@
+.profile-picture {
+    border: 3px solid #B19FFF;
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+}
+
+span {
+    color: #1E1E1B;
+}
+
+.hello {
+    font-size: 17px;
+}
+
+.breederName {
+    font-size: 20px;
+    font-family: "Lilita One", sans-serif;
+}
+
+.notif-icon {
+    background-color: #B6DEFF;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.notif-icon:hover {
+    background-color: #A0CFFF;
+}
+
+.notif-dot {
+    width: 6px;
+    height: 6px;
+    top: 10px;
+    right: 10px;
+}
+
+  
