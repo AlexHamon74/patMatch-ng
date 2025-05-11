@@ -1,0 +1,105 @@
+/* Style container pages register */
+/* ------------------------------ */
+.addAnimal-container {
+    background-color: #F6F6F6;
+}
+
+.conteneur {
+    width: 320px;
+}
+
+/* Style progress bar */
+/* ------------------ */
+.progress {
+    height: 5px;
+    background-color: #D1D7F2;
+}
+
+.progress-bar {
+    background-color: #B19FFF;
+}
+
+.progress-bar-step1 {
+    width: 0%;
+}
+
+.progress-bar-step2 {
+    width: 20%;
+}
+
+.progress-bar-step3 {
+    width: 40%;
+}
+
+.progress-bar-step4 {
+    width: 60%;
+}
+
+.progress-bar-step5 {
+    width: 80%;
+}
+
+.progress-bar-step6 {
+    width: 100%;
+}
+
+.progress-icon {
+    position: absolute;
+    top: -12px;
+    transform: translateX(-50%);
+}
+
+.progress-icon-step1 {
+    left: 0%;
+}
+
+.progress-icon-step2 {
+    left: 20%;
+}
+
+.progress-icon-step3 {
+    left: 40%;
+}
+
+.progress-icon-step4 {
+    left: 60%;
+}
+
+.progress-icon-step5 {
+    left: 80%;
+}
+
+.progress-icon-step6 {
+    left: 100%;
+}
+
+/* Style Titre h1 */
+/* -------------- */
+.addAnimal-container h1 {
+    font-family: "Lilita One", sans-serif;
+    font-size: 25px;
+    color: #1E1E1B;
+}
+
+/* Style Formulaire */
+/* ---------------- */
+.addAnimal-container label {
+    font-family: "Lilita One", sans-serif;
+    font-size: 18px;
+    color: #1E1E1B;
+}
+
+.addAnimal-container input .addAnimal-container select .addAnimal-container option {
+    background-color: #F5F5F5CC;
+}
+
+.addAnimal-container select,
+.form-check-label {
+    font-size: 14px !important;
+    font-family: "Poppins", sans-serif !important;
+}
+
+label span {
+    color: red;
+    font-size: 15px;
+}

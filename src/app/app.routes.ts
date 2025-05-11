@@ -22,6 +22,7 @@ import { praticalInformationPart2Component } from './views/guest/register/regist
 import { EngagementBreederComponent } from './views/guest/register/registerMore/breeder/engagement-breeder/engagement-breeder.component';
 import { DashboardComponent } from './views/breeder/dashboard/dashboard.component';
 import { AnimalsListComponent } from './views/breeder/animals-list/animals-list.component';
+import { GeneralInformationComponent } from './views/breeder/add-animal/general-information/general-information.component';
 
 export const routes: Routes = [
     {
@@ -50,6 +51,7 @@ export const routes: Routes = [
             { path: 'register/breeder/engagementBreeder', component: EngagementBreederComponent },
             { path: 'dashboard', component: DashboardComponent },
             { path: 'animalsList', component: AnimalsListComponent },
+            { path: 'addAnimal/generalInformation', component: GeneralInformationComponent },
         ]
     },
 
