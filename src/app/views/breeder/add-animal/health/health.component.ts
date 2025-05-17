@@ -6,13 +6,13 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { NgIf } from '@angular/common';
 
 @Component({
-    selector: 'app-general-information',
+    selector: 'app-health',
     standalone: true,
     imports: [HeaderBreederComponent, NgIf, ReactiveFormsModule],
-    templateUrl: './general-information.component.html',
+    templateUrl: './health.component.html',
     styleUrl: './../add-animal.component.css'
 })
-export class GeneralInformationComponent implements OnInit, OnDestroy {
+export class HealthComponent implements OnInit, OnDestroy {
     // Propriétés
     isSubmitted = false;
 
@@ -25,7 +25,7 @@ export class GeneralInformationComponent implements OnInit, OnDestroy {
         this.renderer.addClass(document.body, 'no-padding');
 
         // Pré-remplis les champ si on fais retour
-        const savedData = this.animalService.loadStepData('step1');
+        const savedData = this.animalService.loadStepData('step2');
         if (savedData) {
             this.createAnimalForm.patchValue(savedData);
         }
@@ -36,14 +36,18 @@ export class GeneralInformationComponent implements OnInit, OnDestroy {
 
     // Formulaire avec validations
     public createAnimalForm: FormGroup = new FormGroup({
-        nom: new FormControl('', [Validators.required]),
-        dateDeNaissance: new FormControl('', [Validators.required]),
-        sexe: new FormControl('', [Validators.required]),
-        numeroIdentification: new FormControl('', [Validators.required]),
-        race: new FormControl('', [Validators.required]),
-        poids: new FormControl('', [Validators.required]),
-        taille: new FormControl('', [Validators.required]),
+        statutVaccination: new FormControl('', [Validators.required]),
+        statutSterilisation: new FormControl('', [Validators.required]),
+        infoSante: new FormControl('', [Validators.required]),
+        typeAlimentation: new FormControl('', [Validators.required]),
+        typeAlimentationDetails: new FormControl(),
     });
+
+    // Fonction attachée au bouton précédent
+    goBack() {
+        this.animalService.saveStepData('step2', this.createAnimalForm.value);
+        this.router.navigate(['addAnimal/generalInformation']);
+    }
 
     // Soumission du formulaire
     onSubmit() {
@@ -52,8 +56,8 @@ export class GeneralInformationComponent implements OnInit, OnDestroy {
             const formData = this.createAnimalForm.value;
 
             // Sauvegarde temporaire des données et redirection
-            this.animalService.saveStepData('step1', formData);
-            this.router.navigate(['addAnimal/health']);
+            this.animalService.saveStepData('step2', formData);
+            this.router.navigate(['addAnimal/']);
         }
     };
 
