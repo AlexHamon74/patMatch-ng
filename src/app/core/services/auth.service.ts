@@ -78,8 +78,7 @@ export class AuthService {
 
     // Méthode pour se déconnecter et remove le localStorage
     logout(): void {
-        localStorage.removeItem('token');
-        localStorage.removeItem('cartItems');
+        localStorage.clear();
         console.log('Déconnexion réussie');
     };
 }

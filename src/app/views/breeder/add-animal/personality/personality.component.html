@@ -5,9 +5,9 @@
     <div class="conteneur">
         <div class="position-relative mb-4">
             <div class="progress">
-                <div class="progress-bar progress-bar-step2"></div>
+                <div class="progress-bar progress-bar-step3"></div>
             </div>
-            <svg class="progress-icon progress-icon-step2" width="30" height="30" viewBox="0 0 30 30" fill="none"
+            <svg class="progress-icon progress-icon-step3" width="30" height="30" viewBox="0 0 30 30" fill="none"
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <rect width="30" height="30" fill="url(#pattern0_1388_58212)" />
                 <defs>
@@ -20,67 +20,54 @@
             </svg>
         </div>
 
-        <h1 class="mb-4 text-center">Santé</h1>
+        <h1 class="mb-4 text-center">Personnalité</h1>
         <!-- Ajouter un animal, Partie 1 -->
         <form (ngSubmit)="onSubmit()" [formGroup]="createAnimalForm">
 
             <div class="row">
-                <!-- Statut vaccination de l'animal -->
+                <!-- Niveau d'energie de l'animal -->
                 <div class="col-12 mb-3">
-                    <label for="statutVaccination">Statut vaccination<span>*</span></label>
-                    <select id="statutVaccination" class="form-select" formControlName=statutVaccination
-                        [class.is-invalid]="isSubmitted && createAnimalForm.controls['statutVaccination'].invalid">
+                    <label for="niveauEnergie">Niveau d'energie<span>*</span></label>
+                    <select id="niveauEnergie" class="form-select" formControlName=niveauEnergie
+                        [class.is-invalid]="isSubmitted && createAnimalForm.controls['niveauEnergie'].invalid">
                         <option disabled selected value="">Entrez les Informations</option>
                         <option ngvalue="Todo">Todo</option>
                     </select>
-                    <div *ngIf="isSubmitted && createAnimalForm.controls['statutVaccination'].invalid"
-                        class="invalid-feedback">
-                        <small>Ce champs est requis</small>
-                    </div>
+                    @if (isSubmitted && createAnimalForm.controls['niveauEnergie'].invalid) {
+                        <div class="invalid-feedback">
+                            <small>Ce champs est requis</small>
+                        </div>
+                    }
                 </div>
 
-                <!-- Statut stérilisation de l'animal -->
+                <!-- Sociabilité de l'animal -->
                 <div class="col-12 mb-3">
-                    <label for="statutSterilisation">Statut stérilisation<span>*</span></label>
-                    <select id="statutSterilisation" class="form-select" formControlName=statutSterilisation
-                        [class.is-invalid]="isSubmitted && createAnimalForm.controls['statutSterilisation'].invalid">
+                    <label for="sociabilite">Sociabilité<span>*</span></label>
+                    <select id="sociabilite" class="form-select" formControlName=sociabilite
+                        [class.is-invalid]="isSubmitted && createAnimalForm.controls['sociabilite'].invalid">
                         <option disabled selected value="">Entrez les Informations</option>
                         <option ngvalue="Todo">Todo</option>
                     </select>
-                    <div *ngIf="isSubmitted && createAnimalForm.controls['statutSterilisation'].invalid"
-                        class="invalid-feedback">
-                        <small>Ce champs est requis</small>
-                    </div>
+                    @if (isSubmitted && createAnimalForm.controls['sociabilite'].invalid) {
+                        <div class="invalid-feedback">
+                            <small>Ce champs est requis</small>
+                        </div>
+                    }
                 </div>
 
-                <!-- Information sur la santé de l'animal -->
-                <div class="col-12 mb-3">
-                    <label for="infosSante">Infomations santé<span>*</span></label>
-                    <textarea id="infosSante" class="form-control" formControlName=infosSante
-                        [class.is-invalid]="isSubmitted && createAnimalForm.controls['infosSante'].invalid"></textarea>
-                    <div *ngIf="isSubmitted && createAnimalForm.controls['infosSante'].invalid" class="invalid-feedback">
-                        <small>Ce champs est requis</small>
-                    </div>
-                </div>
-
-                <!-- Type d'alimentation de l'animal -->
-                <div class="col-12 mb-3">
-                    <label for="typeAlimentation">Type d'alimentation<span>*</span></label>
-                    <select id="typeAlimentation" class="form-select" formControlName=typeAlimentation
-                        [class.is-invalid]="isSubmitted && createAnimalForm.controls['typeAlimentation'].invalid">
-                        <option disabled selected value="">Entrez les Informations</option>
-                        <option ngvalue="Todo">Todo</option>
-                    </select>
-                    <div *ngIf="isSubmitted && createAnimalForm.controls['typeAlimentation'].invalid"
-                        class="invalid-feedback">
-                        <small>Ce champs est requis</small>
-                    </div>
-                </div>
-
-                <!-- Information sur l'alimentation de l'animal -->
+                <!-- Education de l'animal -->
                 <div class="col-12">
-                    <label for="typeAlimentationDetails">Détails Alimentation</label>
-                    <textarea id="typeAlimentationDetails" class="form-control" formControlName=typeAlimentationDetails></textarea>
+                    <label for="education">Education<span>*</span></label>
+                    <select id="education" class="form-select" formControlName=education
+                        [class.is-invalid]="isSubmitted && createAnimalForm.controls['education'].invalid">
+                        <option disabled selected value="">Entrez les Informations</option>
+                        <option ngvalue="Todo">Todo</option>
+                    </select>
+                    @if (isSubmitted && createAnimalForm.controls['education'].invalid) {
+                        <div class="invalid-feedback">
+                            <small>Ce champs est requis</small>
+                        </div>
+                    }
                 </div>
 
             </div>
@@ -101,7 +88,6 @@
                 </div>
             </div>
         </form>
-
 
     </div>
 </section>

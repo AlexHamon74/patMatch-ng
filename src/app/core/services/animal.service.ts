@@ -3,6 +3,7 @@ import { environment } from '../../../environnement/environnement.production';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AnimalCreateInterface } from '../entities';
 import { Observable } from 'rxjs';
+import { UserService } from './user.service';
 
 @Injectable({
     providedIn: 'root'
@@ -15,11 +16,20 @@ export class AnimalService {
 
     // Injection des services
     http = inject(HttpClient);
+    userService = inject(UserService);
 
     // Méthode pour enregistrer un nouvel animal
     createAnimal(animal: AnimalCreateInterface): Observable<AnimalCreateInterface> {
-        return this.http.post<AnimalCreateInterface>(`${this.url}/animals`, animal, { headers: this.headers });
-    };
+        const userId = this.userService.getUserId();
+        if (!userId) throw new Error('Utilisateur non connecté');
+
+        const fullAnimal: AnimalCreateInterface = {
+            ...animal,
+            eleveur: `/api/users/${userId}`
+        };
+
+        return this.http.post<AnimalCreateInterface>(`${this.url}/animals`, fullAnimal, { headers: this.headers });
+    }
 
     // Sauvegarde temporaire de l'animal en cours d'inscription dans le localStorage
     saveStepData(stepKey: string, data: Partial<AnimalCreateInterface>) {

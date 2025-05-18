@@ -3,16 +3,15 @@ import { HeaderBreederComponent } from '../../../../shared/header-breeder/header
 import { Router } from '@angular/router';
 import { AnimalService } from '../../../../core/services/animal.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgIf } from '@angular/common';
 
 @Component({
-    selector: 'app-health',
+    selector: 'app-pictures',
     standalone: true,
-    imports: [HeaderBreederComponent, NgIf, ReactiveFormsModule],
-    templateUrl: './health.component.html',
+    imports: [HeaderBreederComponent, ReactiveFormsModule],
+    templateUrl: './pictures.component.html',
     styleUrl: './../add-animal.component.css'
 })
-export class HealthComponent implements OnInit, OnDestroy {
+export class PicturesComponent implements OnInit, OnDestroy {
     // Propriétés
     isSubmitted = false;
 
@@ -25,7 +24,7 @@ export class HealthComponent implements OnInit, OnDestroy {
         this.renderer.addClass(document.body, 'no-padding');
 
         // Pré-remplis les champ si on fais retour
-        const savedData = this.animalService.loadStepData('step2');
+        const savedData = this.animalService.loadStepData('step6');
         if (savedData) {
             this.createAnimalForm.patchValue(savedData);
         }
@@ -36,17 +35,13 @@ export class HealthComponent implements OnInit, OnDestroy {
 
     // Formulaire avec validations
     public createAnimalForm: FormGroup = new FormGroup({
-        statutVaccination: new FormControl('', [Validators.required]),
-        statutSterilisation: new FormControl('', [Validators.required]),
-        infosSante: new FormControl('', [Validators.required]),
-        typeAlimentation: new FormControl('', [Validators.required]),
-        typeAlimentationDetails: new FormControl(),
+        // photos: new FormControl('', [Validators.required]),
     });
 
     // Fonction attachée au bouton précédent
     goBack() {
-        this.animalService.saveStepData('step2', this.createAnimalForm.value);
-        this.router.navigate(['addAnimal/generalInformation']);
+        this.animalService.saveStepData('step6', this.createAnimalForm.value);
+        this.router.navigate(['addAnimal/terms']);
     }
 
     // Soumission du formulaire
@@ -55,9 +50,24 @@ export class HealthComponent implements OnInit, OnDestroy {
         if (this.createAnimalForm.valid) {
             const formData = this.createAnimalForm.value;
 
-            // Sauvegarde temporaire des données et redirection
-            this.animalService.saveStepData('step2', formData);
-            this.router.navigate(['addAnimal/personality']);
+            // Sauvegarde temporaire des données
+            this.animalService.saveStepData('step6', formData);
+
+            // Récupérer l'ensemble des données de toutes les étapes
+            const fullAnimal = this.animalService.getFullAnimalFromSteps();
+
+            if (fullAnimal) {
+                this.animalService.createAnimal(fullAnimal).subscribe({
+                    next: () => {
+                        // Nettoyage du localStorage puis redirection vers la liste des animaux
+                        this.animalService.clearAnimalRegistrationData();
+                        this.router.navigate(['animalsList']);
+                    },
+                    error: (err) => {
+                        console.error("Erreur lors de la création de l'animal :", err);
+                    }
+                });
+            }
         }
     };
 

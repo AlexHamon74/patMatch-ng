@@ -81,6 +81,11 @@
     color: #1E1E1B;
 }
 
+.addAnimal-container p {
+    font-size: 12px;
+    color: #1E1E1B;
+}
+
 /* Style Formulaire */
 /* ---------------- */
 .addAnimal-container label {
@@ -89,15 +94,12 @@
     color: #1E1E1B;
 }
 
-.addAnimal-container input .addAnimal-container select .addAnimal-container option {
-    background-color: #F5F5F5CC;
-}
-
 .addAnimal-container select,
 .form-check-label,
 .form-control {
     font-size: 14px !important;
     font-family: "Poppins", sans-serif !important;
+    background-color: #E6E6E6 !important;
 }
 
 label span {

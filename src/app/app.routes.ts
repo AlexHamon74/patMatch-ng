@@ -24,6 +24,10 @@ import { DashboardComponent } from './views/breeder/dashboard/dashboard.componen
 import { AnimalsListComponent } from './views/breeder/animals-list/animals-list.component';
 import { GeneralInformationComponent } from './views/breeder/add-animal/general-information/general-information.component';
 import { HealthComponent } from './views/breeder/add-animal/health/health.component';
+import { PersonalityComponent } from './views/breeder/add-animal/personality/personality.component';
+import { IdealEnvironmentComponent } from './views/breeder/add-animal/ideal-environment/ideal-environment.component';
+import { TermsComponent } from './views/breeder/add-animal/terms/terms.component';
+import { PicturesComponent } from './views/breeder/add-animal/pictures/pictures.component';
 
 export const routes: Routes = [
     {
@@ -54,6 +58,10 @@ export const routes: Routes = [
             { path: 'animalsList', component: AnimalsListComponent },
             { path: 'addAnimal/generalInformation', component: GeneralInformationComponent },
             { path: 'addAnimal/health', component: HealthComponent },
+            { path: 'addAnimal/personality', component: PersonalityComponent },
+            { path: 'addAnimal/idealEnvironment', component: IdealEnvironmentComponent },
+            { path: 'addAnimal/terms', component: TermsComponent },
+            { path: 'addAnimal/pictures', component: PicturesComponent },
         ]
     },
 
