@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AnimalService } from '../../../../core/services/animal.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { EspeceService } from '../../../../core/services/espece.service';
+import { EspeceInterface, RaceInterface } from '../../../../core/entities';
 
 @Component({
     selector: 'app-general-information',
@@ -15,11 +17,14 @@ import { NgIf } from '@angular/common';
 export class GeneralInformationComponent implements OnInit, OnDestroy {
     // Propriétés
     isSubmitted = false;
+    especes: EspeceInterface[] = [];
+    racesFiltrees: RaceInterface[] = [];
 
     // Services
     router = inject(Router);
     renderer = inject(Renderer2);
     animalService = inject(AnimalService);
+    especeService = inject(EspeceService);
 
     ngOnInit(): void {
         this.renderer.addClass(document.body, 'no-padding');
@@ -29,6 +34,9 @@ export class GeneralInformationComponent implements OnInit, OnDestroy {
         if (savedData) {
             this.createAnimalForm.patchValue(savedData);
         }
+
+        // Récupérer la liste des espèces
+        this.getEspeces();
     }
     ngOnDestroy(): void {
         this.renderer.removeClass(document.body, 'no-padding');
@@ -56,5 +64,19 @@ export class GeneralInformationComponent implements OnInit, OnDestroy {
             this.router.navigate(['addAnimal/health']);
         }
     };
+
+    getEspeces() {
+        this.especeService.fetchAllEspeces().subscribe(espece => {
+            console.log('Especes chargées :', espece); // debug
+            this.especes = espece;
+        })
+    };
+
+    onEspeceChange(event: Event) {
+        const selectedId = +(event.target as HTMLSelectElement).value;
+        const selectedEspece = this.especes.find(e => e.id === selectedId);
+        this.racesFiltrees = selectedEspece?.races || [];
+        this.createAnimalForm.get('race')?.setValue('');
+    }
 
 }

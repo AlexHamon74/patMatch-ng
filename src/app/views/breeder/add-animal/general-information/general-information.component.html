@@ -73,10 +73,11 @@
                 <!-- Espèce de l'animal -->
                 <div class="col-6 mb-3">
                     <label for="espece">Espece<span>*</span></label>
-                    <select id="espece" class="form-select">
+                    <select id="espece" class="form-select" (change)="onEspeceChange($event)">
                         <option disabled selected value="">Entrez l'espèce de l'animal</option>
-                        <option ngvalue="Chien">Chien</option>
-                        <option ngvalue="Chat">Chat</option>
+                        @for (espece of especes; track espece.id) {
+                            <option value="{{ espece.id }}">{{ espece.nom }}</option>
+                        }
                     </select>
                 </div>
 
@@ -86,7 +87,9 @@
                     <select id="race" class="form-select" formControlName=race
                         [class.is-invalid]="isSubmitted && createAnimalForm.controls['race'].invalid">
                         <option disabled selected value="">Entrez la race de l'animal</option>
-                        <option ngvalue="Labrador">Labrador</option>
+                        @for (race of racesFiltrees; track race.id) {
+                            <option value="{{ race['@id'] }}">{{ race.nom }}</option>
+                        }
                     </select>
                     <div *ngIf="isSubmitted && createAnimalForm.controls['race'].invalid" class="invalid-feedback">
                         <small>Ce champs est requis</small>

@@ -1,3 +1,7 @@
+export interface HydraResponse<T> {
+  'member': T[];
+}
+
 export interface loginCheck {
     username: string;
     password: string;
@@ -53,4 +57,16 @@ export interface AnimalCreateInterface {
 
     // Etape 6 :
     // photos: string[];
+}
+
+export interface EspeceInterface {
+    id: number;
+    nom: string;
+    races: RaceInterface[];
+}
+
+export interface RaceInterface {
+    '@id': string;
+    id: number;
+    nom: string;
 }
