@@ -20,6 +20,12 @@
             </svg>
         </div>
 
+        @if (errorMessage) {
+            <div class="alert alert-danger">
+                {{ errorMessage }}
+            </div>
+        }
+
         <h1 class="mb-4 text-center">Photos</h1>
         <!-- Ajouter un animal, Partie 1 -->
         <form (ngSubmit)="onSubmit()" [formGroup]="createAnimalForm">

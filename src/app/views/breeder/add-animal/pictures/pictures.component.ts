@@ -14,6 +14,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class PicturesComponent implements OnInit, OnDestroy {
     // Propriétés
     isSubmitted = false;
+    errorMessage: string = '';
 
     // Services
     router = inject(Router);
@@ -65,10 +66,19 @@ export class PicturesComponent implements OnInit, OnDestroy {
                     },
                     error: (err) => {
                         console.error("Erreur lors de la création de l'animal :", err);
+                        this.handleRegisterError(err);
                     }
                 });
             }
         }
     };
+
+    // Fonction pour vérifier si numero d'identification unique
+    private handleRegisterError(error: any) {
+        if (error.error.violations) {
+            const violation = error.error.violations.find((v: any) => v.propertyPath === 'numeroIdentification');
+            this.errorMessage = violation?.message || 'Une erreur est survenue.';
+        }
+    }
 
 }
