@@ -62,7 +62,9 @@ export class PicturesComponent implements OnInit, OnDestroy {
                     next: () => {
                         // Nettoyage du localStorage puis redirection vers la liste des animaux
                         this.animalService.clearAnimalRegistrationData();
-                        this.router.navigate(['animalsList']);
+                        this.router.navigate(['/animalsList'], {
+                            state: { animalCreated: true }
+                        });
                     },
                     error: (err) => {
                         console.error("Erreur lors de la création de l'animal :", err);
