@@ -7,6 +7,11 @@ export interface Token {
     token: string;
 }
 
+export interface TokenPayload {
+    id: number;
+    roles: string[];
+}
+
 export interface RegisterInterface {
     email: string;
     password: string;
