@@ -1,7 +1,7 @@
 /* Style container pages register */
 /* ------------------------------ */
 .register-container {
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .register-container-pink {
@@ -19,7 +19,6 @@
 .conteneur {
     width: 320px;
 }
-
 
 /* Style progress bar */
 /* ----------- */
@@ -94,7 +93,10 @@
     color: #F5F5F5;
 }
 
-.register-container input .register-container select .register-container option {
+.register-container input,
+.register-container select,
+.register-container textarea,
+.register-container option {
     background-color: #F5F5F5CC;
 }
 
