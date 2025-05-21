@@ -28,6 +28,7 @@ import { IdealEnvironmentComponent } from './views/breeder/add-animal/ideal-envi
 import { TermsComponent } from './views/breeder/add-animal/terms/terms.component';
 import { PicturesComponent } from './views/breeder/add-animal/pictures/pictures.component';
 import { AuthUserGuard } from './core/guards/auth-user.guards';
+import { AuthBreederGuard } from './core/guards/auth-breeder.guards';
 
 export const routes: Routes = [
     {
@@ -44,7 +45,7 @@ export const routes: Routes = [
             { path: 'blog', component: BlogComponent },
 
             // TODO : Page 403
-            {path: 'unauthorized', component: AuthComponent },
+            {path: 'unauthorized', redirectTo: '/'},
 
             // Routes protégées pour les utilisateurs connectés
             { path: 'matchs', component: MatchsComponent, canActivate: [AuthUserGuard] },
@@ -59,23 +60,24 @@ export const routes: Routes = [
     {
         path: 'breeder',
         children: [
-            { path: 'dashboard', component: DashboardComponent },
-            { path: 'animalsList', component: AnimalsListComponent },
-            { path: 'addAnimal/generalInformation', component: GeneralInformationComponent },
-            { path: 'addAnimal/health', component: HealthComponent },
-            { path: 'addAnimal/personality', component: PersonalityComponent },
-            { path: 'addAnimal/idealEnvironment', component: IdealEnvironmentComponent },
-            { path: 'addAnimal/terms', component: TermsComponent },
-            { path: 'addAnimal/pictures', component: PicturesComponent },
+            // Routes protégées pour les éleveurs connectés
+            { path: 'dashboard', component: DashboardComponent, canActivate: [AuthBreederGuard] },
+            { path: 'animalsList', component: AnimalsListComponent, canActivate: [AuthBreederGuard] },
+            { path: 'addAnimal/generalInformation', component: GeneralInformationComponent, canActivate: [AuthBreederGuard] },
+            { path: 'addAnimal/health', component: HealthComponent, canActivate: [AuthBreederGuard] },
+            { path: 'addAnimal/personality', component: PersonalityComponent, canActivate: [AuthBreederGuard] },
+            { path: 'addAnimal/idealEnvironment', component: IdealEnvironmentComponent, canActivate: [AuthBreederGuard] },
+            { path: 'addAnimal/terms', component: TermsComponent, canActivate: [AuthBreederGuard] },
+            { path: 'addAnimal/pictures', component: PicturesComponent, canActivate: [AuthBreederGuard] },
 
-            { path: 'register/breeder/generalInformationBreeder', component: GeneralInformationBreederComponent },
-            { path: 'register/breeder/contactDetails', component: ContactDetailsComponent },
-            { path: 'register/breeder/praticalInformationPart1', component: praticalInformationPart1Component },
-            { path: 'register/breeder/praticalInformationPart2', component: praticalInformationPart2Component },
-            { path: 'register/breeder/engagementBreeder', component: EngagementBreederComponent },
+            { path: 'register/breeder/generalInformationBreeder', component: GeneralInformationBreederComponent, canActivate: [AuthBreederGuard] },
+            { path: 'register/breeder/contactDetails', component: ContactDetailsComponent, canActivate: [AuthBreederGuard] },
+            { path: 'register/breeder/praticalInformationPart1', component: praticalInformationPart1Component, canActivate: [AuthBreederGuard] },
+            { path: 'register/breeder/praticalInformationPart2', component: praticalInformationPart2Component, canActivate: [AuthBreederGuard] },
+            { path: 'register/breeder/engagementBreeder', component: EngagementBreederComponent, canActivate: [AuthBreederGuard] },
         ]
     },
 
     // TODO : Page 404
-    {path:'**', component: AuthComponent },
+    {path:'**', redirectTo: '/' },
 ];
