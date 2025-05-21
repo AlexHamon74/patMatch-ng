@@ -81,4 +81,10 @@ export class AuthService {
         localStorage.clear();
         console.log('Déconnexion réussie');
     };
+
+    //Méthode pour vérifier si l'utilisateur est connecté
+    isLogged(): boolean {
+        const token = localStorage.getItem('token');
+        return !!token;
+    };
 }

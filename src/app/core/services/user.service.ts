@@ -29,6 +29,12 @@ export class UserService {
         }
     }
 
+    //Méthode pour vérifier si l'utilisateur a un rôle spécifique
+    hasRole(role: string): boolean {
+        const roles = this.getUserRoles();
+        return roles ? roles.includes(role) : false;
+    }
+
     //Méthode pour récupérer l'id de l'utilisateur à partir du token
     getUserId(): number | null {
         const token = this.getToken();

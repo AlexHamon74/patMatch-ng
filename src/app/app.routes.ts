@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { UserComponent } from './views/user/user.component';
 import { AuthComponent } from './views/guest/auth/auth.component';
 import { LoginComponent } from './views/guest/login/login.component';
 import { RegisterComponent } from './views/guest/register/register.component';
@@ -28,12 +27,13 @@ import { PersonalityComponent } from './views/breeder/add-animal/personality/per
 import { IdealEnvironmentComponent } from './views/breeder/add-animal/ideal-environment/ideal-environment.component';
 import { TermsComponent } from './views/breeder/add-animal/terms/terms.component';
 import { PicturesComponent } from './views/breeder/add-animal/pictures/pictures.component';
+import { AuthUserGuard } from './core/guards/auth-user.guards';
 
 export const routes: Routes = [
     {
         path: '',
-        component: UserComponent,
         children: [
+            // Routes publiques
             { path: '', component: AuthComponent },
             { path: 'login', component: LoginComponent },
             { path: 'register', component: RegisterComponent },
@@ -41,19 +41,24 @@ export const routes: Routes = [
             { path: 'animalDetails', component: AnimalDetailsComponent },
             { path: 'breederList', component: BreederListComponent },
             { path: 'breederList/breederDetails', component: BreederDetailsComponent },
-            { path: 'matchs', component: MatchsComponent },
             { path: 'blog', component: BlogComponent },
-            { path: 'profil', component: ProfilComponent },
-            { path: 'register/customer/generalInformation', component: GeneralInformationCustomerComponent },
-            { path: 'register/customer/housingInformation', component: HousingInformationComponent },
-            { path: 'register/customer/householdInformation', component: HouseholdInformationComponent },
-            { path: 'register/customer/adoptionPreferences', component: AdoptionPreferencesComponent },
-            { path: 'register/customer/engagement', component: EngagementComponent },
-            { path: 'register/breeder/generalInformationBreeder', component: GeneralInformationBreederComponent },
-            { path: 'register/breeder/contactDetails', component: ContactDetailsComponent },
-            { path: 'register/breeder/praticalInformationPart1', component: praticalInformationPart1Component },
-            { path: 'register/breeder/praticalInformationPart2', component: praticalInformationPart2Component },
-            { path: 'register/breeder/engagementBreeder', component: EngagementBreederComponent },
+
+            // TODO : Page 403
+            {path: 'unauthorized', component: AuthComponent },
+
+            // Routes protégées pour les utilisateurs connectés
+            { path: 'matchs', component: MatchsComponent, canActivate: [AuthUserGuard] },
+            { path: 'profil', component: ProfilComponent, canActivate: [AuthUserGuard] },
+            { path: 'register/customer/generalInformation', component: GeneralInformationCustomerComponent, canActivate: [AuthUserGuard] },
+            { path: 'register/customer/housingInformation', component: HousingInformationComponent, canActivate: [AuthUserGuard] },
+            { path: 'register/customer/householdInformation', component: HouseholdInformationComponent, canActivate: [AuthUserGuard] },
+            { path: 'register/customer/adoptionPreferences', component: AdoptionPreferencesComponent, canActivate: [AuthUserGuard] },
+            { path: 'register/customer/engagement', component: EngagementComponent, canActivate: [AuthUserGuard] },
+        ]
+    },
+    {
+        path: 'breeder',
+        children: [
             { path: 'dashboard', component: DashboardComponent },
             { path: 'animalsList', component: AnimalsListComponent },
             { path: 'addAnimal/generalInformation', component: GeneralInformationComponent },
@@ -62,9 +67,15 @@ export const routes: Routes = [
             { path: 'addAnimal/idealEnvironment', component: IdealEnvironmentComponent },
             { path: 'addAnimal/terms', component: TermsComponent },
             { path: 'addAnimal/pictures', component: PicturesComponent },
+
+            { path: 'register/breeder/generalInformationBreeder', component: GeneralInformationBreederComponent },
+            { path: 'register/breeder/contactDetails', component: ContactDetailsComponent },
+            { path: 'register/breeder/praticalInformationPart1', component: praticalInformationPart1Component },
+            { path: 'register/breeder/praticalInformationPart2', component: praticalInformationPart2Component },
+            { path: 'register/breeder/engagementBreeder', component: EngagementBreederComponent },
         ]
     },
 
     // TODO : Page 404
-    {path:'**', redirectTo:'/' },
+    {path:'**', component: AuthComponent },
 ];
