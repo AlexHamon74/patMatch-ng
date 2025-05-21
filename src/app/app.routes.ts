@@ -44,17 +44,24 @@ export const routes: Routes = [
             { path: 'breederList/breederDetails', component: BreederDetailsComponent },
             { path: 'blog', component: BlogComponent },
 
+            { path: 'register/customer/generalInformation', component: GeneralInformationCustomerComponent },
+            { path: 'register/customer/housingInformation', component: HousingInformationComponent },
+            { path: 'register/customer/householdInformation', component: HouseholdInformationComponent },
+            { path: 'register/customer/adoptionPreferences', component: AdoptionPreferencesComponent },
+            { path: 'register/customer/engagement', component: EngagementComponent },
+
+            { path: 'register/breeder/generalInformationBreeder', component: GeneralInformationBreederComponent },
+            { path: 'register/breeder/contactDetails', component: ContactDetailsComponent },
+            { path: 'register/breeder/praticalInformationPart1', component: praticalInformationPart1Component },
+            { path: 'register/breeder/praticalInformationPart2', component: praticalInformationPart2Component },
+            { path: 'register/breeder/engagementBreeder', component: EngagementBreederComponent },
+
             // TODO : Page 403
             {path: 'unauthorized', redirectTo: '/'},
 
             // Routes protégées pour les utilisateurs connectés
             { path: 'matchs', component: MatchsComponent, canActivate: [AuthUserGuard] },
             { path: 'profil', component: ProfilComponent, canActivate: [AuthUserGuard] },
-            { path: 'register/customer/generalInformation', component: GeneralInformationCustomerComponent, canActivate: [AuthUserGuard] },
-            { path: 'register/customer/housingInformation', component: HousingInformationComponent, canActivate: [AuthUserGuard] },
-            { path: 'register/customer/householdInformation', component: HouseholdInformationComponent, canActivate: [AuthUserGuard] },
-            { path: 'register/customer/adoptionPreferences', component: AdoptionPreferencesComponent, canActivate: [AuthUserGuard] },
-            { path: 'register/customer/engagement', component: EngagementComponent, canActivate: [AuthUserGuard] },
         ]
     },
     {
@@ -69,12 +76,6 @@ export const routes: Routes = [
             { path: 'addAnimal/idealEnvironment', component: IdealEnvironmentComponent, canActivate: [AuthBreederGuard] },
             { path: 'addAnimal/terms', component: TermsComponent, canActivate: [AuthBreederGuard] },
             { path: 'addAnimal/pictures', component: PicturesComponent, canActivate: [AuthBreederGuard] },
-
-            { path: 'register/breeder/generalInformationBreeder', component: GeneralInformationBreederComponent, canActivate: [AuthBreederGuard] },
-            { path: 'register/breeder/contactDetails', component: ContactDetailsComponent, canActivate: [AuthBreederGuard] },
-            { path: 'register/breeder/praticalInformationPart1', component: praticalInformationPart1Component, canActivate: [AuthBreederGuard] },
-            { path: 'register/breeder/praticalInformationPart2', component: praticalInformationPart2Component, canActivate: [AuthBreederGuard] },
-            { path: 'register/breeder/engagementBreeder', component: EngagementBreederComponent, canActivate: [AuthBreederGuard] },
         ]
     },
 
