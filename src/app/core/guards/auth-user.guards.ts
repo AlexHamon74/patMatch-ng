@@ -17,7 +17,7 @@ export class AuthUserGuard implements CanActivate {
             return false;
         }
 
-        if (this.userService.hasRole('ROLE_USER')) {
+        if (this.userService.hasRole('ROLE_CLIENT')) {
             return true;
         }
 

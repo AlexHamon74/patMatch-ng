@@ -2,6 +2,7 @@ import { Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
     selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     // Services
     authService = inject(AuthService);
+    userService = inject(UserService);
     router = inject(Router);
     renderer = inject(Renderer2);
 
@@ -26,7 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
         // Si on arrive sur cette page après register, affiche une alert
         const state = history.state as { accountCreated?: boolean };
-        
+
         if (state?.accountCreated) {
             this.successMessage = 'Votre compte a bien été créé. Vous pouvez maintenant vous connecter.';
         }
@@ -51,7 +53,15 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.authService.login({ username, password }).subscribe({
                 next: (token) => {
                     this.authService.saveToken(token);
-                    this.router.navigate(['home']);
+
+                    // Redirige l'utilisateur vers la page appropriée en fonction de son rôle
+                    if (this.userService.hasRole('ROLE_ELEVEUR')) {
+                        this.router.navigate(['breeder/dashboard']);
+                    } else if (this.userService.hasRole('ROLE_CLIENT')) {
+                        this.router.navigate(['home']);
+                    } else {
+                        this.router.navigate(['home']);
+                    }
                 },
                 error: () => {
                     this.errorMessage = 'Votre identifiant ou votre mot de passe est incorrect.';

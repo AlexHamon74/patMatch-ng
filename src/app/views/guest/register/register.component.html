@@ -36,7 +36,7 @@
             <label for="roles">Profil</label>
             <select id="roles" class="form-select" formControlName=roles [class.is-invalid]="isSubmitted && registerForm.controls['roles'].invalid">
                 <option disabled selected value="">Choisissez votre profil</option>
-                <option [ngValue]="['ROLE_USER']">Adoptant</option>
+                <option [ngValue]="['ROLE_CLIENT']">Adoptant</option>
                 <option [ngValue]="['ROLE_ELEVEUR']">Éleveur ou association</option>
             </select>
             <div *ngIf="isSubmitted && registerForm.controls['roles'].invalid" class="invalid-feedback">
