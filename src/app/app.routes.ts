@@ -41,7 +41,7 @@ export const routes: Routes = [
             { path: 'home', component: HomeComponent },
             { path: 'animalDetails', component: AnimalDetailsComponent },
             { path: 'breederList', component: BreederListComponent },
-            { path: 'breederList/breederDetails', component: BreederDetailsComponent },
+            { path: 'breederList/:id', component: BreederDetailsComponent },
             { path: 'blog', component: BlogComponent },
 
             { path: 'register/customer/generalInformation', component: GeneralInformationCustomerComponent },

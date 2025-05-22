@@ -22,15 +22,21 @@
 /* Section liste associations / eleveurs */
 .breeder-list h1 {
     font-family: "Lilita One", sans-serif;
-    font-size: 15px;
+    font-size: 20px;
+}
+
+.breeder-picture {
+    border: 3px solid #92A8FF;
+    object-fit: cover;
+    width: 75px;
+    height: 75px;
 }
 
 .breeder-list h2 {
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 18px;
+    font-family: "Lilita One", sans-serif;
 }
 
-.container-liste {
-    border: 1px solid #EF9BC9;
-    background-color: #E6E6E6;
+.bg-blue {
+    background-color: #DDEDFA;
 }

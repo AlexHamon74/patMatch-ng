@@ -1,5 +1,5 @@
 export interface HydraResponse<T> {
-  'member': T[];
+    'member': T[];
 }
 
 export interface loginCheck {
@@ -44,6 +44,14 @@ export interface ClientInterface {
     ageSouhaite: string;
     sexeSouhaite: string;
     niveauExperience: string;
+}
+
+export interface BreederApiResponse {
+    '@context': string;
+    '@id': string;
+    '@type': string;
+    totalItems: number;
+    member: BreederInterface[];
 }
 
 export interface BreederInterface {
