@@ -61,13 +61,13 @@ export class GeneralInformationComponent implements OnInit, OnDestroy {
 
             // Sauvegarde temporaire des données et redirection
             this.animalService.saveStepData('step1', formData);
-            this.router.navigate(['addAnimal/health']);
+            this.router.navigate(['breeder/addAnimal/health']);
         }
     };
 
     getEspeces() {
         this.especeService.fetchAllEspeces().subscribe(espece => {
-            console.log('Especes chargées :', espece); // debug
+            console.log('Especes chargées :', espece);
             this.especes = espece;
         })
     };

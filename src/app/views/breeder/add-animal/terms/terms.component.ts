@@ -43,7 +43,7 @@ export class TermsComponent implements OnInit, OnDestroy {
     // Fonction attachée au bouton précédent
     goBack() {
         this.animalService.saveStepData('step5', this.createAnimalForm.value);
-        this.router.navigate(['addAnimal/idealEnvironment']);
+        this.router.navigate(['breeder/addAnimal/idealEnvironment']);
     }
 
     // Soumission du formulaire
@@ -54,7 +54,7 @@ export class TermsComponent implements OnInit, OnDestroy {
 
             // Sauvegarde temporaire des données et redirection
             this.animalService.saveStepData('step5', formData);
-            this.router.navigate(['addAnimal/pictures']);
+            this.router.navigate(['breeder/addAnimal/pictures']);
         }
     };
 

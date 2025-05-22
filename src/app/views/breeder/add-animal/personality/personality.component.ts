@@ -43,7 +43,7 @@ export class PersonalityComponent implements OnInit, OnDestroy {
     // Fonction attachée au bouton précédent
     goBack() {
         this.animalService.saveStepData('step3', this.createAnimalForm.value);
-        this.router.navigate(['addAnimal/health']);
+        this.router.navigate(['breeder/addAnimal/health']);
     }
 
     // Soumission du formulaire
@@ -54,7 +54,7 @@ export class PersonalityComponent implements OnInit, OnDestroy {
 
             // Sauvegarde temporaire des données et redirection
             this.animalService.saveStepData('step3', formData);
-            this.router.navigate(['addAnimal/idealEnvironment']);
+            this.router.navigate(['breeder/addAnimal/idealEnvironment']);
         }
     };
 

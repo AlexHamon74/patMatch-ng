@@ -43,7 +43,7 @@ export class IdealEnvironmentComponent implements OnInit, OnDestroy {
     // Fonction attachée au bouton précédent
     goBack() {
         this.animalService.saveStepData('step4', this.createAnimalForm.value);
-        this.router.navigate(['addAnimal/personality']);
+        this.router.navigate(['breeder/addAnimal/personality']);
     }
 
     // Soumission du formulaire
@@ -54,7 +54,7 @@ export class IdealEnvironmentComponent implements OnInit, OnDestroy {
 
             // Sauvegarde temporaire des données et redirection
             this.animalService.saveStepData('step4', formData);
-            this.router.navigate(['addAnimal/terms']);
+            this.router.navigate(['breeder/addAnimal/terms']);
         }
     };
 
