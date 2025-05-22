@@ -22,6 +22,29 @@ export interface RegisterInterface {
     roles: string[];
 }
 
+export interface ClientInterface {
+    '@id': string;
+    id: number;
+    nom: string;
+    prenom: string;
+    dateDeNaissance: string;
+    numeroTelephone: string;
+    adresse: string;
+    photoProfil: string;
+    typeLogement: string;
+    espaceExterieur: string;
+    typeEnvironnement: string;
+    autresAnimaux: boolean;
+    animauxDescription: string;
+    presenceEnfant: boolean;
+    enfantsDescription: string;
+    animauxPreferes: string;
+    raceSouhaitee: string;
+    ageSouhaite: string;
+    sexeSouhaite: string;
+    niveauExperience: string;
+}
+
 export interface AnimalCreateInterface {
     eleveur: string;
     // Etape 1 :

@@ -4,8 +4,10 @@
             <div class="col-auto">
                 <img src="images/profile_picture.jpg" alt="Photo de profil" class="profile-picture img-fluid rounded-10">
             </div>
+            <div class="col-auto">
+                <span class="hello">Bonjour, <span class="client-name">{{ client?.prenom || 'Invité' }}</span></span>
+            </div>
             <div class="col d-flex justify-content-end align-items-center gap-3">
-                <span>Bonjour, <strong>Julie</strong></span>
                 <div class="notif-icon d-flex justify-content-center align-items-center position-relative rounded-10">
                     <i class="fa-solid fa-bell"></i>
                     <span class="notif-dot position-absolute bg-danger rounded"></span>
