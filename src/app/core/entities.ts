@@ -25,6 +25,7 @@ export interface RegisterInterface {
 export interface ClientInterface {
     '@id': string;
     id: number;
+    email: string;
     nom: string;
     prenom: string;
     dateDeNaissance: string;
@@ -43,6 +44,29 @@ export interface ClientInterface {
     ageSouhaite: string;
     sexeSouhaite: string;
     niveauExperience: string;
+}
+
+export interface BreederInterface {
+    '@id': string;
+    id: number;
+    email: string;
+    nom: string;
+    prenom: string;
+    dateDeNaissance: string;
+    numeroTelephone: string;
+    adresse: string;
+    photoProfil: string;
+    nomElevageAssociation: string;
+    numeroEnregistrement: string;
+    presentation: string;
+    certificat: string;
+    adresseElevage: string;
+    anneeCreation: string;
+    especePropose: string;
+    horaireOuverture: string;
+    conditionAdoption: string;
+    suiviPostAdoption: boolean;
+    suiviPostAdoptionDescription: string;
 }
 
 export interface AnimalCreateInterface {
