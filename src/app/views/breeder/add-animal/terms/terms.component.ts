@@ -35,7 +35,7 @@ export class TermsComponent implements OnInit, OnDestroy {
 
     // Formulaire avec validations
     public createAnimalForm: FormGroup = new FormGroup({
-        histoire: new FormControl(),
+        histoire: new FormControl('', [Validators.required]),
         infosSupplementaires: new FormControl(),
         prix: new FormControl('', [Validators.required]),
     });

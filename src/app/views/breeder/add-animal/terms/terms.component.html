@@ -27,8 +27,13 @@
             <div class="row">
                 <!-- Histoire de l'animal -->
                 <div class="col-12 mb-3">
-                    <label for="histoire">Son histoire</label>
-                    <input type="text" id="histoire" class="form-control" formControlName=histoire>
+                    <label for="histoire">Son histoire<span>*</span></label>
+                    <input type="text" id="histoire" class="form-control" formControlName=histoire [class.is-invalid]="isSubmitted && createAnimalForm.controls['histoire'].invalid">
+                    @if (isSubmitted && createAnimalForm.controls['histoire'].invalid) {
+                        <div class="invalid-feedback">
+                            <small>Ce champs est requis</small>
+                        </div>
+                    }
                 </div>
 
                 <!-- Infos supplémentaires de l'animal -->

@@ -21,8 +21,7 @@
         </ng-template>
     </ngb-carousel>
     <!-- Bouton retour -->
-    <div
-        class="back-btn position-absolute top-0 start-0 m-3 d-flex justify-content-center align-items-center rounded-circle">
+    <div routerLink="/home" class="back-btn position-absolute top-0 start-0 m-3 d-flex justify-content-center align-items-center rounded-circle">
         <i class="fa-solid fa-arrow-left"></i>
     </div>
 </section>
@@ -30,70 +29,48 @@
 <!-- Section Information Animal : Paralax -->
 <section class="animal-information p-4">
     <div class="container">
+
         <!-- Nom + Sexe + distance -->
         <div class="d-flex justify-content-center align-items-center gap-2">
-            <h1 class="title px-3 py-1 rounded-10">Nougat</h1>
-            <i class="fa-solid fa-mars" style="font-size: 30px;"></i>
+            <h1 class="title px-3 py-1 rounded-10"> {{ animal.nom }} </h1>
+            <i class="fa-solid" [ngClass]="animal.sexe === 'male' ? 'fa-mars' : 'fa-venus'" style="font-size: 30px;"></i>
         </div>
         <div class="d-flex justify-content-center align-items-center gap-2">
-            <i class="fa-solid fa-location-dot"></i> À 2 km
+            <i class="fa-solid fa-location-dot"></i> {{ animal.eleveur.adresseElevage }}
         </div>
+
         <!-- Infos importantes -->
         <div class="row mt-4 text-center border-custom py-4">
             <div class="col-6 mb-4">
-                <i class="fa-solid fa-calendar"></i> 13 mois
+                <i class="fa-solid fa-calendar"></i> {{ animal.dateDeNaissance }}
             </div>
             <div class="col-6 mb-4">
-                <i class="fa-solid fa-paw"></i> Shih tzu
+                <i class="fa-solid fa-paw"></i> {{ animal.race.nom }}
             </div>
             <div class="col-6">
-                <i class="fa-solid fa-ruler"></i> 36 cm
+                <i class="fa-solid fa-ruler"></i> {{ animal.taille }} cm
             </div>
             <div class="col-6">
-                <i class="fa-solid fa-weight-hanging"></i> 5.7 cm
-            </div>
-        </div>
-        <!-- Badges -->
-        <div class="row mt-4 text-center">
-            <div class="col-4">
-                <span class="badge text-bg-primary me-2">Elevage Familiale 🐣</span>
-            </div>
-            <div class="col-4">
-                <span class="badge text-bg-primary me-2">Sauvetage ❤️</span>
-            </div>
-            <div class="col-4">
-                <span class="badge text-bg-primary me-2">Chien et chats 🐕</span>
-            </div>
-            <div class="col-4">
-                <span class="badge text-bg-primary me-2">Suivi adoption 📝</span>
-            </div>
-            <div class="col-4">
-                <span class="badge text-bg-primary me-2">Suivi adoption 📝</span>
-            </div>
-            <div class="col-4">
-                <span class="badge text-bg-primary me-2">Suivi adoption 📝</span>
+                <i class="fa-solid fa-weight-hanging"></i> {{ animal.poids }} kg
             </div>
         </div>
         <!-- Histoire -->
-        <div class="row mt-5">
+        <div class="row mt-4">
             <h2>Mon histoire</h2>
-            <p>Salut, moi c’est Nougat !
-                Je suis une petite boule de poils câline et joueuse. J’adore les balades tranquilles, les siestes sur le
-                canapé et surtout les câlins. Je suis très sociable et je rêve d’une famille douce, présente et pleine
-                d’amour. Si tu cherches un compagnon fidèle et tendre… je suis là 🐾💛</p>
+            <p>{{ animal.histoire }}</p>
         </div>
 
         <!-- Pills -->
-        <div class="row mt-5">
+        <div class="row mt-4">
             <ul ngbNav #nav="ngbNav" class="nav-pills gap-2 mb-4">
                 <li ngbNavItem>
                     <button ngbNavLink class="pills-button">Ma santé</button>
                     <ng-template ngbNavContent>
                         <div class="pills-content p-4">
                             <p>
-                                💉 Vacciné, bien dans mes pattounes<br>
-                                🔓 Pas encore stérilisé<br>
-                                💊 Aucun traitement en cours — la forme olympique (en mode sieste surtout)
+                                💉 {{ animal.statutVaccination }}<br>
+                                🔓 {{ animal.statutSterilisation }}<br>
+                                ❤️ {{ animal.infosSante }}<br>
                             </p>
                         </div>
                     </ng-template>
@@ -104,22 +81,22 @@
                     <ng-template ngbNavContent>
                         <div class="pills-content p-4">
                             <p>
-                                ⚡ Niveau d'énergie : Calme<br>
-                                🛋️ J'adore les balades tranquilles et les moments posés<br>
-                                👀 Un peu timide au début, mais ultra affectueux dès que je me sens à l'aise
+                                ⚡ {{ animal.niveauEnergie }}<br>
+                                🛋️ {{ animal.besoinsExercice }}<br>
+                                👀 {{ animal.sociabilite }}
                             </p>
                         </div>
                     </ng-template>
                 </li>
 
                 <li ngbNavItem>
-                    <button ngbNavLink class="pills-button">Mon chez-moi Idéal</button>
+                    <button ngbNavLink class="pills-button">Mon chez-moi idéal</button>
                     <ng-template ngbNavContent>
                         <div class="pills-content p-4">
                             <p>
-                                🏡 La vie d'appartement me va très bien<br>
-                                👫 J'ai besoin de présence, je n'aime pas trop être seul<br>
-                                👶 OK enfants 🐶 OK chiens 🐱 OK chats
+                                🏡 {{ animal.typeLogement }}<br>
+                                👫 {{ animal.familleIdeale }}<br>
+                                🐕‍🦺 {{ animal.education }}
                             </p>
                         </div>
                     </ng-template>
@@ -130,14 +107,23 @@
                     <ng-template ngbNavContent>
                         <div class="pills-content p-4">
                             <p>
-                                🍲 Croquettes hypoallergéniques<br>
-                                🕑 Deux repas par jour, et je suis ravi à chaque fois !
+                                🍲 {{ animal.typeAlimentation }}<br>
+                                @if(animal.typeAlimentationDetails){
+                                    🥭 {{ animal.typeAlimentationDetails }}
+                                }
                             </p>
                         </div>
                     </ng-template>
                 </li>
             </ul>
             <div [ngbNavOutlet]="nav"></div>
+        </div>
+
+        <!-- Bouton demande d'adoption -->
+        <div class="row mt-4">
+            <div class="col">                
+                <button class="btn-premier">Envoyer une demande d'adoption</button>
+            </div>
         </div>
 
     </div>

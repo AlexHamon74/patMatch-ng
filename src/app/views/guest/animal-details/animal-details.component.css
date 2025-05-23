@@ -37,6 +37,12 @@ h3 {
     height: 50px;
     font-size: 20px;
     cursor: pointer;
+    z-index: 9999;
+    transition: transform 0.2s;
+}
+
+.header-img .back-btn:hover {
+    transform: scale(1.1);
 }
 
 ::ng-deep .carousel-control-prev-icon,
@@ -48,7 +54,6 @@ h3 {
 .animal-information {
     background-color: #FFFDF4;
     position: relative;
-    z-index: 2;
     margin-top: 70vh;
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
@@ -80,5 +85,4 @@ h3 {
 .pills-content {
     background-color: #EBEBEB99;
     border-radius: 20px;
-    height: 180px;
 }

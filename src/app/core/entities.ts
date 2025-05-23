@@ -114,6 +114,34 @@ export interface AnimalCreateInterface {
     // photos: string[];
 }
 
+export interface AnimalInterface {
+    nom: string;
+    dateDeNaissance: string;
+    sexe: string;
+    numeroIdentification: number;
+    poids: number;
+    taille: number;
+    statutVaccination: string;
+    statutSterilisation: string;
+    infosSante: string;
+    typeAlimentation: string;
+    typeAlimentationDetails?: string;
+    niveauEnergie: string;
+    sociabilite: string;
+    education: string;
+    typeLogement: string;
+    familleIdeale: string;
+    besoinsExercice: string;
+    histoire: string;
+    infosSupplementaires?: string;
+    prix: number;
+    // photos: string[];
+    race: RaceInterface;
+    eleveur: {
+        adresseElevage: string;
+    }
+}
+
 export interface EspeceInterface {
     id: number;
     nom: string;
