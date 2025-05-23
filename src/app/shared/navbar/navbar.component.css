@@ -1,11 +1,10 @@
 nav {
     font-family: "Poppins", sans-serif;
-    background-color: #D9D9D9;
+    background-color: #E1DCF8;
     height: 70px;
     width: 90%;
     margin: 10px auto;
     border-radius: 50px;
-    opacity: 80%;
 }
 
 nav ul li a {
@@ -13,14 +12,13 @@ nav ul li a {
 }
 
 .bg-i {
-    background-color: #EBEBEB;
     width: 34px;
     height: 34px;
     transition: color 0.2s ease;
 }
 
 nav ul li a:hover .bg-i {
-  color: #6C60D2;
+  background-color: #F1B6D7;
 }
 
 nav ul li a i {
@@ -29,5 +27,4 @@ nav ul li a i {
 
 nav ul li a p {
     font-size: 12px;
-    font-weight: 600;
 }
