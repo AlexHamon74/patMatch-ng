@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environnement/environnement.production';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AnimalCreateInterface, AnimalInterface } from '../entities';
+import { AnimalApiResponse, AnimalCreateInterface, AnimalInterface } from '../entities';
 import { Observable } from 'rxjs';
 import { UserService } from './user.service';
 
@@ -56,6 +56,11 @@ export class AnimalService {
     // Nettoie le localStorage en supprimant les données de l'animal en cours d'inscription
     clearAnimalRegistrationData() {
         this.stepKeys.forEach(key => localStorage.removeItem(key));
+    }
+
+    // Récupération de tous les animaux
+    fetchAllAnimals(): Observable<AnimalApiResponse> {
+        return this.http.get<AnimalApiResponse>(`${this.url}/animals`, { headers: this.headers });
     }
 
     // Récupération d'un animal par son ID

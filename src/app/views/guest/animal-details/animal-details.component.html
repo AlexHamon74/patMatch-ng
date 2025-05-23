@@ -33,7 +33,7 @@
         <!-- Nom + Sexe + distance -->
         <div class="d-flex justify-content-center align-items-center gap-2">
             <h1 class="title px-3 py-1 rounded-10"> {{ animal.nom }} </h1>
-            <i class="fa-solid" [ngClass]="animal.sexe === 'male' ? 'fa-mars' : 'fa-venus'" style="font-size: 30px;"></i>
+            <i class="fa-solid" [ngClass]="animal.sexe === 'Mâle' ? 'fa-mars' : 'fa-venus'" style="font-size: 30px;"></i>
         </div>
         <div class="d-flex justify-content-center align-items-center gap-2">
             <i class="fa-solid fa-location-dot"></i> {{ animal.eleveur.adresseElevage }}

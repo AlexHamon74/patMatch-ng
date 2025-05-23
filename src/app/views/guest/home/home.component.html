@@ -19,45 +19,30 @@
     </div>
 </section>
 
-<!-- Boutons intéractifs -->
-<section class="pb-3 recherche-plus">
-    <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <button class="w-100 py-2 bg-pink rounded-10 border-0 fw-semibold text-white">
-                    <span class="btn-interactif">Derniers ajouts</span>
-                </button>
-            </div>
-            <div class="col-6">
-                <button class="w-100 py-2 bg-pink rounded-10 border-0 fw-semibold text-white">
-                    <span class="btn-interactif">Les plus populaires</span>
-                </button>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- IMAGE + INFOS -->
+<!-- Image + Infos + Boutons -->
 <section class="main">
-    <div class="container d-flex flex-column align-items-center text-center">
-        <img src="images/animal_home.jpg" alt="" class="img-fluid rounded-10 mb-3 animal-img">
-        <h1 class="animal-nom">Nougat</h1>
-        <p class="d-flex align-items-center justify-content-center gap-2">
-            <span class="location-icon d-flex justify-content-center align-items-center rounded-circle">
-              <i class="fa-solid fa-location-dot"></i>
-            </span>
-            À 2 km
-          </p>
-        <!-- BOUTONS -->
-        <div class="d-flex justify-content-center gap-4 mt-3">
-            <div class="icon-btn see-more shadow-sm">
-                <i class="fa-solid fa-eye"></i>
+    <div class="container d-flex flex-column align-items-center">
+
+        @if (animals && animals[currentIndex]) {
+            <div [routerLink]="(['/animals/', animals[currentIndex].id])" class="animal-card position-relative" [ngClass]="animationClass">
+
+                <img src="images/animal_home.jpg" alt="" class="rounded-20 animal-img">
+                
+                <div class="animal-carac rounded-20 py-1 px-4">
+                    <h1>{{ animals[currentIndex].nom }} &nbsp;
+                        <i class="fa-solid" [ngClass]="animals[currentIndex].sexe === 'Mâle' ? 'fa-mars' : 'fa-venus'"></i></h1>
+                    <p><i class="fa-solid fa-paw"></i>&nbsp; {{ animals[currentIndex].race.nom }}</p>
+                    <p><i class="fa-solid fa-calendar"></i>&nbsp; {{ animals[currentIndex].dateDeNaissance }}</p>
+                    <p><i class="fa-solid fa-location-dot"></i> {{ animals[currentIndex].eleveur.adresseElevage }}</p>
+                </div>
             </div>
-            <div class="icon-btn pass shadow-sm">
+        }
+
+        <div class="d-flex justify-content-center gap-5 mt-3">
+            <div class="icon-btn pass shadow" (click)="swipe('left')">
                 <i class="fa-solid fa-xmark"></i>
             </div>
-            <div class="icon-btn like shadow-sm">
+            <div class="icon-btn like shadow" (click)="swipe('right')">
                 <i class="fa-solid fa-heart"></i>
             </div>
         </div>

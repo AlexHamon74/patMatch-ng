@@ -1,3 +1,14 @@
+/* Style de base de la page */
+h1 {
+    font-family: "Lilita One", sans-serif;
+    font-size: 20px;
+}
+
+p {
+    font-size: 14px;
+    margin: 0;
+}
+
 /* Section Recherche et filtres */
 .filter-btn {
     background-color: #EBEBEB;
@@ -19,37 +30,47 @@
     background-color: #ddd;
 }
 
-/* Section boutons intéractifs */
-.btn-interactif {
-    color: #1E1E1B;
-    font-weight: 700;
-    font-size: 14px;
-    transition: color 0.2s ease;
-}
-
-button:hover .btn-interactif {
-    color: #6C60D2;
-}
-
 /* Partie image + nom + distance */
 .animal-img {
-    height: 40vh;
-    object-fit: contain;
+    height: 50vh;
+    width: 300px;
+    object-fit: cover;
 }
 
-.animal-nom {
-    font-family: "Lilita One", sans-serif;
-    font-size: 17px;
+.animal-carac {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    color: #FEFEFE;
+    background-color: #B19FFFB2;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
+    backdrop-filter: brightness(0.8);
 }
 
-.location-icon {
-    width: 26px;
-    height: 26px;
-    background-color: #D9D9D9;
-    color: black;
+.animal-card {
+    position: relative;
+    cursor: pointer;
+    width: 300px;
+    height: 50vh;
+    transition: transform 0.3s cubic-bezier(0.4, 0.2, 0.2, 1), box-shadow 0.3s, opacity 0.6s;
+    box-shadow: 0 2px 8px rgba(113, 137, 255, 0.08);
 }
-  
 
+.animal-card:hover {
+    transform: scale(1.03) translateY(-8px) rotate(-2deg);
+    z-index: 2;
+}
+
+.animal-card.swipe-left {
+    transform: rotate(-20deg) translateX(-400px);
+    opacity: 0;
+}
+
+.animal-card.swipe-right {
+    transform: rotate(20deg) translateX(400px);
+    opacity: 0;
+}
 
 /* Partie boutons choix  */
 .icon-btn {
@@ -62,12 +83,11 @@ button:hover .btn-interactif {
     font-size: 24px;
     color: white;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease;
 }
 
 .icon-btn:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
 
 .like {
@@ -75,9 +95,5 @@ button:hover .btn-interactif {
 }
 
 .pass {
-    background-color: #6C60D2;
-}
-
-.see-more {
     background-color: #B6DEFF;
 }

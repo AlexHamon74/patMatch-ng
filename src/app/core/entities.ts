@@ -114,7 +114,17 @@ export interface AnimalCreateInterface {
     // photos: string[];
 }
 
+export interface AnimalApiResponse {
+    '@context': string;
+    '@id': string;
+    '@type': string;
+    totalItems: number;
+    member: AnimalInterface[];
+}
+
 export interface AnimalInterface {
+    '@id': string;
+    id: string;
     nom: string;
     dateDeNaissance: string;
     sexe: string;
