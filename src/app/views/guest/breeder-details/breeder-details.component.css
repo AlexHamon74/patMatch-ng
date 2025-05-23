@@ -1,20 +1,14 @@
 h1 {
-    font-size: 20px;
-}
-
-h2 {
-    font-size: 18px;
-}
-
-h3 {
-    font-size: 15px;
+    font-size: 25px;
     font-family: "Lilita One", sans-serif;
 }
 
-.location-icon {
-    width: 26px;
-    height: 26px;
-    background-color: #D9D9D9;
+h2 {
+    font-size: 20px;
+    font-family: "Lilita One", sans-serif;
+}
+p {
+    font-size: 16px;
 }
 
 .img-breeder_details {
@@ -25,18 +19,31 @@ h3 {
 
 /* Section Information contact */
 .contact-btn {
-    background-color: #EBEBEB;
     width: 50px;
     height: 50px;
     font-size: 20px;
-    transition: background-color 0.2s ease;
     cursor: pointer;
-    border: 1px solid #7189FF;
+    color: #F5F5F5;
+    transition: transform 0.3s;
+}
+.contact-btn:hover {
+    transform: scale(1.1);
 }
 
-.contact-btn:hover {
+.bg-grey {
+    background-color: #EBEBEBBF;
+}
+.bg-violet {
+    background-color: #6C60D2;
+}
+.bg-lightviolet {
+    background-color: #B19FFF;
+}
+.bg-blue {
     background-color: #7189FF;
-    color: white;
+}
+.color-blue {
+    color: #92A8FF;
 }
 
 /* Section liste des animaux */

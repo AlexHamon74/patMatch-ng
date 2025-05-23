@@ -2,17 +2,21 @@
 
 <app-navbar></app-navbar>
 
+<!-- Fleche retour -->
+<div class="container my-4">
+    <div class="row">
+        <div class="col">
+            <a class="text-dark" routerLink="/breederList"><i class="fa-solid fa-arrow-left fa-lg"></i></a>
+        </div>
+    </div>
+</div>
+
 <section class="info-generales mb-5">
     <div class="container">
         <div class="row">
-            <h1>Les copains Poilus</h1>
+            <h1>{{ breeder.nomElevageAssociation }}</h1>
             <div class="col-6">
-                <p class="d-flex align-items-center gap-2">
-                    <span class="location-icon d-flex justify-content-center align-items-center rounded-circle">
-                        <i class="fa-solid fa-location-dot"></i>
-                    </span>
-                    À 2 km
-                </p>
+                <p><i class="fa-solid fa-location-dot color-blue"></i>&nbsp; {{ breeder.adresse }}</p>
                 <span class="badge text-bg-primary me-2">Elevage Familiale 🐣</span>
                 <span class="badge text-bg-primary me-2">Sauvetage ❤️</span>
                 <span class="badge text-bg-primary me-2">Chien et chats 🐕</span>
@@ -25,38 +29,36 @@
     </div>
 </section>
 
-<section class="info-contact mb-5">
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-4 d-flex flex-column align-items-center gap-2">
-                <div class="contact-btn d-flex justify-content-center align-items-center rounded-10">
-                    <i class="fa-solid fa-phone"></i>
-                </div>
-                <span>Numéro</span>
-            </div>
-            <div class="col-4 d-flex flex-column align-items-center gap-2">
-                <div class="contact-btn d-flex justify-content-center align-items-center rounded-10">
-                    <i class="fa-solid fa-message"></i>
-                </div>
-                <span>Écrire</span>
-            </div>
-            <div class="col-4 d-flex flex-column align-items-center gap-2">
-                <div class="contact-btn d-flex justify-content-center align-items-center rounded-10">
-                    <i class="fa-solid fa-calendar-days"></i>
-                </div>
-                <span>Prendre RDV</span>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section class="info-presentation mb-5">
     <div class="container">
         <div class="row">
             <h2>Présentation</h2>
             <div class="col-12">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam odio quo magni omnis, aliquid libero
-                inventore labore natus repellat maiores non quos in cumque? Modi commodi atque fugiat est praesentium.
+                <p>{{ breeder.presentation }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="info-contact mb-5">
+    <div class="container">
+        <div class="bg-grey py-3 rounded-30 shadow">
+            <div class="row">
+                <div class="col-4 d-flex flex-column align-items-center">
+                    <div class="contact-btn d-flex justify-content-center align-items-center bg-violet rounded-circle shadow">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                </div>
+                <div class="col-4 d-flex flex-column align-items-center">
+                    <div class="contact-btn d-flex justify-content-center align-items-center bg-lightviolet rounded-circle shadow">
+                        <i class="fa-solid fa-message"></i>
+                    </div>
+                </div>
+                <div class="col-4 d-flex flex-column align-items-center">
+                    <div class="contact-btn d-flex justify-content-center align-items-center bg-blue rounded-circle shadow">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -68,27 +70,38 @@
         <div class="animal-scroll d-flex gap-3 overflow-auto pb-2">
             <!-- Animal 1 -->
             <div class="animal-card flex-shrink-0 d-flex flex-column">
-                <img src="images/animal_home.jpg" alt="" class="img-fluid rounded-10 mb-2">
-                <h3>Nougat</h3>
+                <img src="images/animal_home.jpg" alt="" class="img-fluid rounded-10">
             </div>
             <!-- Animal 2 -->
             <div class="animal-card flex-shrink-0 d-flex flex-column">
-                <img src="images/animal_home.jpg" alt="" class="img-fluid rounded-10 mb-2">
-                <h3>Nougat</h3>
+                <img src="images/animal_home.jpg" alt="" class="img-fluid rounded-10">
             </div>
             <!-- Animal 3 -->
             <div class="animal-card flex-shrink-0 d-flex flex-column">
-                <img src="images/animal_home.jpg" alt="" class="img-fluid rounded-10 mb-2">
-                <h3>Nougat</h3>
+                <img src="images/animal_home.jpg" alt="" class="img-fluid rounded-10">
             </div>
             <!-- Animal 4 -->
             <div class="animal-card flex-shrink-0 d-flex flex-column">
-                <img src="images/animal_home.jpg" alt="" class="img-fluid rounded-10 mb-2">
-                <h3>Nougat</h3>
+                <img src="images/animal_home.jpg" alt="" class="img-fluid rounded-10">
             </div>
         </div>
         <div class="text-end mt-4">
-            <a href="#" class="btn-premier">Voir les animaux</a>
+            <a href="#" class="btn-premier">Voir les animaux &nbsp;<i class="fa-solid fa-bone fa-xs"></i></a>
+        </div>
+    </div>
+</section>
+
+<section class="infos-pratiques">
+    <div class="container">
+        <div class="row">
+            <h2 class="mb-4">Informations pratiques</h2>
+            <p><strong>Horaires : </strong>{{ breeder.horaireOuverture }}</p>
+            <p><strong>Année de création de l'élevage : </strong>{{ breeder.anneeCreation }}</p>
+            <p><strong>Espèces disponibles : </strong>{{ breeder.especeProposee }}</p>
+            <p><strong>Lieu de l'élevage : </strong>{{ breeder.adresseElevage }}</p>
+            <p><strong>Suivi Post-adoption : </strong> {{ breeder.suiviPostAdoption ? 'Oui' : 'Non' }}</p>
+            <p><strong>Conditions d'adoption : </strong>{{ breeder.conditionAdoption }}</p>
+            <p><strong>Prix de l'animal : </strong></p>
         </div>
     </div>
 </section>

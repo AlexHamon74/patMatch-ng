@@ -70,7 +70,7 @@ export interface BreederInterface {
     certificat: string;
     adresseElevage: string;
     anneeCreation: string;
-    especePropose: string;
+    especeProposee: string;
     horaireOuverture: string;
     conditionAdoption: string;
     suiviPostAdoption: boolean;
