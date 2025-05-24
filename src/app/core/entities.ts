@@ -163,3 +163,9 @@ export interface RaceInterface {
     id: number;
     nom: string;
 }
+
+export interface SwipeCreateInterface {
+    animal: string;
+    client: string | number;
+    type: 'like' | 'dislike';
+}

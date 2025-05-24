@@ -5,6 +5,10 @@ import { CommonModule } from '@angular/common';
 import { AnimalInterface } from '../../../core/entities';
 import { AnimalService } from '../../../core/services/animal.service';
 import { RouterLink } from '@angular/router';
+import { SwipeService } from '../../../core/services/swipe.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { UserService } from '../../../core/services/user.service';
+import { switchMap, tap } from 'rxjs';
 
 @Component({
     selector: 'app-home',
@@ -21,40 +25,93 @@ export class HomeComponent implements OnInit {
 
     // Injection des services
     animalService = inject(AnimalService);
+    swipeService = inject(SwipeService);
+    authService = inject(AuthService);
+    userService = inject(UserService);
 
-    swipe(direction: 'left' | 'right') {
-        this.animationClass = direction === 'left' ? 'swipe-left' : 'swipe-right';
-        document.body.style.overflowX = 'hidden';
+    ngOnInit(): void {
+        // Récupérer l'id enregistré pour afficher le même animal après retour
+        const savedAnimalId = this.swipeService.getCurrentAnimalId() ?? undefined;
+        this.loadAnimals(savedAnimalId);
+    }
 
+    private loadAnimals(selectedAnimalId?: string): void {
+        this.animalService.fetchAllAnimals().subscribe({
+            next: (data) => {
+                this.animals = Array.isArray(data) ? data : [];
+
+                if (selectedAnimalId) {
+                    const idx = this.animals.findIndex(a => a.id === selectedAnimalId);
+                    this.currentIndex = idx >= 0 ? idx : 0;
+                } else {
+                    this.currentIndex = 0;
+                }
+
+                // Enregistre l'animal courant pour le garder en mémoire
+                if (this.animals.length > 0) {
+                    this.swipeService.setCurrentAnimalId(this.animals[this.currentIndex].id);
+                }
+            },
+            error: (error) => console.error('Erreur lors de la récupération des animaux :', error)
+        });
+    }
+
+    swipe(direction: 'left' | 'right'): void {
+        if (!this.authService.isLogged()) {
+            alert('Veuillez vous connecter pour swiper les animaux.');
+            return;
+        }
+
+        const currentAnimal = this.animals[this.currentIndex];
+        const client = this.userService.getUserId();
+        const type = direction === 'right' ? 'like' : 'dislike';
+
+        if (!client || !currentAnimal.id) {
+            console.error('Client ID ou Animal ID manquant');
+            return;
+        }
+
+        this.swipeService.createSwipe({
+            animal: currentAnimal.id,
+            client,
+            type
+        }).pipe(
+            tap(() => {
+                this.animationClass = direction === 'left' ? 'swipe-left' : 'swipe-right';
+            }),
+            switchMap(() => this.animalService.fetchAllAnimals())
+        ).subscribe({
+            next: (data) => {
+                this.animals = Array.isArray(data) ? data : [];
+                this.resetCard();
+
+                // Mise à jour index et sauvegarde id animal
+                const idx = this.animals.findIndex(a => a.id === currentAnimal.id);
+                this.currentIndex = idx >= 0 ? idx : 0;
+                if (this.animals.length > 0) {
+                    this.swipeService.setCurrentAnimalId(this.animals[this.currentIndex].id);
+                }
+            },
+            error: (err) => {
+                console.error('Erreur lors du swipe :', err);
+            }
+        });
+    }
+
+    // Réinitialise l'animation et passe à l'animal suivant
+    resetCard(): void {
         setTimeout(() => {
-            this.resetCard();
+            this.animationClass = '';
             this.nextAnimal();
-            document.body.style.overflowX = 'auto';
         }, 600);
     }
 
-    resetCard() {
-        this.animationClass = '';
-    }
-
-    nextAnimal() {
+    // Passe à l'animal suivant
+    nextAnimal(): void {
         if (this.animals.length > 0) {
-            this.currentIndex++;
-            if (this.currentIndex >= this.animals.length) {
-                this.currentIndex = 0;
-            }
+            this.currentIndex = (this.currentIndex + 1) % this.animals.length;
+            // Sauvegarde à chaque changement
+            this.swipeService.setCurrentAnimalId(this.animals[this.currentIndex].id);
         }
-    }
-
-    ngOnInit(): void {
-        this.animalService.fetchAllAnimals().subscribe({
-            next: (data) => {
-                console.log('Données récupérées :', data);
-                this.animals = Array.isArray(data) ? data : [];
-            },
-            error: (err) => {
-                console.error('Erreur lors de la récupération des animaux :', err);
-            }
-        });
     }
 }

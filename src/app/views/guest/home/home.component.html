@@ -28,7 +28,7 @@
 
                 <img src="images/animal_home.jpg" alt="Photo de l'animal" class="rounded-20 animal-img">
                 
-                <div class="animal-carac rounded-20 py-1 px-4">
+                <div class="animal-carac shadow rounded-20 py-1 px-4">
                     <h1>{{ animals[currentIndex].nom }} &nbsp;
                         <i class="fa-solid" [ngClass]="animals[currentIndex].sexe === 'Mâle' ? 'fa-mars' : 'fa-venus'"></i></h1>
                     <p><i class="fa-solid fa-paw"></i>&nbsp; {{ animals[currentIndex].race.nom }}</p>
