@@ -15,7 +15,7 @@ import { RouterLink } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
     // Déclaration des variables
-    animals: AnimalInterface[] | null = null;
+    animals: AnimalInterface[] = [];
     animationClass: string = '';
     currentIndex: number = 0;
 
@@ -38,10 +38,10 @@ export class HomeComponent implements OnInit {
     }
 
     nextAnimal() {
-        if (this.animals) {
+        if (this.animals.length > 0) {
             this.currentIndex++;
             if (this.currentIndex >= this.animals.length) {
-                this.currentIndex = 0; // Repart du début ou tu peux afficher "Fin de liste"
+                this.currentIndex = 0;
             }
         }
     }
@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
         this.animalService.fetchAllAnimals().subscribe({
             next: (data) => {
                 console.log('Données récupérées :', data);
-                this.animals = data.member;
+                this.animals = Array.isArray(data) ? data : [];
             },
             error: (err) => {
                 console.error('Erreur lors de la récupération des animaux :', err);

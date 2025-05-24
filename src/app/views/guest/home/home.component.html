@@ -26,7 +26,7 @@
         @if (animals && animals[currentIndex]) {
             <div [routerLink]="(['/animals/', animals[currentIndex].id])" class="animal-card position-relative" [ngClass]="animationClass">
 
-                <img src="images/animal_home.jpg" alt="" class="rounded-20 animal-img">
+                <img src="images/animal_home.jpg" alt="Photo de l'animal" class="rounded-20 animal-img">
                 
                 <div class="animal-carac rounded-20 py-1 px-4">
                     <h1>{{ animals[currentIndex].nom }} &nbsp;
@@ -36,15 +36,17 @@
                     <p><i class="fa-solid fa-location-dot"></i> {{ animals[currentIndex].eleveur.adresseElevage }}</p>
                 </div>
             </div>
+        
+            <div class="d-flex justify-content-center gap-5 mt-3">
+                <div class="icon-btn pass shadow" (click)="swipe('left')">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+                <div class="icon-btn like shadow" (click)="swipe('right')">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+            </div>
+        } @else {
+            <p>Aucun animaux disponibles</p>
         }
-
-        <div class="d-flex justify-content-center gap-5 mt-3">
-            <div class="icon-btn pass shadow" (click)="swipe('left')">
-                <i class="fa-solid fa-xmark"></i>
-            </div>
-            <div class="icon-btn like shadow" (click)="swipe('right')">
-                <i class="fa-solid fa-heart"></i>
-            </div>
-        </div>
     </div>
 </section>

@@ -59,8 +59,8 @@ export class AnimalService {
     }
 
     // Récupération de tous les animaux
-    fetchAllAnimals(): Observable<AnimalApiResponse> {
-        return this.http.get<AnimalApiResponse>(`${this.url}/animals`, { headers: this.headers });
+    fetchAllAnimals(): Observable<AnimalInterface> {
+        return this.http.get<AnimalInterface>(`${this.url}/animals/non-swiped`, { headers: this.headers });
     }
 
     // Récupération d'un animal par son ID
