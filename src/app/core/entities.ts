@@ -169,3 +169,12 @@ export interface SwipeCreateInterface {
     client: string | number;
     type: 'like' | 'dislike';
 }
+
+export interface SwipeInterface {
+    id: string;
+    animal: {
+        id:string;
+        nom: string;
+        photoProfil: string;
+    }
+}

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environnement/environnement.production';
-import { SwipeCreateInterface } from '../entities';
+import { SwipeCreateInterface, SwipeInterface } from '../entities';
 import { UserService } from './user.service';
 import { Observable, throwError } from 'rxjs';
 
@@ -12,11 +12,16 @@ export class SwipeService {
     // Définition des variables
     private url = environment.apiURL;
     headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });
-    private _currentAnimalId: string | null = null;
+    private currentAnimalId: string | null = null;
 
     // Injection des services
     http = inject(HttpClient);
     userService = inject(UserService);
+
+    // Récupération des matchs de l'utilisateur
+    getMatchs(): Observable<SwipeInterface[]> {
+        return this.http.get<SwipeInterface[]>(`${this.url}/me/likes`);
+    }
 
     // Méthode pour créer un match
     createSwipe(swipe: SwipeCreateInterface): Observable<SwipeCreateInterface> {
@@ -36,11 +41,11 @@ export class SwipeService {
         return this.http.post<SwipeCreateInterface>(`${this.url}/swipes`, payload, { headers: this.headers });
     }
 
-  setCurrentAnimalId(id: string): void {
-    this._currentAnimalId = id;
-  }
+    setCurrentAnimalId(id: string): void {
+        this.currentAnimalId = id;
+    }
 
-  getCurrentAnimalId(): string | null {
-    return this._currentAnimalId;
-  }
+    getCurrentAnimalId(): string | null {
+        return this.currentAnimalId;
+    }
 }

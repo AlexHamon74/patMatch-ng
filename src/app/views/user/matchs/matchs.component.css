@@ -67,6 +67,24 @@ button.menu-btn::after {
     font-size: 20px;
 }
 
-.icon-btn:hover i {
+.icon-btn-eye:hover i {
     color: #6C60D2;
+}
+
+.icon-btn-cross:hover i {
+    color: red;
+}
+
+
+
+.animal-img {
+    height: 175px;
+    width: 100%;
+    object-fit: cover;
+}
+
+@media (min-width: 992px) {
+    .animal-img {
+        height: 300px;
+    }
 }

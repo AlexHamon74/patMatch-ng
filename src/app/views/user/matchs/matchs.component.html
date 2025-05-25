@@ -24,29 +24,32 @@
 <section class="matchs-liste mb-5">
     <div class="container">
         <div class="row">
-            <h1 class="mb-4">Tes Matchs&nbsp;&nbsp;<span>1</span></h1>
-            <div class="col-4 mb-4">
-                <div class="position-relative">
-                    <img src="images/animal_home.jpg" alt="" class="img-fluid rounded-10 mb-2">
+            <h1 class="mb-4">Tes Matchs&nbsp;&nbsp;<span>{{ matchs.length }}</span></h1>
 
-                    <div ngbDropdown class="position-absolute bottom-0 end-0 m-3" placement="top-end">
-                        <button type="button" id="dropdownMenu" class="rounded-circle d-flex justify-content-center align-items-center menu-btn" ngbDropdownToggle>
-                            <i class="fas fa-bars" style="color: #7189FF;"></i>
-                        </button>
-                        <div ngbDropdownMenu aria-labelledby="dropdownMenu">
-                            <div class="d-flex align-items-center gap-3 px-2">
-                                <button ngbDropdownItem class="icon-btn d-flex justify-content-center align-items-center">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button ngbDropdownItem class="icon-btn d-flex justify-content-center align-items-center">
-                                    <i class="fas fa-message"></i>
-                                </button>
+            @for (match of matchs; track $index) {
+                <div class="col-4 mb-4">
+                    <div class="position-relative">
+                        <img src="images/animal_home.jpg" alt="" class="animal-img rounded-10 mb-2">
+
+                        <div ngbDropdown class="position-absolute bottom-0 end-0 m-3" placement="top-end">
+                            <button type="button" id="dropdownMenu" class="rounded-circle d-flex justify-content-center align-items-center menu-btn" ngbDropdownToggle>
+                                <i class="fas fa-bars" style="color: #7189FF;"></i>
+                            </button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownMenu">
+                                <div class="d-flex align-items-center gap-3 px-2">
+                                    <button [routerLink]="(['/animals', match.animal.id])" ngbDropdownItem class="icon-btn icon-btn-eye d-flex justify-content-center align-items-center">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button ngbDropdownItem class="icon-btn icon-btn-cross d-flex justify-content-center align-items-center">
+                                        <i class="fas fa-xmark"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <h2>{{ match.animal.nom }}</h2>
                 </div>
-                <h2>Nougat</h2>
-            </div>
+            }
         </div>
     </div>
 </section>
