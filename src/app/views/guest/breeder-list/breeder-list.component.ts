@@ -14,7 +14,8 @@ import { BreederService } from '../../../core/services/breeder.service';
 })
 export class BreederListComponent implements OnInit {
     // Déclaration des variables
-    breeders: BreederInterface[] | null = null;
+    breeders: BreederInterface[] = [];
+    isLoading = true;
 
     // Injection des services
     breederService = inject(BreederService);
@@ -24,9 +25,11 @@ export class BreederListComponent implements OnInit {
         this.breederService.fetchAllBreeders().subscribe({
             next: (data) => {
                 this.breeders = data.member;
+                this.isLoading = false;
             },
             error: (err) => {
                 console.error('Erreur lors de la récupération des éleveurs :', err);
+                this.isLoading = false;
             }
         });
     }

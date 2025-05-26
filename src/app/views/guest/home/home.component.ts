@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
     animals: AnimalInterface[] = [];
     animationClass: string = '';
     currentIndex: number = 0;
+    isLoading = true;
 
     // Injection des services
     animalService = inject(AnimalService);
@@ -35,10 +36,12 @@ export class HomeComponent implements OnInit {
         this.loadAnimals(savedAnimalId);
     }
 
+    // Charge les animaux depuis le service
     private loadAnimals(selectedAnimalId?: string): void {
         this.animalService.fetchAllAnimals().subscribe({
             next: (data) => {
                 this.animals = Array.isArray(data) ? data : [];
+                this.isLoading = false;
 
                 if (selectedAnimalId) {
                     const idx = this.animals.findIndex(a => a.id === selectedAnimalId);
@@ -52,10 +55,14 @@ export class HomeComponent implements OnInit {
                     this.swipeService.setCurrentAnimalId(this.animals[this.currentIndex].id);
                 }
             },
-            error: (error) => console.error('Erreur lors de la récupération des animaux :', error)
+            error: (error) => {
+                console.error('Erreur lors de la récupération des animaux :', error);
+                this.isLoading = false;
+            }
         });
     }
 
+    // Gère le swipe à gauche ou à droite
     swipe(direction: 'left' | 'right'): void {
         if (!this.userService.isLogged()) {
             // TODO : Afficher une erreur ou rediriger
