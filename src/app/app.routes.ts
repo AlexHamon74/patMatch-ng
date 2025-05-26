@@ -29,6 +29,7 @@ import { TermsComponent } from './views/breeder/add-animal/terms/terms.component
 import { PicturesComponent } from './views/breeder/add-animal/pictures/pictures.component';
 import { AuthBreederGuard } from './core/guards/auth-breeder.guards';
 import { AuthClientGuard } from './core/guards/auth-client.guards';
+import { AuthClientOrBreederGuard } from './core/guards/auth-client-or-breeder.guards';
 
 export const routes: Routes = [
     {
@@ -61,7 +62,7 @@ export const routes: Routes = [
 
             // Routes protégées pour les utilisateurs connectés
             { path: 'matchs', component: MatchsComponent, canActivate: [AuthClientGuard] },
-            { path: 'profil', component: ProfilComponent, canActivate: [AuthClientGuard] },
+            { path: 'profil', component: ProfilComponent, canActivate: [AuthClientOrBreederGuard] },
         ]
     },
     {
