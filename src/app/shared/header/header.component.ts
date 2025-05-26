@@ -1,12 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { BreederInterface, ClientInterface } from '../../core/entities';
 import { UserService } from '../../core/services/user.service';
-import { take } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-header',
     standalone: true,
-    imports: [],
+    imports: [RouterLink],
     templateUrl: './header.component.html',
     styleUrl: './header.component.css'
 })
