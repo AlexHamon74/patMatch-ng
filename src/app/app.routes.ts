@@ -10,7 +10,7 @@ import { BreederDetailsComponent } from './views/guest/breeder-details/breeder-d
 import { MatchsComponent } from './views/user/matchs/matchs.component';
 import { BlogComponent } from './views/guest/blog/blog.component';
 import { AnimalDetailsComponent } from './views/guest/animal-details/animal-details.component';
-import { ProfilComponent } from './views/user/profil/profil.component';
+import { ProfilComponent } from './shared/profil/profil.component';
 import { HouseholdInformationComponent } from './views/guest/register/registerMore/customer/household-information/houshold-information.component';
 import { AdoptionPreferencesComponent } from './views/guest/register/registerMore/customer/adoption-preferences/adoption-preferences.component';
 import { EngagementComponent } from './views/guest/register/registerMore/customer/engagement/engagement.component';
@@ -30,6 +30,7 @@ import { PicturesComponent } from './views/breeder/add-animal/pictures/pictures.
 import { AuthBreederGuard } from './core/guards/auth-breeder.guards';
 import { AuthClientGuard } from './core/guards/auth-client.guards';
 import { AuthClientOrBreederGuard } from './core/guards/auth-client-or-breeder.guards';
+import { GeneralInformationsComponent } from './shared/profil/general-informations/general-informations.component';
 
 export const routes: Routes = [
     {
@@ -63,6 +64,7 @@ export const routes: Routes = [
             // Routes protégées pour les utilisateurs connectés
             { path: 'matchs', component: MatchsComponent, canActivate: [AuthClientGuard] },
             { path: 'profil', component: ProfilComponent, canActivate: [AuthClientOrBreederGuard] },
+            { path: 'profil/generalInformations', component: GeneralInformationsComponent, canActivate: [AuthClientOrBreederGuard] },
         ]
     },
     {
