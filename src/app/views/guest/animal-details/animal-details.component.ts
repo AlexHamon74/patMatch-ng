@@ -28,10 +28,9 @@ export class AnimalDetailsComponent {
         this.animalService.fetchAnimalById(id).subscribe({
             next: (animal) => {
                 this.animal = animal;
-                console.log('Détails de l\'animal récupérés :', this.animal);
             },
             error: (error) => {
-                console.error('Erreur lors de la récupération de l\'animal :', error);
+                console.error("Erreur lors de la récupération de l'animal :", error);
                 // TODO: redirection vers une page 404
             }
         });

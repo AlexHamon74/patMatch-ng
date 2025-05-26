@@ -1,12 +1,18 @@
-export interface HydraResponse<T> {
-    'member': T[];
-}
-
+// Interface pour le login et register
+// -----------------------------------
 export interface loginCheck {
     username: string;
     password: string;
 }
 
+export interface RegisterInterface {
+    email: string;
+    password: string;
+    roles: string[];
+}
+
+// Interface pour le tokens JWT
+// ----------------------------
 export interface Token {
     token: string;
 }
@@ -16,12 +22,9 @@ export interface TokenPayload {
     roles: string[];
 }
 
-export interface RegisterInterface {
-    email: string;
-    password: string;
-    roles: string[];
-}
 
+// Interface pour les clients
+// --------------------------
 export interface ClientInterface {
     '@id': string;
     id: number;
@@ -46,6 +49,8 @@ export interface ClientInterface {
     niveauExperience: string;
 }
 
+// Interface pour les éleveurs
+// ---------------------------
 export interface BreederApiResponse {
     '@context': string;
     '@id': string;
@@ -77,54 +82,9 @@ export interface BreederInterface {
     suiviPostAdoptionDescription: string;
 }
 
-export interface AnimalCreateInterface {
-    eleveur: string;
-    // Etape 1 :
-    nom: string;
-    dateDeNaissance: string;
-    sexe: string;
-    numeroIdentification: number;
-    race: string;
-    poids: number;
-    taille: number;
-
-    // Etape 2 :
-    statutVaccination: string;
-    statutSterilisation: string;
-    infoSante: string;
-    typeAlimentation: string;
-    typeAlimentationDetails?: string;
-
-    // Etape 3 :
-    niveauEnergie: string;
-    sociabilite: string;
-    education: string;
-
-    // Etape 4 :
-    typeLogement: string;
-    familleIdeale: string;
-    besoinsExercice: string;
-
-    // Etape 5 :
-    histoire?: string;
-    infosSupplementaires?: string;
-    prix: number;
-
-    // Etape 6 :
-    // photos: string[];
-}
-
-export interface AnimalApiResponse {
-    '@context': string;
-    '@id': string;
-    '@type': string;
-    totalItems: number;
-    member: AnimalInterface[];
-}
-
-export interface AnimalInterface {
-    '@id': string;
-    id: string;
+// Interface pour les animaux
+// --------------------------
+export interface AnimalData {
     nom: string;
     dateDeNaissance: string;
     sexe: string;
@@ -146,10 +106,35 @@ export interface AnimalInterface {
     infosSupplementaires?: string;
     prix: number;
     // photos: string[];
+}
+export interface AnimalCreateInterface extends AnimalData {
+    eleveur: string;
+    race: string;
+}
+
+export interface AnimalApiResponse {
+    '@context': string;
+    '@id': string;
+    '@type': string;
+    totalItems: number;
+    member: AnimalInterface[];
+}
+
+export interface AnimalInterface extends AnimalData {
+    '@id': string;
+    id: string;
     race: RaceInterface;
-    eleveur: {
-        adresseElevage: string;
-    }
+    eleveur: BreederInterface;
+}
+
+// Interface pour les espèces et les races
+// ---------------------------------------
+export interface EspeceApiResponse {
+    '@context': string;
+    '@id': string;
+    '@type': string;
+    totalItems: number;
+    member: EspeceInterface[];
 }
 
 export interface EspeceInterface {
@@ -164,6 +149,8 @@ export interface RaceInterface {
     nom: string;
 }
 
+// Interface pour les swipes
+// -------------------------
 export interface SwipeCreateInterface {
     animal: string;
     client: string | number;

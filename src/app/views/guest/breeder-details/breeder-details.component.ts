@@ -27,13 +27,11 @@ export class BreederDetailsComponent implements OnInit {
         this.breederService.fetchBreederById(id).subscribe({
             next: (breeder) => {
                 this.breeder = breeder;
-                console.log('Détails de l\'éleveur récupérés :', this.breeder);
             },
             error: (error) => {
-                console.error('Erreur lors de la récupération de l\'éleveur :', error);
-                // TODO: redirection vers une page d'erreur
+                console.error("Erreur lors de la récupération de l'éleveur :", error);
+                // TODO: redirection vers page 404
             }
         });
-        
     }
 }

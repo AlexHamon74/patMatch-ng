@@ -3,6 +3,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../../core/services/user.service';
+import { TokenService } from '../../../core/services/token.service';
 
 @Component({
     selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     // Services
     authService = inject(AuthService);
     userService = inject(UserService);
+    tokenService = inject(TokenService);
     router = inject(Router);
     renderer = inject(Renderer2);
 
@@ -55,9 +57,9 @@ export class LoginComponent implements OnInit, OnDestroy {
                     this.authService.saveToken(token);
 
                     // Redirige l'utilisateur vers la page appropriée en fonction de son rôle
-                    if (this.userService.hasRole('ROLE_ELEVEUR')) {
+                    if (this.tokenService.hasRole('ROLE_ELEVEUR')) {
                         this.router.navigate(['breeder/dashboard']);
-                    } else if (this.userService.hasRole('ROLE_CLIENT')) {
+                    } else if (this.tokenService.hasRole('ROLE_CLIENT')) {
                         this.router.navigate(['home']);
                     } else {
                         this.router.navigate(['home']);

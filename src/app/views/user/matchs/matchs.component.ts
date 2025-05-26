@@ -27,12 +27,10 @@ export class MatchsComponent implements OnInit {
         this.swipeService.getMatchs().subscribe({
             next: (data) => {
                 this.matchs = data;
-                console.log('Matchs :', this.matchs);
             },
             error: (err) => {
                 console.error('Erreur lors de la récupération des matchs :', err);
             }
         });
-
     }
 }

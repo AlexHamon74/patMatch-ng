@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { UserService } from '../../core/services/user.service';
+import { TokenService } from '../../core/services/token.service';
 
 @Component({
     selector: 'app-navbar',
@@ -12,16 +12,16 @@ import { UserService } from '../../core/services/user.service';
 export class NavbarComponent {
 
     //Injection du service UserService
-    userService = inject(UserService);
+    tokenService = inject(TokenService);
 
     //Méthode pour savoir si le user est un client
     isClient() {
-        return this.userService.hasRole('ROLE_CLIENT');
+        return this.tokenService.hasRole('ROLE_CLIENT');
     };
 
     //Méthode pour savoir si le user est un éleveur
     isBreeder() {
-        return this.userService.hasRole('ROLE_ELEVEUR');
+        return this.tokenService.hasRole('ROLE_ELEVEUR');
     };
 
 }

@@ -6,9 +6,9 @@ import { AnimalInterface } from '../../../core/entities';
 import { AnimalService } from '../../../core/services/animal.service';
 import { RouterLink } from '@angular/router';
 import { SwipeService } from '../../../core/services/swipe.service';
-import { AuthService } from '../../../core/services/auth.service';
 import { UserService } from '../../../core/services/user.service';
 import { switchMap, tap } from 'rxjs';
+import { TokenService } from '../../../core/services/token.service';
 
 @Component({
     selector: 'app-home',
@@ -26,8 +26,8 @@ export class HomeComponent implements OnInit {
     // Injection des services
     animalService = inject(AnimalService);
     swipeService = inject(SwipeService);
-    authService = inject(AuthService);
     userService = inject(UserService);
+    tokenService = inject(TokenService);
 
     ngOnInit(): void {
         // Récupérer l'id enregistré pour afficher le même animal après retour
@@ -57,13 +57,14 @@ export class HomeComponent implements OnInit {
     }
 
     swipe(direction: 'left' | 'right'): void {
-        if (!this.authService.isLogged()) {
+        if (!this.userService.isLogged()) {
+            // TODO : Afficher une erreur ou rediriger
             alert('Veuillez vous connecter pour swiper les animaux.');
             return;
         }
 
         const currentAnimal = this.animals[this.currentIndex];
-        const client = this.userService.getUserId();
+        const client = this.tokenService.getUserId();
         const type = direction === 'right' ? 'like' : 'dislike';
 
         if (!client || !currentAnimal.id) {

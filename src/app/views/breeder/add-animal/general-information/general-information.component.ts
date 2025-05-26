@@ -66,10 +66,14 @@ export class GeneralInformationComponent implements OnInit, OnDestroy {
     };
 
     getEspeces() {
-        this.especeService.fetchAllEspeces().subscribe(espece => {
-            console.log('Especes chargées :', espece);
-            this.especes = espece;
-        })
+        this.especeService.fetchAllEspeces().subscribe({
+            next: (data) => {
+                this.especes = data.member;
+            },
+            error: (err) => {
+                console.error('Erreur lors de la récupération des espèces :', err);
+            }
+        });
     };
 
     onEspeceChange(event: Event) {

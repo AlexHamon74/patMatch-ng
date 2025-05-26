@@ -10,23 +10,14 @@ import { AuthService } from '../../../core/services/auth.service';
     styleUrl: './auth.component.css'
 })
 export class AuthComponent implements OnInit, OnDestroy {
-
     // Injection des services
-    renderer = inject(Renderer2)
-
-    ngOnInit(): void {
-      this.renderer.addClass(document.body, 'no-padding');
-    }
-    ngOnDestroy(): void {
-      this.renderer.removeClass(document.body, 'no-padding');
-    }
-
-    authService = inject(AuthService);
+    renderer = inject(Renderer2);
     router = inject(Router);
 
-    logout() {
-        this.authService.logout();
-        this.router.navigate(['']);
-    };
-
+    ngOnInit(): void {
+        this.renderer.addClass(document.body, 'no-padding');
+    }
+    ngOnDestroy(): void {
+        this.renderer.removeClass(document.body, 'no-padding');
+    }
 }

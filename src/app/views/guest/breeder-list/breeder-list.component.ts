@@ -23,7 +23,6 @@ export class BreederListComponent implements OnInit {
     ngOnInit(): void {
         this.breederService.fetchAllBreeders().subscribe({
             next: (data) => {
-                console.log('Données récupérées :', data);
                 this.breeders = data.member;
             },
             error: (err) => {
@@ -31,5 +30,4 @@ export class BreederListComponent implements OnInit {
             }
         });
     }
-
 }

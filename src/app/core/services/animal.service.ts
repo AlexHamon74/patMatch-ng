@@ -1,9 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environnement/environnement.production';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AnimalApiResponse, AnimalCreateInterface, AnimalInterface } from '../entities';
-import { Observable } from 'rxjs';
+import { AnimalCreateInterface, AnimalInterface } from '../entities';
+import { Observable, throwError } from 'rxjs';
 import { UserService } from './user.service';
+import { TokenService } from './token.service';
 
 @Injectable({
     providedIn: 'root'
@@ -17,12 +18,14 @@ export class AnimalService {
     // Injection des services
     http = inject(HttpClient);
     userService = inject(UserService);
+    tokenService = inject(TokenService);
 
     // Méthode pour enregistrer un nouvel animal
     createAnimal(animal: AnimalCreateInterface): Observable<AnimalCreateInterface> {
-        const userId = this.userService.getUserId();
-        if (!userId) throw new Error('Utilisateur non connecté');
-
+        if (!this.userService.isLogged()) {
+            return throwError(() => new Error('Utilisateur non connecté'));
+        }
+        const userId = this.tokenService.getUserId();
         const fullAnimal: AnimalCreateInterface = {
             ...animal,
             eleveur: `/api/users/${userId}`

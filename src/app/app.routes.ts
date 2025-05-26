@@ -27,8 +27,8 @@ import { PersonalityComponent } from './views/breeder/add-animal/personality/per
 import { IdealEnvironmentComponent } from './views/breeder/add-animal/ideal-environment/ideal-environment.component';
 import { TermsComponent } from './views/breeder/add-animal/terms/terms.component';
 import { PicturesComponent } from './views/breeder/add-animal/pictures/pictures.component';
-import { AuthUserGuard } from './core/guards/auth-user.guards';
 import { AuthBreederGuard } from './core/guards/auth-breeder.guards';
+import { AuthClientGuard } from './core/guards/auth-client.guards';
 
 export const routes: Routes = [
     {
@@ -60,8 +60,8 @@ export const routes: Routes = [
             {path: 'unauthorized', redirectTo: '/'},
 
             // Routes protégées pour les utilisateurs connectés
-            { path: 'matchs', component: MatchsComponent, canActivate: [AuthUserGuard] },
-            { path: 'profil', component: ProfilComponent, canActivate: [AuthUserGuard] },
+            { path: 'matchs', component: MatchsComponent, canActivate: [AuthClientGuard] },
+            { path: 'profil', component: ProfilComponent, canActivate: [AuthClientGuard] },
         ]
     },
     {
