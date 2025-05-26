@@ -1,0 +1,30 @@
+h1 {
+    font-family: "Lilita One", sans-serif;
+    font-size: 20px;
+}
+
+.profil-list a {
+    background-color: #f1f4fb;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.link-blue {
+    background-color: #f1f4fb;
+    color: #2c3e50;
+}
+
+.link-red {
+    background-color: #ffecec !important;
+    color: #cc0000;
+}
+
+.link-blue:hover {
+    background-color: #dce8ff !important;
+}
+
+.link-red:hover {
+    background-color: #ffd3d3 !important;
+}
