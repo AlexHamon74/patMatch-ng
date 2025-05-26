@@ -1,9 +1,10 @@
 nav {
     font-family: "Poppins", sans-serif;
+    margin-bottom: 10px;
+}
+
+nav ul {
     background-color: #E1DCF8;
-    height: 70px;
-    width: 90%;
-    margin: 10px auto;
     border-radius: 50px;
 }
 
