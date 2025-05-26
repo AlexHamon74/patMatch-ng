@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ClientService } from '../../core/services/client.service';
-import { ClientInterface } from '../../core/entities';
+import { BreederInterface, ClientInterface } from '../../core/entities';
 import { UserService } from '../../core/services/user.service';
+import { take } from 'rxjs';
 
 @Component({
     selector: 'app-header',
@@ -11,27 +11,17 @@ import { UserService } from '../../core/services/user.service';
     styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
-    // Déclaration des variables
-    client: ClientInterface | null = null;
-
-    // Injection des services
-    clientService = inject(ClientService);
+    userFirstName: string = 'Invité';
     userService = inject(UserService);
 
     ngOnInit(): void {
-        const token = this.userService.getToken();
-        if (token) {
-            this.clientService.getClient().subscribe({
-                next: (data) => {
-                    this.client = data;
-                    console.log('Client connecté :', this.client);
-                },
-                error: (err) => {
-                    console.error('Erreur lors de la récupération du client :', err);
-                }
-            });
-        } else {
-            console.log('Aucun token trouvé, utilisateur non connecté.');
-        }
+        // On demande au service de charger le prénom
+        this.userService.loadFirstName().subscribe();
+
+        // On s'abonne au prénom réactif
+        this.userService.firstName$.subscribe(firstName => {
+            this.userFirstName = firstName ?? 'Invité';
+        });
     }
+
 }

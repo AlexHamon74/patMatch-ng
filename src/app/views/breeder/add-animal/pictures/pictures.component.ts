@@ -1,13 +1,13 @@
 import { Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { HeaderBreederComponent } from '../../../../shared/header-breeder/header-breeder.component';
 import { Router } from '@angular/router';
 import { AnimalService } from '../../../../core/services/animal.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { HeaderComponent } from '../../../../shared/header/header.component';
 
 @Component({
     selector: 'app-pictures',
     standalone: true,
-    imports: [HeaderBreederComponent, ReactiveFormsModule],
+    imports: [HeaderComponent, ReactiveFormsModule],
     templateUrl: './pictures.component.html',
     styleUrl: './../add-animal.component.css'
 })

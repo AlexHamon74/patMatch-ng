@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environnement/environnement.production';
 import { Token, RegisterInterface } from '../entities';
+import { UserService } from './user.service';
 
 @Injectable({
     providedIn: 'root'
@@ -13,6 +14,7 @@ export class AuthService {
 
     // Injection des services
     http = inject(HttpClient);
+    userService = inject(UserService);
 
     // Méthode pour enregistrer un nouvel utilisateur
     registerClient(user: RegisterInterface): Observable<any> {
@@ -79,6 +81,7 @@ export class AuthService {
     // Méthode pour se déconnecter et remove le localStorage
     logout(): void {
         localStorage.clear();
+        this.userService.clearFirstName();
         console.log('Déconnexion réussie');
     };
 

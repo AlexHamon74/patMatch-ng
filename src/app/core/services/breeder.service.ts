@@ -24,9 +24,4 @@ export class BreederService {
     fetchBreederById(id: number): Observable<BreederInterface> {
         return this.http.get<BreederInterface>(`${this.url}/eleveurs/${id}`, { headers: this.headers });
     }
-
-    // Récupération des informations de l'éléveur connecté
-    getBreeder(): Observable<BreederInterface> {
-        return this.http.get<BreederInterface>(`${this.url}/me`);
-    }
 }

@@ -1,14 +1,14 @@
 import { Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { HeaderBreederComponent } from '../../../../shared/header-breeder/header-breeder.component';
 import { Router } from '@angular/router';
 import { AnimalService } from '../../../../core/services/animal.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { HeaderComponent } from '../../../../shared/header/header.component';
 
 @Component({
     selector: 'app-health',
     standalone: true,
-    imports: [HeaderBreederComponent, NgIf, ReactiveFormsModule],
+    imports: [HeaderComponent, NgIf, ReactiveFormsModule],
     templateUrl: './health.component.html',
     styleUrl: './../add-animal.component.css'
 })

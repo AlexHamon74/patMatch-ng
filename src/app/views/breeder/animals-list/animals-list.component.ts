@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderBreederComponent } from '../../../shared/header-breeder/header-breeder.component';
+import { HeaderComponent } from '../../../shared/header/header.component';
 
 @Component({
     selector: 'app-animals-list',
     standalone: true,
-    imports: [HeaderBreederComponent],
+    imports: [HeaderComponent],
     templateUrl: './animals-list.component.html',
     styleUrl: './animals-list.component.css'
 })

@@ -1,16 +1,16 @@
 import { Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { HeaderBreederComponent } from '../../../../shared/header-breeder/header-breeder.component';
 import { Router } from '@angular/router';
 import { AnimalService } from '../../../../core/services/animal.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { EspeceService } from '../../../../core/services/espece.service';
 import { EspeceInterface, RaceInterface } from '../../../../core/entities';
+import { HeaderComponent } from '../../../../shared/header/header.component';
 
 @Component({
     selector: 'app-general-information',
     standalone: true,
-    imports: [HeaderBreederComponent, NgIf, ReactiveFormsModule],
+    imports: [HeaderComponent, NgIf, ReactiveFormsModule],
     templateUrl: './general-information.component.html',
     styleUrl: './../add-animal.component.css'
 })
