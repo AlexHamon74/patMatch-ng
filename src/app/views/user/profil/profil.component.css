@@ -1,55 +1,30 @@
-/* Style principal de la page */
 h1 {
-    font-size: 16px;
-}
-h1 span {
     font-family: "Lilita One", sans-serif;
     font-size: 20px;
 }
 
-/* Section header */
-.profile-picture {
-    border: 3px solid #EF9BC9;
-    object-fit: cover;
-}
-
-.btn-update {
-    border: 1px solid #B19FFF;
-    background-color: #F5F5F5;
-    width: 40px;
-    height: 40px;
-    bottom: -8px;
-    left: -8px;
-    transition: background-color 0.2s ease;
-}
-
-.btn-update:hover {
-    background-color: #E0E0E0;
+.profil-list a {
+    background-color: #f1f4fb;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
     cursor: pointer;
 }
 
-/* Section listes de liens */
-.lien-profil {
-    border: none;
-    border-top: 1px solid #7189FF;
-    font-weight: 500;
-    font-size: 16px;
-    padding: 16px;
-    color: #1E1E1B;
-    background-color: transparent;
-    transition: color 0.2s;
-    border-radius: 0;
-  }
-  
-  .lien-profil:hover {
-    color: #7189FF;
-  }
-  
-  .lien-profil:first-child {
-    border-top: 1px solid #7189FF;
-  }
-  
-  .lien-profil:last-child {
-    border-bottom: 1px solid #7189FF;
-  }
-  
+.link-blue {
+    background-color: #f1f4fb;
+    color: #2c3e50;
+}
+
+.link-red {
+    background-color: #ffecec !important;
+    color: #cc0000;
+}
+
+.link-blue:hover {
+    background-color: #dce8ff !important;
+}
+
+.link-red:hover {
+    background-color: #ffd3d3 !important;
+}
