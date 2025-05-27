@@ -1,0 +1,58 @@
+h1 {
+    font-family: "Lilita One", sans-serif;
+    font-size: 25px;
+}
+h2 {
+    font-family: "Lilita One", sans-serif;
+    font-size: 20px;
+}
+h3 {
+    font-family: "Lilita One", sans-serif;
+    font-size: 18px;
+}
+
+.retour {
+    cursor: pointer;
+}
+
+.profile-picture {
+    object-fit: cover;
+}
+
+.btn-delete {
+    font-family: "Lilita One", sans-serif;
+    font-size: 17px;
+    border: 1px solid #FF5656;
+    border-radius: 15px;
+    padding: 10px 18px;
+    color: #FF5656;
+    background-color: transparent;
+    transition: all 0.2s ease;
+}
+
+.btn-delete:hover {
+    background-color: #FF5656;
+    color: #fff;
+}
+
+.historique {
+    width: 300px;
+    background-color: #D6EAFA;
+}
+
+.nb-icon {
+    width: 23px;
+    height: 23px;
+}
+
+.nb-matchs {
+    background-color: #B19FFF;
+}
+
+.nb-demande {
+    background-color: #EF9BC9;
+}
+
+.nb-adoptions {
+    background-color: #92A8FF;
+}

@@ -1,2 +1,68 @@
 <app-header></app-header>
+
 <app-navbar></app-navbar>
+
+<section class="infos-generales pt-4">
+    <div class="container">
+        <h3 routerLink="/profil" class="mb-4 retour"><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp; Mes informations générales</h3>
+
+        @if(userRole === 'ROLE_CLIENT') {
+
+            <!-- Infos persos + photo -->
+            <div class="row mb-4">
+                <div class="col-6">
+                    <h1 class="mb-3">{{ clientProfile.prenom }} {{ clientProfile.nom }}</h1>
+                    <p><i class="fa-solid fa-cake-candles"></i>&nbsp; {{ clientProfile.dateDeNaissance }}</p>
+                    <p><i class="fa-solid fa-location-dot"></i>&nbsp; {{ clientProfile.adresse }}</p>
+                    <p>Inscrit depuis le {{ clientProfile.misAJourLe | date:'dd/MM/yyyy'}}</p>
+                </div>
+                <div class="col-6">
+                    <img src="images/profile_picture.jpg" alt="Photo de profil" class="profile-picture img-fluid rounded-20">
+                </div>
+            </div>
+
+            <!-- Infos adoptions -->
+            <div class="row mb-4">
+                <h3 class="mb-3">Mes préférences d'adaoptions</h3>
+                <p><i class="fa-solid fa-paw"></i>&nbsp; {{ clientProfile.animauxPreferes }}</p>
+                <p><i class="fa-solid fa-house">&nbsp; </i>{{ clientProfile.typeLogement ? clientProfile.typeLogement : 'Non renseigné' }}</p>
+                <p><i class="fa-solid fa-dog">&nbsp;</i>{{ clientProfile.autresAnimaux === false ? 'Aucun animal' : clientProfile.animauxDescription }}</p>
+                <p><i class="fa-solid fa-child">&nbsp;</i>{{ clientProfile.presenceEnfant === false ? "Pas d'enfant" : clientProfile.enfantsDescription }}</p>
+            </div>
+
+            <!-- Historique - stats -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="historique shadow p-4 rounded-4 d-flex flex-column gap-3">
+                        <h2 class="mb-3">Historique</h2>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span>Matchs réalisés</span>
+                            <span class="nb-icon nb-matchs text-light d-flex align-items-center justify-content-center rounded">{{ clientProfile.swipes.length }}</span>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span>Demandes envoyées</span>
+                            <span class="nb-icon nb-demande text-light d-flex align-items-center justify-content-center rounded">0</span>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span>Adoptions acceptées</span>
+                            <span class="nb-icon nb-adoptions text-light d-flex align-items-center justify-content-center rounded">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bouton Modifier - Supprimer -->
+            <div class="row justify-content-center gap-2">
+                <div class="col-8">
+                    <button class="btn-premier w-100">Modifier le profil</button>
+                </div>
+                <div class="col-8">
+                    <button class="btn-delete w-100">Supprimer le profil &nbsp;<i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+        }
+    </div>
+</section>

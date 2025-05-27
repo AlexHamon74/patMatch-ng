@@ -47,6 +47,8 @@ export interface ClientInterface {
     ageSouhaite: string;
     sexeSouhaite: string;
     niveauExperience: string;
+    misAJourLe: string;
+    swipes: string[];
 }
 
 // Interface pour les éleveurs
@@ -80,6 +82,7 @@ export interface BreederInterface {
     conditionAdoption: string;
     suiviPostAdoption: boolean;
     suiviPostAdoptionDescription: string;
+    misAJourLe: string;
 }
 
 // Interface pour les animaux
