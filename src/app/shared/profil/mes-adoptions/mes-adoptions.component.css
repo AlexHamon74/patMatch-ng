@@ -1,0 +1,17 @@
+h2 {
+    font-family: "Lilita One", sans-serif;
+    font-size: 20px;
+}
+
+.retour {
+    cursor: pointer;
+}
+
+.typo-custom {
+    font-family: "Lilita One", sans-serif;
+    font-size: 16px;
+}
+
+.lien {
+    cursor: pointer;
+}

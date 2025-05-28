@@ -168,3 +168,32 @@ export interface SwipeInterface {
         photoProfil: string;
     }
 }
+
+// Interface pour les adoptions
+// ----------------------------
+export interface AdoptionCreateInterface {
+    animal: string;
+    client: string | number;
+    dateDemande: string;
+    status: string;
+}
+
+export interface AdoptionInterface {
+    '@id': string;
+    id: number;
+    dateDemande: string;
+    status: string;
+    animal : {
+        id: string;
+        nom: string;
+        photoProfil: string;
+        eleveur: {
+            id: number;
+            nomElevageAssociation: string;
+        }
+    };
+}
+
+export interface UserAdoptionInterface {
+    adoptions: AdoptionInterface[];
+}

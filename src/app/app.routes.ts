@@ -31,6 +31,7 @@ import { AuthBreederGuard } from './core/guards/auth-breeder.guards';
 import { AuthClientGuard } from './core/guards/auth-client.guards';
 import { AuthClientOrBreederGuard } from './core/guards/auth-client-or-breeder.guards';
 import { GeneralInformationsComponent } from './shared/profil/general-informations/general-informations.component';
+import { MesAdoptionsComponent } from './shared/profil/mes-adoptions/mes-adoptions.component';
 
 export const routes: Routes = [
     {
@@ -65,6 +66,7 @@ export const routes: Routes = [
             { path: 'matchs', component: MatchsComponent, canActivate: [AuthClientGuard] },
             { path: 'profil', component: ProfilComponent, canActivate: [AuthClientOrBreederGuard] },
             { path: 'profil/generalInformations', component: GeneralInformationsComponent, canActivate: [AuthClientOrBreederGuard] },
+            { path: 'profil/mesAdoptions', component: MesAdoptionsComponent, canActivate: [AuthClientGuard] },
         ]
     },
     {
