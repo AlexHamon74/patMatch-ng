@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environnement/environnement.production';
 import { SwipeCreateInterface, SwipeInterface } from '../entities';
 import { UserService } from './user.service';
-import { Observable, throwError } from 'rxjs';
+import { map, Observable, throwError } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -46,5 +46,12 @@ export class SwipeService {
 
     getCurrentAnimalId(): string | null {
         return this.currentAnimalId;
+    }
+
+    // Vérifie si l'utilisateur a liké un animal spécifique
+    isAnimalLiked(animalId: string): Observable<boolean> {
+        return this.getMatchs().pipe(
+            map((swipes) => swipes.some(swipe => swipe.animal.id === animalId))
+        );
     }
 }
