@@ -6,11 +6,12 @@ import { NgIf } from '@angular/common';
 import { EspeceService } from '../../../../core/services/espece.service';
 import { EspeceInterface, RaceInterface } from '../../../../core/entities';
 import { HeaderComponent } from '../../../../shared/header/header.component';
+import { NavbarComponent } from '../../../../shared/navbar/navbar.component';
 
 @Component({
     selector: 'app-general-information',
     standalone: true,
-    imports: [HeaderComponent, NgIf, ReactiveFormsModule],
+    imports: [HeaderComponent, NgIf, ReactiveFormsModule, NavbarComponent],
     templateUrl: './general-information.component.html',
     styleUrl: './../add-animal.component.css'
 })

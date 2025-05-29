@@ -4,11 +4,12 @@ import { AnimalService } from '../../../../core/services/animal.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { HeaderComponent } from '../../../../shared/header/header.component';
+import { NavbarComponent } from '../../../../shared/navbar/navbar.component';
 
 @Component({
     selector: 'app-health',
     standalone: true,
-    imports: [HeaderComponent, NgIf, ReactiveFormsModule],
+    imports: [HeaderComponent, NgIf, ReactiveFormsModule, NavbarComponent],
     templateUrl: './health.component.html',
     styleUrl: './../add-animal.component.css'
 })

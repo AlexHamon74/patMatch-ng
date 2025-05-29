@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../../shared/header/header.component';
+import { NavbarComponent } from '../../../shared/navbar/navbar.component';
 
 @Component({
     selector: 'app-animals-list',
     standalone: true,
-    imports: [HeaderComponent],
+    imports: [HeaderComponent, NavbarComponent],
     templateUrl: './animals-list.component.html',
     styleUrl: './animals-list.component.css'
 })

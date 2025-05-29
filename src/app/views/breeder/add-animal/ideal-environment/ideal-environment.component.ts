@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { AnimalService } from '../../../../core/services/animal.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HeaderComponent } from '../../../../shared/header/header.component';
+import { NavbarComponent } from '../../../../shared/navbar/navbar.component';
 
 @Component({
     selector: 'app-ideal-environment',
     standalone: true,
-    imports: [HeaderComponent, ReactiveFormsModule],
+    imports: [HeaderComponent, ReactiveFormsModule, NavbarComponent],
     templateUrl: './ideal-environment.component.html',
     styleUrl: './../add-animal.component.css'
 })
