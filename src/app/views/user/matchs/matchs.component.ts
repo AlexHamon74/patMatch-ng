@@ -17,6 +17,8 @@ import { SwipeService } from '../../../core/services/swipe.service';
 export class MatchsComponent implements OnInit {
     // Déclaration des variables
     matchs: SwipeInterface[] = [];
+    toastVisible = false;
+    toastMessage = '';
 
     // Injection des services
     swipeService = inject(SwipeService);
@@ -34,12 +36,20 @@ export class MatchsComponent implements OnInit {
         });
     }
 
+    // Méthode pour supprimer un match
     confirmDelete(swipeId: string): void {
-        const confirmed = window.confirm("Es-tu sûr de vouloir supprimer ce swipe ?");
+        const confirmed = window.confirm("Es-tu sûr de vouloir supprimer ce match ?");
         if (confirmed) {
             this.swipeService.deleteSwipe(swipeId).subscribe({
                 next: () => {
                     this.matchs = this.matchs.filter(match => match.id !== swipeId);
+                    this.toastMessage = "Match supprimé avec succès.";
+                    this.toastVisible = true;
+
+                    // Masquer le toast après 3 secondes
+                    setTimeout(() => {
+                        this.toastVisible = false;
+                    }, 3000);
                 },
                 error: (err) => {
                     console.error('Erreur lors de la suppression du swipe :', err);
