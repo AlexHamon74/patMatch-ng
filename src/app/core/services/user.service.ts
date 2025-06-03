@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BreederInterface, ClientInterface } from '../entities';
-import { BehaviorSubject, map, Observable, of, tap } from 'rxjs';
-import { environment } from '../../../environnement/environnement.production';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from '../../../environnement/environnement';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -10,8 +10,12 @@ import { TokenService } from './token.service';
 })
 export class UserService {
     private url = environment.apiURL;
+
     private firstNameSubject = new BehaviorSubject<string | null>(null);
     firstName$ = this.firstNameSubject.asObservable();
+
+    private photoProfilSubject = new BehaviorSubject<string | null>(null);
+    photoProfil$ = this.photoProfilSubject.asObservable();
 
     http = inject(HttpClient);
     tokenService = inject(TokenService);
@@ -23,44 +27,40 @@ export class UserService {
         return !!token;
     };
 
-    // ------------------------------------------------------------
-    // Méthode pour afficher le nom de l'utilisateur dans le header
-    // ------------------------------------------------------------
+    // Récupère les informations de l'utilisateur connecté
+    // ---------------------------------------------------
     getUserProfile<T>(): Observable<T> {
         return this.http.get<T>(`${this.url}/me`);
     }
 
-    setFirstName(firstName: string): void {
-        this.firstNameSubject.next(firstName);
-        localStorage.setItem('userFirstName', firstName);
-    }
+    // ------------------------------------------------------------------------
+    // Méthode pour afficher le nom et la photo de l'utilisateur dans le header
+    // ------------------------------------------------------------------------
+    loadUserInfo(): void {
+        const cachedFirstName = localStorage.getItem('userFirstName');
+        const cachedPhoto = localStorage.getItem('userPhoto');
 
-    loadFirstName(): Observable<string | null> {
-        const cached = localStorage.getItem('userFirstName');
-        if (cached) {
-            this.setFirstName(cached);
-            return of(cached);
-        }
+        if (cachedFirstName) this.firstNameSubject.next(cachedFirstName);
+        if (cachedPhoto) this.photoProfilSubject.next(cachedPhoto);
 
-        if (this.tokenService.hasRole('ROLE_CLIENT')) {
-            return this.getUserProfile<ClientInterface>().pipe(
-                map(user => user.prenom),
-                tap(prenom => this.setFirstName(prenom))
-            );
-        }
+        const role = this.tokenService.hasRole('ROLE_CLIENT') ? 'client' :
+            this.tokenService.hasRole('ROLE_ELEVEUR') ? 'breeder' : null;
 
-        if (this.tokenService.hasRole('ROLE_ELEVEUR')) {
-            return this.getUserProfile<BreederInterface>().pipe(
-                map(user => user.prenom),
-                tap(prenom => this.setFirstName(prenom))
-            );
-        }
+        if (!role) return;
 
-        return of(null);
+        this.getUserProfile<ClientInterface | BreederInterface>().subscribe(user => {
+            this.firstNameSubject.next(user.prenom);
+            this.photoProfilSubject.next(user.photoProfil);
+            localStorage.setItem('userFirstName', user.prenom);
+            localStorage.setItem('userPhoto', user.photoProfil);
+        });
     }
 
     clearFirstName(): void {
         this.firstNameSubject.next(null);
+        this.photoProfilSubject.next(null);
+        localStorage.removeItem('userFirstName');
+        localStorage.removeItem('userPhoto');
     }
     // ----------------------------------------------------------------
     // FIN méthode pour afficher le nom de l'utilisateur dans le header

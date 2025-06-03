@@ -32,7 +32,7 @@ export interface ClientInterface {
     nom: string;
     prenom: string;
     dateDeNaissance: string;
-    numeroTelephone: string;
+    numeroDeTelephone: string;
     adresse: string;
     photoProfil: string;
     typeLogement: string;

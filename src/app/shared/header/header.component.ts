@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from '../../core/services/user.service';
 import { RouterLink } from '@angular/router';
+import { environment } from '../../../environnement/environnement';
 
 @Component({
     selector: 'app-header',
@@ -11,15 +12,19 @@ import { RouterLink } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
     userFirstName: string = 'Invité';
+    profilePhotoUrl = 'images/profile_picture.jpg';
+
     userService = inject(UserService);
 
     ngOnInit(): void {
-        // On demande au service de charger le prénom
-        this.userService.loadFirstName().subscribe();
+        this.userService.loadUserInfo();
 
-        // On s'abonne au prénom réactif
-        this.userService.firstName$.subscribe(firstName => {
-            this.userFirstName = firstName ?? 'Invité';
+        this.userService.firstName$.subscribe(name => {
+            this.userFirstName = name ?? 'Invité';
+        });
+
+        this.userService.photoProfil$.subscribe(photo => {
+        this.profilePhotoUrl = photo ? `${environment.uploadUrl}users/${photo}` : 'images/profile_picture.jpg';
         });
     }
 

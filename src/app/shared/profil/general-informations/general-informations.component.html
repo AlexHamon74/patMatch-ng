@@ -17,7 +17,7 @@
                     <p>Inscrit depuis le {{ clientProfile.misAJourLe | date:'dd/MM/yyyy'}}</p>
                 </div>
                 <div class="col-6">
-                    <img src="images/profile_picture.jpg" alt="Photo de profil" class="profile-picture img-fluid rounded-20">
+                    <img [src]="clientProfile.photoProfil ? (environment.uploadUrl + 'users/' + clientProfile.photoProfil) : 'images/profile_picture.jpg'" alt="Photo de profil" class="profile-picture img-fluid rounded-20">
                 </div>
             </div>
 

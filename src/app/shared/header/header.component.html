@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-between align-items-center">
             <div class="col-auto">
-                <img routerLink="/profil" src="images/profile_picture.jpg" alt="Photo de profil" class="profile-picture img-fluid rounded-10">
+                <img routerLink="/profil" [src]="profilePhotoUrl" alt="Photo de profil" class="profile-picture img-fluid rounded-10">
             </div>
             <div class="col-auto">
                 <span class="hello">Bonjour, <span class="client-name">{{ userFirstName }}</span></span>

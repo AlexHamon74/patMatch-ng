@@ -6,6 +6,7 @@ import { TokenService } from '../../../core/services/token.service';
 import { BreederInterface, ClientInterface } from '../../../core/entities';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { environment } from '../../../../environnement/environnement';
 
 @Component({
     selector: 'app-general-informations',
@@ -21,13 +22,13 @@ export class GeneralInformationsComponent {
     clientProfile!: ClientInterface;
     breederProfile!: BreederInterface;
     userRole!: string;
+    environment = environment;
 
     ngOnInit(): void {
         if (this.tokenService.hasRole('ROLE_CLIENT')) {
             this.userRole = 'ROLE_CLIENT';
             this.userService.getUserProfile<ClientInterface>().subscribe(profile => {
                 this.clientProfile = profile;
-                console.log('Client profile:', this.clientProfile);
             });
         } else if (this.tokenService.hasRole('ROLE_ELEVEUR')) {
             this.userRole = 'ROLE_ELEVEUR';
