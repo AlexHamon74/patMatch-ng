@@ -31,6 +31,13 @@ p {
 }
 
 /* Partie image + nom + distance */
+.animal-card-wrapper {
+    width: 300px;
+    height: 50vh;
+    overflow: hidden;
+    position: relative;
+}
+
 .animal-img {
     height: 50vh;
     width: 300px;
@@ -56,12 +63,12 @@ p {
 }
 
 .animal-card.swipe-left {
-    transform: rotate(-20deg) translateX(-400px);
+    transform: rotate(-20deg) translateX(-150%);
     opacity: 0;
 }
 
 .animal-card.swipe-right {
-    transform: rotate(20deg) translateX(400px);
+    transform: rotate(20deg) translateX(150%);
     opacity: 0;
 }
 

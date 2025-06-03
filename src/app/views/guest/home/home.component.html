@@ -25,16 +25,18 @@
         <div class="container d-flex flex-column align-items-center">
 
             @if (animals && animals[currentIndex]) {
-                <div [routerLink]="(['/animals/', animals[currentIndex].id])" class="animal-card position-relative" [ngClass]="animationClass">
+                <div class="animal-card-wrapper">
+                    <div [routerLink]="(['/animals/', animals[currentIndex].id])" class="animal-card position-relative" [ngClass]="animationClass">
 
-                    <img src="images/animal_home.jpg" alt="Photo de l'animal" class="rounded-20 animal-img">
-                    
-                    <div class="animal-carac shadow rounded-20 py-1 px-4">
-                        <h1>{{ animals[currentIndex].nom }} &nbsp;
-                            <i class="fa-solid" [ngClass]="animals[currentIndex].sexe === 'Mâle' ? 'fa-mars' : 'fa-venus'"></i></h1>
-                        <p><i class="fa-solid fa-paw"></i>&nbsp; {{ animals[currentIndex].race.nom }}</p>
-                        <p><i class="fa-solid fa-calendar"></i>&nbsp; {{ animals[currentIndex].dateDeNaissance }}</p>
-                        <p><i class="fa-solid fa-location-dot"></i> {{ animals[currentIndex].eleveur.adresseElevage }}</p>
+                        <img src="images/animal_home.jpg" alt="Photo de l'animal" class="rounded-20 animal-img">
+                        
+                        <div class="animal-carac shadow rounded-20 py-1 px-4">
+                            <h1>{{ animals[currentIndex].nom }} &nbsp;
+                                <i class="fa-solid" [ngClass]="animals[currentIndex].sexe === 'Mâle' ? 'fa-mars' : 'fa-venus'"></i></h1>
+                            <p><i class="fa-solid fa-paw"></i>&nbsp; {{ animals[currentIndex].race.nom }}</p>
+                            <p><i class="fa-solid fa-calendar"></i>&nbsp; {{ animals[currentIndex].dateDeNaissance }}</p>
+                            <p><i class="fa-solid fa-location-dot"></i> {{ animals[currentIndex].eleveur.adresseElevage }}</p>
+                        </div>
                     </div>
                 </div>
             
