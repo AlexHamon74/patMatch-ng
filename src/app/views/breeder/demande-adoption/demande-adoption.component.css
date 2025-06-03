@@ -20,3 +20,13 @@ h2 {
     color: #6C60D2;
     border: 1px solid #6C60D2;
 }
+
+.btn-refus {
+    font-family: "Lilita One", sans-serif;
+    font-size: 17px;
+    border-radius: 15px;
+    padding: 10px 18px;
+    background-color: transparent;
+    color: #FF5656;
+    border: 1px solid #FF5656;
+}

@@ -4,35 +4,50 @@
 
 <section class="adoption-liste mb-5">
     @if(!isLoading) {
-        <div class="container">
-            <h1 class="mb-4">Demandes d'adoption</h1>
+    <div class="container">
+        <h1 class="mb-4">Demandes d'adoption</h1>
 
-            @for (adoption of adoptions; track $index) {
-                <div class="row">
-                    <div class="col-12">
-                        <div class="bg-grey p-4 mb-5 rounded-20 shadow">
-                            <div class="row">
-                                <div class="col-4">
-                                    <img src="images/animal_home.jpg" alt="Photo de l'animal" class="img-fluid rounded-10 mb-3">
-                                </div>
-                                <div class="col-8">
-                                    <h2>{{ adoption.animal.nom }}</h2>
-                                    <p>Demande de {{ adoption.client.prenom }} {{ adoption.client.nom }}</p>
-                                    <p>Reçu le {{ adoption.dateDemande | date:'dd/MM/yyyy' }}</p>
-                                </div>
-                                <div class="col-6">
-                                    <button class="btn-details w-100">Voir les détails &nbsp;<i class="fa-solid fa-eye"></i></button>
-                                </div>
-                                <div class="col-6">
-                                    <button class="btn-premier w-100">Confirmer &nbsp;<i class="fa-solid fa-check"></i></button>
-                                </div>
-                            </div>
+        @for (adoption of adoptions; track $index) {
+        <div class="row">
+            <div class="col-12">
+                <div class="bg-grey p-4 mb-5 rounded-20 shadow">
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="images/animal_home.jpg" alt="Photo de l'animal" class="img-fluid rounded-10 mb-3">
                         </div>
+                        <div class="col-8">
+                            <h2>{{ adoption.animal.nom }}</h2>
+                            <p>Demande de {{ adoption.client.prenom }} {{ adoption.client.nom }}</p>
+                            <p>Reçu le {{ adoption.dateDemande | date:'dd/MM/yyyy' }}</p>
+                            <p>
+                                <span class="badge"
+                                        [ngClass]="{
+                                        'bg-secondary': adoption.status === 'Demande envoyée',
+                                        'bg-success': adoption.status === 'Demande acceptée',
+                                        'bg-danger': adoption.status === 'Demande refusée'
+                                        }">
+                                    {{ adoption.status }}
+                                </span>
+                            </p>
+                        </div>
+                        <div class="col-md-4 col-12 mb-md-0 mb-3">
+                            <button class="btn-details w-100">Voir les détails &nbsp;<i class="fa-solid fa-eye"></i></button>
+                        </div>
+                        @if(adoption.status == "Demande envoyée") {
+                            <div class="col-md-4 col-6">
+                                <button class="btn-refus w-100" (click)="refuseAdoption(adoption)">Refuser &nbsp;<i class="fa-solid fa-ban"></i></button>
+                            </div>
+                            <div class="col-md-4 col-6">
+                                <button class="btn-premier w-100" (click)="confirmAdoption(adoption)">Confirmer &nbsp;<i class="fa-solid fa-check"></i></button>
+                            </div>
+                        }
                     </div>
                 </div>
-            } @empty {
-                <h2>Vous n'avez aucune demandes d'adoption.</h2>
-            }
+            </div>
         </div>
+        } @empty {
+        <h2>Vous n'avez aucune demandes d'adoption.</h2>
+        }
+    </div>
     }
 </section>

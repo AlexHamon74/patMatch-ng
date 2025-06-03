@@ -11,6 +11,8 @@ export class AdoptionService {
     // Définition des variables
     private url = environment.apiURL;
     headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });
+    patchHeaders = new HttpHeaders({ 'Content-Type': 'application/merge-patch+json' });
+
 
     // Injection des services
     http = inject(HttpClient);
@@ -34,5 +36,13 @@ export class AdoptionService {
     // --------------------------------------------------------------------
     getAdoptions(): Observable<AdoptionListBreederInterface[]> {
         return this.http.get<AdoptionListBreederInterface[]>(`${this.url}/me/adoptionRequests`);
+    }
+
+    // Méthode pour mettre à jour le status d'une adoption
+    // ---------------------------------------------------
+    updateStatus(adoption: AdoptionListBreederInterface, newStatus: string): Observable<AdoptionListBreederInterface> {
+        const body = { status: newStatus };
+        const url = `${this.url}/adoptions/${adoption.id}`;
+        return this.http.patch<AdoptionListBreederInterface>(url, body, { headers: this.patchHeaders });
     }
 }

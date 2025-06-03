@@ -179,7 +179,6 @@ export interface AdoptionCreateInterface {
 }
 
 export interface AdoptionInterface {
-    '@id': string;
     id: number;
     dateDemande: string;
     status: string;
@@ -199,8 +198,9 @@ export interface UserAdoptionInterface {
 }
 
 export interface AdoptionListBreederInterface {
-    id: string;
+    id: number;
     dateDemande: string;
+    status: string;
     animal: {
         id:string;
         nom: string;

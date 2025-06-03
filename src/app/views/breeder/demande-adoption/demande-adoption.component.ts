@@ -3,12 +3,12 @@ import { HeaderComponent } from '../../../shared/header/header.component';
 import { NavbarComponent } from '../../../shared/navbar/navbar.component';
 import { AdoptionService } from '../../../core/services/adoption.service';
 import { AdoptionListBreederInterface } from '../../../core/entities';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-demande-adoption',
     standalone: true,
-    imports: [HeaderComponent, NavbarComponent, DatePipe],
+    imports: [HeaderComponent, NavbarComponent, DatePipe, CommonModule],
     templateUrl: './demande-adoption.component.html',
     styleUrl: './demande-adoption.component.css'
 })
@@ -30,6 +30,40 @@ export class DemandeAdoptionComponent implements OnInit {
             error: (err) => {
                 this.isLoading = false;
                 console.error('Erreur lors de la récupération des adoptions :', err);
+            }
+        });
+    }
+
+    // Méthode lancée lors de la confirmation d'une adoption
+    confirmAdoption(adoption: AdoptionListBreederInterface) {
+        const confirm = window.confirm('Confirmer cette adoption ?');
+        if (!confirm) return;
+
+        this.adoptionService.updateStatus(adoption, 'Demande acceptée').subscribe({
+            next: (updated) => {
+                alert('Demande acceptée');
+                adoption.status = updated.status;
+            },
+            error: (err) => {
+                console.error('Erreur lors de la confirmation :', err);
+                alert('Erreur lors de la confirmation.');
+            }
+        });
+    }
+
+    // Méthode lancée lors du refus d'une adoption
+    refuseAdoption(adoption: AdoptionListBreederInterface) {
+        const confirm = window.confirm('Refuser cette adoption ?');
+        if (!confirm) return;
+
+        this.adoptionService.updateStatus(adoption, 'Demande refusée').subscribe({
+            next: (updated) => {
+                alert('Demande refusée');
+                adoption.status = updated.status;
+            },
+            error: (err) => {
+                console.error('Erreur lors du refus :', err);
+                alert('Erreur lors du refus.');
             }
         });
     }
