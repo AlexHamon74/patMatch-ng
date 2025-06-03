@@ -38,6 +38,12 @@ export class SwipeService {
         return this.http.post<SwipeCreateInterface>(`${this.url}/swipes`, payload, { headers: this.headers });
     }
 
+    // Méthode pour supprimer un swipe
+    // -------------------------------
+    deleteSwipe(swipeId: string): Observable<void> {
+        return this.http.delete<void>(`${this.url}/swipes/${swipeId}`);
+    }
+
     // Gère l'affichage de l'animal actuel dans la page home
     // -----------------------------------------------------
     setCurrentAnimalId(id: string): void {

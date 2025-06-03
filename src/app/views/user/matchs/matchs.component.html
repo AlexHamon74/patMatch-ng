@@ -27,7 +27,7 @@
             <h1 class="mb-4">Tes Matchs&nbsp;&nbsp;<span>{{ matchs.length }}</span></h1>
 
             @for (match of matchs; track $index) {
-                <div class="col-4 mb-4">
+                <div class="col-6 mb-4">
                     <div class="position-relative">
                         <img src="images/animal_home.jpg" alt="" class="animal-img rounded-10 mb-2">
 
@@ -40,8 +40,8 @@
                                     <button [routerLink]="(['/animals', match.animal.id])" ngbDropdownItem class="icon-btn icon-btn-eye d-flex justify-content-center align-items-center">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                    <button ngbDropdownItem class="icon-btn icon-btn-cross d-flex justify-content-center align-items-center">
-                                        <i class="fas fa-xmark"></i>
+                                    <button (click)="confirmDelete(match.id)" ngbDropdownItem class="icon-btn icon-btn-cross d-flex flex-column justify-content-center align-items-center">
+                                        <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
                             </div>

@@ -16,7 +16,7 @@ import { SwipeService } from '../../../core/services/swipe.service';
 })
 export class MatchsComponent implements OnInit {
     // Déclaration des variables
-    matchs: SwipeInterface[]= [];
+    matchs: SwipeInterface[] = [];
 
     // Injection des services
     swipeService = inject(SwipeService);
@@ -32,5 +32,19 @@ export class MatchsComponent implements OnInit {
                 console.error('Erreur lors de la récupération des matchs :', err);
             }
         });
+    }
+
+    confirmDelete(swipeId: string): void {
+        const confirmed = window.confirm("Es-tu sûr de vouloir supprimer ce swipe ?");
+        if (confirmed) {
+            this.swipeService.deleteSwipe(swipeId).subscribe({
+                next: () => {
+                    this.matchs = this.matchs.filter(match => match.id !== swipeId);
+                },
+                error: (err) => {
+                    console.error('Erreur lors de la suppression du swipe :', err);
+                }
+            });
+        }
     }
 }

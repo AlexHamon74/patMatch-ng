@@ -75,8 +75,6 @@ button.menu-btn::after {
     color: red;
 }
 
-
-
 .animal-img {
     height: 175px;
     width: 100%;
@@ -85,6 +83,6 @@ button.menu-btn::after {
 
 @media (min-width: 992px) {
     .animal-img {
-        height: 300px;
+        height: 400px;
     }
 }
