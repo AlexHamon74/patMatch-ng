@@ -4,12 +4,12 @@ import { NavbarComponent } from '../../navbar/navbar.component';
 import { RouterLink } from '@angular/router';
 import { UserService } from '../../../core/services/user.service';
 import { AdoptionInterface, UserAdoptionInterface } from '../../../core/entities';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-mes-adoptions',
     standalone: true,
-    imports: [HeaderComponent, NavbarComponent, RouterLink, DatePipe],
+    imports: [HeaderComponent, NavbarComponent, RouterLink, DatePipe, CommonModule],
     templateUrl: './mes-adoptions.component.html',
     styleUrl: './mes-adoptions.component.css'
 })
