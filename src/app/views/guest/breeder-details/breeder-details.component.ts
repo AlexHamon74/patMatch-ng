@@ -3,12 +3,13 @@ import { NavbarComponent } from '../../../shared/navbar/navbar.component';
 import { HeaderComponent } from '../../../shared/header/header.component';
 import { BreederInterface } from '../../../core/entities';
 import { BreederService } from '../../../core/services/breeder.service';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'app-breeder-details',
     standalone: true,
-    imports: [NavbarComponent, HeaderComponent, RouterLink],
+    imports: [NavbarComponent, HeaderComponent],
     templateUrl: './breeder-details.component.html',
     styleUrl: './breeder-details.component.css'
 })
@@ -19,6 +20,7 @@ export class BreederDetailsComponent implements OnInit {
     // Injection des services
     breederService = inject(BreederService);
     route = inject(ActivatedRoute);
+    location = inject(Location);
 
     // Récupère un éleveur par son ID
     ngOnInit(): void {
@@ -33,5 +35,10 @@ export class BreederDetailsComponent implements OnInit {
                 // TODO: redirection vers page 404
             }
         });
+    }
+
+    // Méthode de retour à la dernère page visitée
+    goBack(): void {
+        this.location.back();
     }
 }

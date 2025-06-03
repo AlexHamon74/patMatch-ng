@@ -21,7 +21,7 @@
         </ng-template>
     </ngb-carousel>
     <!-- Bouton retour -->
-    <div routerLink="/home" class="back-btn position-absolute top-0 start-0 m-3 d-flex justify-content-center align-items-center rounded-circle">
+    <div (click)="goBack()" class="back-btn position-absolute top-0 start-0 m-3 d-flex justify-content-center align-items-center rounded-circle">
         <i class="fa-solid fa-arrow-left"></i>
     </div>
 </section>

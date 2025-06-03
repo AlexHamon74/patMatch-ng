@@ -3,8 +3,8 @@ import { NavbarComponent } from '../../../shared/navbar/navbar.component';
 import { NgbCarouselModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { AnimalInterface } from '../../../core/entities';
 import { AnimalService } from '../../../core/services/animal.service';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { CommonModule, Location } from '@angular/common';
 import { SwipeService } from '../../../core/services/swipe.service';
 import { UserService } from '../../../core/services/user.service';
 import { AdoptionService } from '../../../core/services/adoption.service';
@@ -13,7 +13,7 @@ import { TokenService } from '../../../core/services/token.service';
 @Component({
     selector: 'app-animal-details',
     standalone: true,
-    imports: [NavbarComponent, NgbNavModule, NgbCarouselModule, CommonModule, RouterLink],
+    imports: [NavbarComponent, NgbNavModule, NgbCarouselModule, CommonModule],
     templateUrl: './animal-details.component.html',
     styleUrl: './animal-details.component.css'
 })
@@ -29,6 +29,7 @@ export class AnimalDetailsComponent {
     adoptionService = inject(AdoptionService);
     tokenService = inject(TokenService);
     route = inject(ActivatedRoute);
+    location = inject(Location);
 
     // Récupère un animal par son ID
     ngOnInit(): void {
@@ -82,5 +83,10 @@ export class AnimalDetailsComponent {
             }
         });
 
+    }
+
+    // Méthode de retour à la dernère page visitée
+    goBack(): void {
+        this.location.back();
     }
 }

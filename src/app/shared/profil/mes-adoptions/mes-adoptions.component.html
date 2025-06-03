@@ -4,7 +4,7 @@
 
 <section class="infos-generales pt-4">
     <div class="container">
-        <h2 routerLink="/profil" class="mb-5 retour"><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp; Mes adoptions</h2>
+        <h2 (click)="goBack()" class="mb-5 retour"><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp; Mes adoptions</h2>
     
         @for (adoption of adoptions; track adoption.id) {
 
