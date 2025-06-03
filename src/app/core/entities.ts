@@ -198,6 +198,23 @@ export interface UserAdoptionInterface {
     adoptions: AdoptionInterface[];
 }
 
+export interface AdoptionListBreederInterface {
+    id: string;
+    dateDemande: string;
+    animal: {
+        id:string;
+        nom: string;
+        photoProfil: string;
+    }
+    client: {
+        id:string;
+        email: string;
+        nom: string;
+        prenom: string;
+        photoProfil: string;
+    }
+}
+
 // Interface pour la liste des animaux côté éleveur
 // ------------------------------------------------
 export interface BreederAnimalInterface {

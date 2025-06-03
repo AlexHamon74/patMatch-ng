@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environnement/environnement.production';
 import { Observable, throwError } from 'rxjs';
-import { AdoptionCreateInterface } from '../entities';
+import { AdoptionCreateInterface, AdoptionListBreederInterface } from '../entities';
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +15,7 @@ export class AdoptionService {
     // Injection des services
     http = inject(HttpClient);
 
-    // Méthode pour créer un match
+    // Méthode pour créer une adoption
     // ---------------------------
     createAdoption(adoption: AdoptionCreateInterface): Observable<AdoptionCreateInterface> {
         if (!adoption.client || !adoption.animal) {
@@ -28,5 +28,11 @@ export class AdoptionService {
             dateDemande: adoption.dateDemande,
         };
         return this.http.post<AdoptionCreateInterface>(`${this.url}/adoptions`, payload, { headers: this.headers });
+    }
+
+    // Méthode pour récupérer toutes les demandes d'adoptions côtés Eleveur
+    // --------------------------------------------------------------------
+    getAdoptions(): Observable<AdoptionListBreederInterface[]> {
+        return this.http.get<AdoptionListBreederInterface[]>(`${this.url}/me/adoptionRequests`);
     }
 }

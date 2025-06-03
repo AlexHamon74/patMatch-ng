@@ -32,6 +32,7 @@ import { AuthClientGuard } from './core/guards/auth-client.guards';
 import { AuthClientOrBreederGuard } from './core/guards/auth-client-or-breeder.guards';
 import { GeneralInformationsComponent } from './shared/profil/general-informations/general-informations.component';
 import { MesAdoptionsComponent } from './shared/profil/mes-adoptions/mes-adoptions.component';
+import { DemandeAdoptionComponent } from './views/breeder/demande-adoption/demande-adoption.component';
 
 export const routes: Routes = [
     {
@@ -81,6 +82,7 @@ export const routes: Routes = [
             { path: 'addAnimal/idealEnvironment', component: IdealEnvironmentComponent, canActivate: [AuthBreederGuard] },
             { path: 'addAnimal/terms', component: TermsComponent, canActivate: [AuthBreederGuard] },
             { path: 'addAnimal/pictures', component: PicturesComponent, canActivate: [AuthBreederGuard] },
+            { path: 'demandeAdoption', component: DemandeAdoptionComponent, canActivate: [AuthBreederGuard] },
         ]
     },
 
