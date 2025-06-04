@@ -12,13 +12,17 @@ import { TokenService } from './token.service';
 export class AnimalService {
     // Définition des variables
     private url = environment.apiURL;
-    private stepKeys = ['step1', 'step2', 'step3', 'step4', 'step5', 'step6'];
+    private stepKeys = ['step1', 'step2', 'step3', 'step4', 'step5'];
     headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });
 
     // Injection des services
     http = inject(HttpClient);
     userService = inject(UserService);
     tokenService = inject(TokenService);
+
+    // -------------------------------------------------------------------------------
+    // Liste des méthodes pour créer un animal dans le formualaire en plusieurs étapes 
+    // -------------------------------------------------------------------------------
 
     // Méthode pour enregistrer un nouvel animal
     createAnimal(animal: AnimalCreateInterface): Observable<AnimalCreateInterface> {
@@ -37,6 +41,17 @@ export class AnimalService {
     // Sauvegarde temporaire de l'animal en cours d'inscription dans le localStorage
     saveStepData(stepKey: string, data: Partial<AnimalCreateInterface>) {
         localStorage.setItem(stepKey, JSON.stringify(data));
+    }
+
+    // Gestion de l'id de l'animal dans le localStorage
+    saveAnimalId(id: string) {
+        localStorage.setItem('AnimalId', id);
+    }
+    getAnimalId(): string | null {
+        return localStorage.getItem('AnimalId');
+    }
+    clearAnimalId() {
+        localStorage.removeItem('AnimalId');
     }
 
     // Récupération des données de l'animal en cours d'inscription depuis le localStorage 
@@ -60,6 +75,9 @@ export class AnimalService {
     clearAnimalRegistrationData() {
         this.stepKeys.forEach(key => localStorage.removeItem(key));
     }
+    // -----------------------------------------------------------------------------------
+    // FIN liste des méthodes pour créer un animal dans le formualaire en plusieurs étapes 
+    // -----------------------------------------------------------------------------------
 
     // Récupération de tous les animaux
     fetchAllAnimals(): Observable<AnimalInterface> {
@@ -69,6 +87,18 @@ export class AnimalService {
     // Récupération d'un animal par son ID
     fetchAnimalById(id: number): Observable<AnimalInterface> {
         return this.http.get<AnimalInterface>(`${this.url}/animals/${id}`, { headers: this.headers });
+    }
+
+    // Upload de l'image de l'animal
+    uploadAnimalImage(animalId: string, file: File): Observable<any> {
+        if (!this.userService.isLogged()) {
+            return throwError(() => new Error('Utilisateur non connecté'));
+        }
+
+        const formData = new FormData();
+        formData.append('animalImageFile', file);
+
+        return this.http.post(`${this.url}/animals/${animalId}/image`, formData);
     }
 
 }

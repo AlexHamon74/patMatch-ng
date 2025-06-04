@@ -4,18 +4,19 @@ import { AnimalService } from '../../../../core/services/animal.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HeaderComponent } from '../../../../shared/header/header.component';
 import { NavbarComponent } from '../../../../shared/navbar/navbar.component';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-pictures',
     standalone: true,
-    imports: [HeaderComponent, ReactiveFormsModule, NavbarComponent],
+    imports: [HeaderComponent, ReactiveFormsModule, NavbarComponent, NgIf],
     templateUrl: './pictures.component.html',
     styleUrl: './../add-animal.component.css'
 })
 export class PicturesComponent implements OnInit, OnDestroy {
     // Propriétés
     isSubmitted = false;
-    errorMessage: string = '';
+    selectedFile?: File;
 
     // Services
     router = inject(Router);
@@ -37,51 +38,43 @@ export class PicturesComponent implements OnInit, OnDestroy {
 
     // Formulaire avec validations
     public createAnimalForm: FormGroup = new FormGroup({
-        // photos: new FormControl('', [Validators.required]),
+        animalImageFile: new FormControl('', [Validators.required]),
     });
+
+    onFileSelected(event: Event) {
+        const input = event.target as HTMLInputElement;
+        if (input.files && input.files.length > 0) {
+            this.selectedFile = input.files[0];
+        }
+    }
 
     // Fonction attachée au bouton précédent
     goBack() {
-        this.animalService.saveStepData('step6', this.createAnimalForm.value);
         this.router.navigate(['addAnimal/terms']);
     }
 
     // Soumission du formulaire
     onSubmit() {
         this.isSubmitted = true;
-        if (this.createAnimalForm.valid) {
-            const formData = this.createAnimalForm.value;
+        if (!this.createAnimalForm.valid || !this.selectedFile) {
+            return;
+        }
 
-            // Sauvegarde temporaire des données
-            this.animalService.saveStepData('step6', formData);
+        const animalId = this.animalService.getAnimalId();
+        if (!animalId) {
+            console.error("Aucun ID d'animal trouvé. Impossible d'uploader l'image.");
+            return;
+        }
 
-            // Récupérer l'ensemble des données de toutes les étapes
-            const fullAnimal = this.animalService.getFullAnimalFromSteps();
-
-            if (fullAnimal) {
-                this.animalService.createAnimal(fullAnimal).subscribe({
-                    next: () => {
-                        // Nettoyage du localStorage puis redirection vers la liste des animaux
-                        this.animalService.clearAnimalRegistrationData();
-                        this.router.navigate(['breeder/animalsList'], {
-                            state: { animalCreated: true }
-                        });
-                    },
-                    error: (err) => {
-                        console.error("Erreur lors de la création de l'animal :", err);
-                        this.handleRegisterError(err);
-                    }
-                });
+        this.animalService.uploadAnimalImage(animalId, this.selectedFile).subscribe({
+            next: () => {
+                this.animalService.clearAnimalId();
+                this.router.navigate(['/breeder/animalsList']);
+            },
+            error: (err) => {
+                console.error('Erreur lors de la modification de l\'image : ' + err.message);
             }
-        }
-    };
-
-    // Fonction pour vérifier si numero d'identification unique
-    private handleRegisterError(error: any) {
-        if (error.error.violations) {
-            const violation = error.error.violations.find((v: any) => v.propertyPath === 'numeroIdentification');
-            this.errorMessage = violation?.message || 'Une erreur est survenue.';
-        }
+        });
     }
 
 }

@@ -40,7 +40,7 @@
                 <!-- Numéro d'identification de l'animal -->
                 <div class="col-6 mb-3">
                     <label for="numeroIdentification">N° identification<span>*</span></label>
-                    <input type="number" id="numeroIdentification" class="form-control" formControlName=numeroIdentification
+                    <input type="text" id="numeroIdentification" class="form-control" formControlName=numeroIdentification
                         [class.is-invalid]="isSubmitted && createAnimalForm.controls['numeroIdentification'].invalid">
                     <div *ngIf="isSubmitted && createAnimalForm.controls['numeroIdentification'].invalid" class="invalid-feedback">
                         <small>Ce champs est requis</small>

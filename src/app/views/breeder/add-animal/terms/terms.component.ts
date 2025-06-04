@@ -15,6 +15,7 @@ import { NavbarComponent } from '../../../../shared/navbar/navbar.component';
 export class TermsComponent implements OnInit, OnDestroy {
     // Propriétés
     isSubmitted = false;
+    errorMessage: string = '';
 
     // Services
     router = inject(Router);
@@ -53,10 +54,35 @@ export class TermsComponent implements OnInit, OnDestroy {
         if (this.createAnimalForm.valid) {
             const formData = this.createAnimalForm.value;
 
-            // Sauvegarde temporaire des données et redirection
+            // Sauvegarde temporaire des données
             this.animalService.saveStepData('step5', formData);
-            this.router.navigate(['breeder/addAnimal/pictures']);
+
+            // Récupérer l'ensemble des données de toutes les étapes
+            const fullAnimal = this.animalService.getFullAnimalFromSteps();
+
+            if (fullAnimal) {
+                this.animalService.createAnimal(fullAnimal).subscribe({
+                    next: (createdAnimal) => {
+                        // Nettoyage du localStorage puis redirection vers la liste des animaux
+                        this.animalService.saveAnimalId(createdAnimal.id);
+                        this.animalService.clearAnimalRegistrationData();
+                        this.router.navigate(['breeder/addAnimal/pictures']);
+                    },
+                    error: (err) => {
+                        console.error("Erreur lors de la création de l'animal :", err);
+                        this.handleRegisterError(err);
+                    }
+                });
+            }
         }
     };
+
+    // Fonction pour vérifier si numero d'identification unique
+    private handleRegisterError(error: any) {
+        if (error.error.violations) {
+            const violation = error.error.violations.find((v: any) => v.propertyPath === 'numeroIdentification');
+            this.errorMessage = violation?.message || 'Une erreur est survenue.';
+        }
+    }
 
 }

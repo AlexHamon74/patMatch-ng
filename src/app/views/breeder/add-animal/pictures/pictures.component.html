@@ -22,19 +22,17 @@
             </svg>
         </div>
 
-        @if (errorMessage) {
-            <div class="alert alert-danger">
-                {{ errorMessage }}
-            </div>
-        }
-
         <h1 class="mb-4 text-center">Photos</h1>
         <!-- Ajouter un animal, Partie 1 -->
         <form (ngSubmit)="onSubmit()" [formGroup]="createAnimalForm">
 
             <div class="row">
                 <!-- Photos de l'animal -->
-
+                <label class="mt-3" for="animalImageFile">Photo de l'animal<span>*</span></label>
+                <input  type="file" id="animalImageFile" class="form-control" formControlName=animalImageFile [class.is-invalid]="isSubmitted && createAnimalForm.controls['animalImageFile'].invalid" (change)="onFileSelected($event)">
+                    <div *ngIf="isSubmitted && createAnimalForm.controls['animalImageFile'].invalid" class="invalid-feedback">
+                        <small>Ce champs est requis</small>
+                    </div>
 
                 <div class="col-12">
                     <p class="text-center">1 photo minimum, format JPG/PNG, taille max X Mo</p>

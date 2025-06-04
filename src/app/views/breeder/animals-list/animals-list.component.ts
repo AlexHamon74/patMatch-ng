@@ -15,20 +15,12 @@ import { CommonModule } from '@angular/common';
 })
 export class AnimalsListComponent implements OnInit {
     breederAnimals: BreederAnimalInterface[] = [];
-    successMessage: string | null = null;
 
     userService = inject(UserService);
 
     ngOnInit(): void {
-        // Si on arrive sur cette page après la création d'un animal, affiche une alert de succès
-        const state = history.state as { animalCreated?: boolean };
-        if (state?.animalCreated) {
-            this.successMessage = 'Votre animal a bien été créé.';
-        }
-
         this.userService.getUserProfile<BreederAnimalListInterface>().subscribe(profile => {
             this.breederAnimals = profile.animals;
-            console.log('Animaux:', this.breederAnimals);
         });
     }
 

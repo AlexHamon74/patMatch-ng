@@ -108,9 +108,10 @@ export interface AnimalData {
     histoire: string;
     infosSupplementaires?: string;
     prix: number;
-    // photos: string[];
+    animalImage: string;
 }
 export interface AnimalCreateInterface extends AnimalData {
+    id: string;
     eleveur: string;
     race: string;
 }
