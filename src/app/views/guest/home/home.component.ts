@@ -9,6 +9,7 @@ import { SwipeService } from '../../../core/services/swipe.service';
 import { UserService } from '../../../core/services/user.service';
 import { switchMap, tap } from 'rxjs';
 import { TokenService } from '../../../core/services/token.service';
+import { environment } from '../../../../environnement/environnement';
 
 @Component({
     selector: 'app-home',
@@ -23,6 +24,7 @@ export class HomeComponent implements OnInit {
     animationClass: string = '';
     currentIndex: number = 0;
     isLoading = true;
+    environment = environment;
 
     // Injection des services
     animalService = inject(AnimalService);

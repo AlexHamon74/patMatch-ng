@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { UserService } from '../../../core/services/user.service';
 import { AdoptionInterface, UserAdoptionInterface } from '../../../core/entities';
 import { CommonModule, DatePipe, Location } from '@angular/common';
+import { environment } from '../../../../environnement/environnement';
 
 @Component({
     selector: 'app-mes-adoptions',
@@ -14,6 +15,8 @@ import { CommonModule, DatePipe, Location } from '@angular/common';
     styleUrl: './mes-adoptions.component.css'
 })
 export class MesAdoptionsComponent implements OnInit {
+    environment = environment;
+    
     userService = inject(UserService);
     location = inject(Location);
     adoptions: AdoptionInterface[] = [];
@@ -21,7 +24,6 @@ export class MesAdoptionsComponent implements OnInit {
     ngOnInit(): void {
         this.userService.getUserProfile<UserAdoptionInterface>().subscribe(profile  => {
             this.adoptions = profile.adoptions;
-            console.log('Adotpion:', this.adoptions);
         });
     }
 

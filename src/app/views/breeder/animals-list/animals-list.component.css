@@ -28,6 +28,11 @@ p {
     width: 100%;
     object-fit: cover;
     cursor: pointer;
+    transition: 0.2s;
+}
+
+.animal-img:hover {
+    transform: scale(1.02);
 }
 
 @media (min-width: 992px) {

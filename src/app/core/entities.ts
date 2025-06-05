@@ -166,7 +166,7 @@ export interface SwipeInterface {
     animal: {
         id:string;
         nom: string;
-        photoProfil: string;
+        animalImage: string;
     }
 }
 
@@ -186,7 +186,7 @@ export interface AdoptionInterface {
     animal : {
         id: string;
         nom: string;
-        photoProfil: string;
+        animalImage: string;
         eleveur: {
             id: number;
             nomElevageAssociation: string;
@@ -205,7 +205,7 @@ export interface AdoptionListBreederInterface {
     animal: {
         id:string;
         nom: string;
-        photoProfil: string;
+        animalImage: string;
     }
     client: {
         id:string;
@@ -221,7 +221,7 @@ export interface AdoptionListBreederInterface {
 export interface BreederAnimalInterface {
     id: number;
     nom: string;
-    photoProfil: string;
+    animalImage: string;
     sexe: string;
     dateDeNaissance: string;
     race: {

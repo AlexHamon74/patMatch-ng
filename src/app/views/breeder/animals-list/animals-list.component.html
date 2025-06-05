@@ -11,7 +11,7 @@
 
             <div class="row mb-4">
                 <div class="col-6">
-                    <img [routerLink]="(['/animals/', breederAnimal.id])" src="images/animal_home.jpg" alt="Photo de l'animal" class="animal-img rounded-10">
+                    <img [src]="environment.uploadUrl + 'animals/' + breederAnimal.animalImage" [routerLink]="(['/animals/', breederAnimal.id])" alt="Photo de l'animal" class="animal-img rounded-10">
                 </div>
                 
                 <div class="col-6">

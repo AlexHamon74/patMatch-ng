@@ -4,6 +4,7 @@ import { NavbarComponent } from '../../../shared/navbar/navbar.component';
 import { AdoptionService } from '../../../core/services/adoption.service';
 import { AdoptionListBreederInterface } from '../../../core/entities';
 import { CommonModule, DatePipe } from '@angular/common';
+import { environment } from '../../../../environnement/environnement';
 
 @Component({
     selector: 'app-demande-adoption',
@@ -16,6 +17,7 @@ export class DemandeAdoptionComponent implements OnInit {
     // Déclaration des variables
     adoptions: AdoptionListBreederInterface[] = [];
     isLoading = true;
+    environment = environment;
 
     // Injection des services
     adoptionService = inject(AdoptionService);

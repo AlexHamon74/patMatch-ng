@@ -28,8 +28,8 @@
                 <div class="animal-card-wrapper">
                     <div [routerLink]="(['/animals/', animals[currentIndex].id])" class="animal-card position-relative" [ngClass]="animationClass">
 
-                        <img src="images/animal_home.jpg" alt="Photo de l'animal" class="rounded-20 animal-img">
-                        
+                        <img [src]="environment.uploadUrl + 'animals/' + animals[currentIndex].animalImage" alt="Photo de l'animal" class="rounded-20 animal-img">
+
                         <div class="animal-carac shadow rounded-20 py-1 px-4">
                             <h1>{{ animals[currentIndex].nom }} &nbsp;
                                 <i class="fa-solid" [ngClass]="animals[currentIndex].sexe === 'Mâle' ? 'fa-mars' : 'fa-venus'"></i></h1>

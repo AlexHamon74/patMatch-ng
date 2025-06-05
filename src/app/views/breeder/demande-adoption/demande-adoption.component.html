@@ -13,7 +13,7 @@
                 <div class="bg-grey p-4 mb-5 rounded-20 shadow">
                     <div class="row">
                         <div class="col-4">
-                            <img src="images/animal_home.jpg" alt="Photo de l'animal" class="img-fluid rounded-10 mb-3">
+                            <img [src]="environment.uploadUrl + 'animals/' + adoption.animal.animalImage" alt="Photo de l'animal" class="img-fluid rounded-10 mb-3">
                         </div>
                         <div class="col-8">
                             <h2>{{ adoption.animal.nom }}</h2>

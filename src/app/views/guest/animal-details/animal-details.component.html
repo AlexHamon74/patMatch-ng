@@ -3,7 +3,7 @@
 <!-- Section header image avec Caroussel -->
 <section class="header-img position-fixed top-0 start-0 w-100">
     <!-- Carousel -->
-    <ngb-carousel [interval]="0" [showNavigationIndicators]="true" [showNavigationArrows]="true">
+    <!-- <ngb-carousel [interval]="0" [showNavigationIndicators]="true" [showNavigationArrows]="true">
         <ng-template ngbSlide>
             <div class="carousel-img-wrapper d-flex justify-content-center align-items-center">
                 <img src="images/animal_paysage.jpg" class="animal-img" alt="">
@@ -19,7 +19,11 @@
                 <img src="images/animal_paysage2.jpg" class="animal-img" alt="">
             </div>
         </ng-template>
-    </ngb-carousel>
+    </ngb-carousel> -->
+    <div class="img-container d-flex justify-content-center align-items-center">
+        <img [src]="environment.uploadUrl + 'animals/' + animal.animalImage" alt="Image de l'animal" class="animal-img">
+    </div>
+
     <!-- Bouton retour -->
     <div (click)="goBack()" class="back-btn position-absolute top-0 start-0 m-3 d-flex justify-content-center align-items-center rounded-circle">
         <i class="fa-solid fa-arrow-left"></i>

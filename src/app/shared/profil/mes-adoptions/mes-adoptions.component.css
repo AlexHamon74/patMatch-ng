@@ -12,6 +12,16 @@ h2 {
     font-size: 16px;
 }
 
-.lien {
+.lien-breeder:hover {
+    text-decoration: underline;
     cursor: pointer;
+}
+
+.lien-animal {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.lien-animal:hover {
+    transform: scale(1.02);
 }

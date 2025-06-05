@@ -9,6 +9,7 @@ import { SwipeService } from '../../../core/services/swipe.service';
 import { UserService } from '../../../core/services/user.service';
 import { AdoptionService } from '../../../core/services/adoption.service';
 import { TokenService } from '../../../core/services/token.service';
+import { environment } from '../../../../environnement/environnement';
 
 @Component({
     selector: 'app-animal-details',
@@ -21,6 +22,7 @@ export class AnimalDetailsComponent {
     // Déclaration des variables
     animal!: AnimalInterface;
     isLiked = false;
+    environment = environment;
 
     // Injection des services
     animalService = inject(AnimalService);

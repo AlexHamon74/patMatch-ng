@@ -5,6 +5,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { SwipeInterface } from '../../../core/entities';
 import { SwipeService } from '../../../core/services/swipe.service';
+import { environment } from '../../../../environnement/environnement';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class MatchsComponent implements OnInit {
     matchs: SwipeInterface[] = [];
     toastVisible = false;
     toastMessage = '';
+    environment = environment;
 
     // Injection des services
     swipeService = inject(SwipeService);
