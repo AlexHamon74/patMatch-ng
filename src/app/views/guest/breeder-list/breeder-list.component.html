@@ -28,7 +28,7 @@
             <h1 class="mb-4">Répertoire des éleveurs et associations</h1>
 
             @for (breeder of breeders; track $index) {
-                <div class="bg-blue p-4 mb-5 rounded-20 shadow">
+                <div class="bg-grey p-4 mb-5 rounded-20 shadow">
                     <div class="row">
                         <div class="col-6">
                             <img src="images/profile_picture.jpg" alt="Photo de profil de l'eleveur"
@@ -37,7 +37,13 @@
                             <p>{{ breeder.adresseElevage }}</p>
                         </div>
                         <div class="col-6">
-                            Todo : mettre images animaux
+                            <div class="row">
+                                @for (animal of breeder.animals.slice(0, 4); track $index) {
+                                    <div class="col-6 mb-3">
+                                        <img [src]="environment.uploadUrl + 'animals/' + animal.animalImage" alt="Photo de l'animal {{animal.nom}}" class="img-fluid rounded-10">
+                                    </div>
+                                }
+                            </div>
                         </div>
                         <div class="col-12">
                             <button [routerLink]="(['/breederList', breeder.id])" class="btn-premier">Découvrir &nbsp;<i class="fa-solid fa-eye fa-xs"></i></button>

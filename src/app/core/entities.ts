@@ -83,6 +83,7 @@ export interface BreederInterface {
     suiviPostAdoption: boolean;
     suiviPostAdoptionDescription: string;
     misAJourLe: string;
+    animals: AnimalData[];
 }
 
 // Interface pour les animaux

@@ -5,6 +5,7 @@ import { BreederInterface } from '../../../core/entities';
 import { BreederService } from '../../../core/services/breeder.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { environment } from '../../../../environnement/environnement';
 
 @Component({
     selector: 'app-breeder-details',
@@ -16,6 +17,7 @@ import { Location } from '@angular/common';
 export class BreederDetailsComponent implements OnInit {
     // Déclaration des variables
     breeder!: BreederInterface;
+    environment = environment;
 
     // Injection des services
     breederService = inject(BreederService);

@@ -4,6 +4,7 @@ import { HeaderComponent } from '../../../shared/header/header.component';
 import { RouterLink } from '@angular/router';
 import { BreederInterface } from '../../../core/entities';
 import { BreederService } from '../../../core/services/breeder.service';
+import { environment } from '../../../../environnement/environnement';
 
 @Component({
     selector: 'app-breeder-list',
@@ -16,6 +17,7 @@ export class BreederListComponent implements OnInit {
     // Déclaration des variables
     breeders: BreederInterface[] = [];
     isLoading = true;
+    environment = environment;
 
     // Injection des services
     breederService = inject(BreederService);
