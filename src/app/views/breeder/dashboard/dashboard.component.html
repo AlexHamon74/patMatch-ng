@@ -8,7 +8,7 @@
         <div class="col-6">
             <!-- Card du nombres d'animaux -->
             <div class="nb-animaux mb-4 rounded-20 text-center shadow py-3">
-                <h2 class="mb-0">32 animaux</h2>
+                <h2 class="mb-0">{{ nbAnimals }} animaux</h2>
             </div>
 
             <!-- Les plus appréciés -->
@@ -16,46 +16,20 @@
                 <div class="text-center">
                     <h2 class="mb-4">Les plus appréciés</h2>
                     <div class="d-flex justify-content-center align-items-center gap-3">
+                        @for(animal of topLikedAnimals; track $index) {
                         <div>
-                            <img src="images/animal_home.jpg" alt="Image de l'animal le plus appréciés" class="img-animal img-fluid rounded-circle mb-2">
-                            <p>❤️10</p>
+                            <img [src]="environment.uploadUrl + 'animals/' + animal.animalImage" alt="Image des animaux les plus appréciés" class="img-animal img-fluid rounded-circle mb-2">
+                            <p class="p-custom">{{ animal.nom }}</p>
+                            <p class="p-custom">❤️{{ animal.likes }}</p>
                         </div>
-                        <div>
-                            <img src="images/animal_home.jpg" alt="Image du deuxième animal le plus appréciés" class="img-animal img-fluid rounded-circle mb-2">
-                            <p>❤️8</p>
-                        </div>
+                        }
                     </div>
                 </div>
-                <div class="d-flex justify-content-end">
-                    <a href="">
-                        <div class="arrow-link d-flex justify-content-center align-items-center rounded-circle">
-                            <i class="fa-solid fa-arrow-right text-light"></i>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Les moins appréciés -->
-            <div class="moins-apprecies mb-4 rounded-20 shadow p-3">
-                <div class="text-center">
-                    <h2 class="mb-4">Les moins appréciés</h2>
-                    <div class="d-flex justify-content-center align-items-center gap-3">
-                        <div>
-                            <img src="images/animal_home.jpg" alt="Image de l'animal le moins appréciés" class="img-animal img-fluid rounded-circle mb-2">
-                            <p>❤️1</p>
-                        </div>
-                        <div>
-                            <img src="images/animal_home.jpg" alt="Image du deuxième animal le moins appréciés" class="img-animal img-fluid rounded-circle mb-2">
-                            <p>❤️2</p>
-                        </div>
+                <div class="d-flex justify-content-end mt-3">
+                    <div routerLink="/breeder/animalsList"
+                        class="arrow-link d-flex justify-content-center align-items-center rounded-circle">
+                        <i class="fa-solid fa-arrow-right text-light"></i>
                     </div>
-                </div>
-                <div class="d-flex justify-content-end">
-                    <a href="">
-                        <div class="arrow-link d-flex justify-content-center align-items-center rounded-circle">
-                            <i class="fa-solid fa-arrow-right text-light"></i>
-                        </div>
-                    </a>
                 </div>
             </div>
         </div>
@@ -63,19 +37,38 @@
         <div class="col-6 d-flex flex-column justify-content-start">
 
             <!-- Card du nombres d'adoptions -->
-            <div class="nb-adoptions mb-4 rounded-20 shadow p-3">
-                <div class="text-center mb-4">
-                    <h2 class="mb-3">Adoptions</h2>
-                    <p class="mb-2">En cours &nbsp;&nbsp;&nbsp;<span class="adoption-icon adaption-encours text-light d-inline-flex align-items-center justify-content-center rounded-10">2</span></p>
-                    <p class="mb-2">Achevées &nbsp;&nbsp;&nbsp;<span class="adoption-icon adaption-achevees text-light d-inline-flex align-items-center justify-content-center rounded-10">2</span></p>
-                    <p class="mb-2">Annulées &nbsp;&nbsp;&nbsp;<span class="adoption-icon adaption-annulees text-light d-inline-flex align-items-center justify-content-center rounded-10">2</span></p>
+            <div class="nb-adoptions mb-4 rounded-20 shadow p-3 d-flex flex-column">
+                <h2 class="mb-3 text-center">Adoptions</h2>
+                <div class="adoptions-container mx-auto">
+                    <div class="adoption-row d-flex justify-content-between align-items-center mb-2">
+                        <span class="adoption-label">En cours</span>
+                        <span
+                            class="adoption-icon adaption-encours text-light d-flex align-items-center justify-content-center rounded-10 ms-4">
+                            {{ nbAdoptionsEnCours }}
+                        </span>
+                    </div>
+
+                    <div class="adoption-row d-flex justify-content-between align-items-center mb-2">
+                        <span class="adoption-label">Achevées</span>
+                        <span
+                            class="adoption-icon adaption-achevees text-light d-flex align-items-center justify-content-center rounded-10 ms-4">
+                            {{ nbAdoptionsAchevees }}
+                        </span>
+                    </div>
+
+                    <div class="adoption-row d-flex justify-content-between align-items-center">
+                        <span class="adoption-label">Annulées</span>
+                        <span
+                            class="adoption-icon adaption-annulees text-light d-flex align-items-center justify-content-center rounded-10 ms-4">
+                            {{ nbAdoptionsAnnulees }}
+                        </span>
+                    </div>
                 </div>
-                <div class="d-flex justify-content-end">
-                    <a href="">
-                        <div class="arrow-link d-flex justify-content-center align-items-center rounded-circle">
-                            <i class="fa-solid fa-arrow-right text-light"></i>
-                        </div>
-                    </a>
+                <div class="d-flex justify-content-end mt-3">
+                    <div routerLink="/breeder/demandeAdoption"
+                        class="arrow-link d-flex justify-content-center align-items-center rounded-circle">
+                        <i class="fa-solid fa-arrow-right text-light"></i>
+                    </div>
                 </div>
             </div>
 
@@ -93,7 +86,8 @@
 
         <!-- Bouton ajouter un animal -->
         <div class="col-12">
-            <a routerLink="/breeder/addAnimal/generalInformation" class="btn-ajouter-animal text-center py-3 rounded-15 d-block">Ajouter un animal</a>
+            <a routerLink="/breeder/addAnimal/generalInformation"
+                class="btn-ajouter-animal text-center py-3 rounded-15 d-block">Ajouter un animal</a>
         </div>
     </div>
 </div>

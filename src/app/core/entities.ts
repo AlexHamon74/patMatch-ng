@@ -236,3 +236,9 @@ export interface BreederAnimalInterface {
 export interface BreederAnimalListInterface {
     animals: BreederAnimalInterface[];
 }
+
+// Interface pour le dashboard
+// ---------------------------
+export interface DashboardInterface {
+    animals: (BreederAnimalInterface & { adoptions: AdoptionListBreederInterface[] })[];
+}
