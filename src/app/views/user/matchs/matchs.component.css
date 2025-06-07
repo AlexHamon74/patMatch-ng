@@ -47,7 +47,8 @@ button.menu-btn::after {
     font-size: 20px;
 }
 
-.icon-btn-eye:hover i {
+.icon-btn-eye:hover i,
+.icon-btn-paw:hover i {
     color: #6C60D2;
 }
 

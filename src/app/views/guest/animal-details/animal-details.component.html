@@ -122,15 +122,5 @@
             </ul>
             <div [ngbNavOutlet]="nav"></div>
         </div>
-
-        <!-- Bouton demande d'adoption seulement si le user à liké l'animal -->
-        @if(isLiked) {
-            <div class="row mt-4">
-                <div class="col">                
-                    <button class="btn-premier" (click)="sendAdoptionRequest()">Envoyer une demande d'adoption</button>
-                </div>
-            </div>
-        }
-
     </div>
 </section>

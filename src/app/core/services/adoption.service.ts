@@ -13,17 +13,13 @@ export class AdoptionService {
     headers = new HttpHeaders({ 'Content-Type': 'application/ld+json' });
     patchHeaders = new HttpHeaders({ 'Content-Type': 'application/merge-patch+json' });
 
-
     // Injection des services
     http = inject(HttpClient);
 
     // Méthode pour créer une adoption
     // ---------------------------
     createAdoption(adoption: AdoptionCreateInterface): Observable<AdoptionCreateInterface> {
-        if (!adoption.client || !adoption.animal) {
-            return throwError(() => new Error("Le client et l'animal doivent être définis."));
-        }
-        const payload: AdoptionCreateInterface = {
+        const payload = {
             client: `/api/clients/${adoption.client}`,
             animal: `/api/animals/${adoption.animal}`,
             status: adoption.status,

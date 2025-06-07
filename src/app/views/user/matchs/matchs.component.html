@@ -35,7 +35,10 @@
                                     <button [routerLink]="(['/animals', match.animal.id])" ngbDropdownItem class="icon-btn icon-btn-eye d-flex justify-content-center align-items-center">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                    <button (click)="confirmDelete(match.id)" ngbDropdownItem class="icon-btn icon-btn-cross d-flex flex-column justify-content-center align-items-center">
+                                    <button (click)="sendAdoptionRequest(match.animal.id, match.animal.nom)" ngbDropdownItem class="icon-btn icon-btn-paw d-flex flex-column justify-content-center align-items-center">
+                                        <i class="fas fa-paw"></i>
+                                    </button>
+                                    <button (click)="confirmDelete(match.id, match.animal.nom)" ngbDropdownItem class="icon-btn icon-btn-cross d-flex flex-column justify-content-center align-items-center">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
