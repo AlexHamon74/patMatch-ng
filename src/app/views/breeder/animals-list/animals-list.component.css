@@ -40,3 +40,21 @@ p {
         height: 300px;
     }
 }
+/* Style bouton ajouter animal */
+.img-no-animals {
+    width: 150px;
+    height: auto;
+}
+.btn-ajouter-animal {
+    background-color: #EF9BC9;
+    font-size: 30px;
+    width: 60px;
+    height: 60px;
+    color: #F5F5F5;
+    font-family: "Lilita One", sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.btn-ajouter-animal:hover {
+    background-color: #D77BAF;
+}

@@ -17,12 +17,20 @@ import { environment } from '../../../../environnement/environnement';
 export class AnimalsListComponent implements OnInit {
     breederAnimals: BreederAnimalInterface[] = [];
     environment = environment;
+    isLoading = true;
 
     userService = inject(UserService);
 
     ngOnInit(): void {
-        this.userService.getUserProfile<BreederAnimalListInterface>().subscribe(profile => {
-            this.breederAnimals = profile.animals;
+        this.userService.getUserProfile<BreederAnimalListInterface>().subscribe({
+            next: (profile) => {
+                this.breederAnimals = profile.animals;
+                this.isLoading = false;
+            },
+            error: (err) => {
+                this.isLoading = false;
+                console.error('Erreur lors de la récupération des animaux :', err);
+            }
         });
     }
 

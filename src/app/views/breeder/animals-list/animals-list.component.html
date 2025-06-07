@@ -2,20 +2,23 @@
 
 <app-navbar></app-navbar>
 
-<section class="animalsList my-4">
+<section class="animalsList mb-4">
     <div class="container">
         <h1 class="mb-4">Mes animaux</h1>
-
+        @if(!isLoading) {
         <!-- Liste des animaux de l'eleveur -->
-         @for (breederAnimal of breederAnimals; track breederAnimal.id) {
+            @for (breederAnimal of breederAnimals; track breederAnimal.id) {
 
             <div class="row mb-4">
                 <div class="col-6">
-                    <img [src]="environment.uploadUrl + 'animals/' + breederAnimal.animalImage" [routerLink]="(['/animals/', breederAnimal.id])" alt="Photo de l'animal" class="animal-img rounded-10">
+                    <img [src]="environment.uploadUrl + 'animals/' + breederAnimal.animalImage"
+                        [routerLink]="(['/animals/', breederAnimal.id])" alt="Photo de l'animal"
+                        class="animal-img rounded-10">
                 </div>
-                
+
                 <div class="col-6">
-                    <h2 class="mb-4">{{ breederAnimal.nom }} &nbsp; <i class="fa-solid" [ngClass]="breederAnimal.sexe === 'Mâle' ? 'fa-mars' : 'fa-venus'"></i></h2>
+                    <h2 class="mb-4">{{ breederAnimal.nom }} &nbsp; <i class="fa-solid"
+                            [ngClass]="breederAnimal.sexe === 'Mâle' ? 'fa-mars' : 'fa-venus'"></i></h2>
                     <p><i class="fa-solid fa-cake-candles"></i>&nbsp; {{ breederAnimal.dateDeNaissance }}</p>
                     <p><i class="fa-solid fa-paw"></i>&nbsp; {{ breederAnimal.race.nom }}</p>
                     <div class="d-flex align-items-center gap-2">
@@ -26,6 +29,13 @@
                     </div>
                 </div>
             </div>
+            } @empty {
+                <div class="d-flex justify-content-center align-items-center flex-column">
+                    <img src="images/no_animals.png" class="img-no-animals" alt="Dessin de chat">
+                    <h2 class="my-3">Ajoutez un nouveau compagnon à votre tribu !</h2>
+                    <a routerLink="/breeder/addAnimal/generalInformation" class="btn-ajouter-animal d-flex justify-content-center align-items-center rounded-15">+</a>
+                </div>
+            }
         }
 
     </div>

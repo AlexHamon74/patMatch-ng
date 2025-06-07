@@ -19,27 +19,8 @@ h1 span {
     color: #F5F5F5;
 }
 
-/* Section Recherche et filtres */
-.filter-btn {
-    background-color: #EBEBEB;
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
-    transition: background-color 0.2s ease;
-    cursor: pointer;
-    border: 1px solid #7189FF;
-}
 
-.input-recherche {
-    border: 1px solid #7189FF;
-    height: 50px;
-    background-color: #EBEBEB;
-}
-
-.filter-btn:hover {
-    background-color: #ddd;
-}
-
+/* Section liste des matchs */
 .menu-btn {
     width: 45px;
     height: 45px;
@@ -50,7 +31,6 @@ h1 span {
     border: none;
 }
 
-/* Section liste des matchs */
 button.menu-btn::after {
     display: none !important;
 }

@@ -16,14 +16,22 @@ import { environment } from '../../../../environnement/environnement';
 })
 export class MesAdoptionsComponent implements OnInit {
     environment = environment;
+    isLoading = true;
     
     userService = inject(UserService);
     location = inject(Location);
     adoptions: AdoptionInterface[] = [];
 
     ngOnInit(): void {
-        this.userService.getUserProfile<UserAdoptionInterface>().subscribe(profile  => {
-            this.adoptions = profile.adoptions;
+        this.userService.getUserProfile<UserAdoptionInterface>().subscribe({
+            next: (profile) => {
+                this.adoptions = profile.adoptions;
+                this.isLoading = false;
+            },
+            error: (err) => {
+                this.isLoading = false;
+                console.error('Erreur lors de la récupération des adoptions :', err);
+            }
         });
     }
 

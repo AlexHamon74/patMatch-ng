@@ -41,7 +41,7 @@ export interface ClientInterface {
     autresAnimaux: boolean;
     animauxDescription: string;
     presenceEnfant: boolean;
-    enfantsDescription: string;
+    enfantDescription: string;
     animauxPreferes: string;
     raceSouhaitee: string;
     ageSouhaite: string;

@@ -4,31 +4,34 @@
 
 <section class="infos-generales pt-4">
     <div class="container">
-        <h2 (click)="goBack()" class="mb-5 retour"><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp; Mes adoptions</h2>
+        @if(!isLoading) {
+            <h2 (click)="goBack()" class="mb-5 retour"><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp; Mes adoptions</h2>
     
-        @for (adoption of adoptions; track adoption.id) {
+            @for (adoption of adoptions; track adoption.id) {
+                <div class="row mb-4">
+                    <div class="col-4">
+                        <img [src]="environment.uploadUrl + 'animals/' + adoption.animal.animalImage" [routerLink]="(['/animals/', adoption.animal.id])" alt="Photo de l'animal" class="img-fluid rounded-15 lien lien-animal">
 
-            <div class="row mb-4">
-                <div class="col-4">
-                    <img [src]="environment.uploadUrl + 'animals/' + adoption.animal.animalImage" [routerLink]="(['/animals/', adoption.animal.id])" alt="Photo de l'animal" class="img-fluid rounded-15 lien lien-animal">
-
-                </div>
-                <div class="col-8">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h2>{{ adoption.animal.nom }}</h2>
-                        <span class="badge"
-                            [ngClass]="{
-                            'bg-secondary': adoption.status === 'Demande envoyée',
-                            'bg-success': adoption.status === 'Demande acceptée',
-                            'bg-danger': adoption.status === 'Demande refusée'
-                            }">
-                            {{ adoption.status }}
-                        </span>
                     </div>
-                    <p [routerLink]="(['/breederList', adoption.animal.eleveur.id])" ><span class="typo-custom">Adoption géré par :</span> <br><span class="lien-breeder"> {{ adoption.animal.eleveur.nomElevageAssociation }} </span></p>
-                    <p><span class="typo-custom">Date de la demande :</span> <br> {{ adoption.dateDemande | date:'dd/MM/yyyy'}}</p>
+                    <div class="col-8">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2>{{ adoption.animal.nom }}</h2>
+                            <span class="badge"
+                                [ngClass]="{
+                                'bg-secondary': adoption.status === 'Demande envoyée',
+                                'bg-success': adoption.status === 'Demande acceptée',
+                                'bg-danger': adoption.status === 'Demande refusée'
+                                }">
+                                {{ adoption.status }}
+                            </span>
+                        </div>
+                        <p [routerLink]="(['/breederList', adoption.animal.eleveur.id])" ><span class="typo-custom">Adoption géré par :</span> <br><span class="lien-breeder"> {{ adoption.animal.eleveur.nomElevageAssociation }} </span></p>
+                        <p><span class="typo-custom">Date de la demande :</span> <br> {{ adoption.dateDemande | date:'dd/MM/yyyy'}}</p>
+                    </div>
                 </div>
-            </div>
+            } @empty {
+                <h3>Vous n'avez aucune adoptions en cours</h3>
+            }
         }
     
     
