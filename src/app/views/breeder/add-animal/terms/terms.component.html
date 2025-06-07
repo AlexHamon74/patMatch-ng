@@ -23,9 +23,9 @@
         </div>
 
         @if (errorMessage) {
-            <div class="alert alert-danger">
-                {{ errorMessage }}
-            </div>
+        <div class="alert alert-danger">
+            {{ errorMessage }}
+        </div>
         }
 
         <h1 class="mb-4 text-center">Adoptions et conditions</h1>
@@ -36,18 +36,19 @@
                 <!-- Histoire de l'animal -->
                 <div class="col-12 mb-3">
                     <label for="histoire">Son histoire<span>*</span></label>
-                    <input type="text" id="histoire" class="form-control" formControlName=histoire [class.is-invalid]="isSubmitted && createAnimalForm.controls['histoire'].invalid">
+                    <textarea id="histoire" class="form-control" formControlName=histoire
+                        [class.is-invalid]="isSubmitted && createAnimalForm.controls['histoire'].invalid"></textarea>
                     @if (isSubmitted && createAnimalForm.controls['histoire'].invalid) {
-                        <div class="invalid-feedback">
-                            <small>Ce champs est requis</small>
-                        </div>
+                    <div class="invalid-feedback">
+                        <small>Ce champs est requis</small>
+                    </div>
                     }
                 </div>
 
                 <!-- Infos supplémentaires de l'animal -->
                 <div class="col-12 mb-3">
                     <label for="infosSupplementaires">Infos supplémentaires</label>
-                    <input type="text" id="infosSupplementaires" class="form-control" formControlName=infosSupplementaires>
+                    <textarea id="infosSupplementaires" class="form-control" formControlName=infosSupplementaires></textarea>   
                 </div>
 
                 <!-- Prix de l'animal -->

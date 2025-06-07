@@ -33,7 +33,9 @@
                     <select id="typeLogement" class="form-select" formControlName=typeLogement
                         [class.is-invalid]="isSubmitted && createAnimalForm.controls['typeLogement'].invalid">
                         <option disabled selected value="">Entrez les Informations</option>
-                        <option ngvalue="Todo">Todo</option>
+                        <option ngvalue="Appartement">Appartement</option>
+                        <option ngvalue="Maison avec jardin">Maison avec jardin</option>
+                        <option ngvalue="Grand espace nécéssaire">Grand espace nécéssaire</option>
                     </select>
                     @if (isSubmitted && createAnimalForm.controls['typeLogement'].invalid) {
                         <div class="invalid-feedback">
@@ -48,7 +50,10 @@
                     <select id="familleIdeale" class="form-select" formControlName=familleIdeale
                         [class.is-invalid]="isSubmitted && createAnimalForm.controls['familleIdeale'].invalid">
                         <option disabled selected value="">Entrez les Informations</option>
-                        <option ngvalue="Todo">Todo</option>
+                        <option ngvalue="Famille active">Famille active</option>
+                        <option ngvalue="Retraités">Retraités</option>
+                        <option ngvalue="Ok enfants en bas age">Ok enfants en bas age</option>
+                        <option ngvalue="Famille calme">Famille calme</option>
                     </select>
                     @if (isSubmitted && createAnimalForm.controls['familleIdeale'].invalid) {
                         <div class="invalid-feedback">
@@ -63,7 +68,9 @@
                     <select id="besoinsExercice" class="form-select" formControlName=besoinsExercice
                         [class.is-invalid]="isSubmitted && createAnimalForm.controls['besoinsExercice'].invalid">
                         <option disabled selected value="">Entrez les Informations</option>
-                        <option ngvalue="Todo">Todo</option>
+                        <option ngvalue="Peu">Peu</option>
+                        <option ngvalue="Moyen">Moyen</option>
+                        <option ngvalue="Élevé">Élevé</option>
                     </select>
                     @if (isSubmitted && createAnimalForm.controls['besoinsExercice'].invalid) {
                         <div class="invalid-feedback">

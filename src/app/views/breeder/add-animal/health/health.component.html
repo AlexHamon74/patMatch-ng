@@ -33,7 +33,9 @@
                     <select id="statutVaccination" class="form-select" formControlName=statutVaccination
                         [class.is-invalid]="isSubmitted && createAnimalForm.controls['statutVaccination'].invalid">
                         <option disabled selected value="">Entrez les Informations</option>
-                        <option ngvalue="Todo">Todo</option>
+                        <option ngvalue="À jour">À jour</option>
+                        <option ngvalue="En cours">En cours</option>
+                        <option ngvalue="À faire">À faire</option>
                     </select>
                     <div *ngIf="isSubmitted && createAnimalForm.controls['statutVaccination'].invalid"
                         class="invalid-feedback">
@@ -47,7 +49,9 @@
                     <select id="statutSterilisation" class="form-select" formControlName=statutSterilisation
                         [class.is-invalid]="isSubmitted && createAnimalForm.controls['statutSterilisation'].invalid">
                         <option disabled selected value="">Entrez les Informations</option>
-                        <option ngvalue="Todo">Todo</option>
+                        <option ngvalue="À jour">À jour</option>
+                        <option ngvalue="En cours">En cours</option>
+                        <option ngvalue="À faire">À faire</option>
                     </select>
                     <div *ngIf="isSubmitted && createAnimalForm.controls['statutSterilisation'].invalid"
                         class="invalid-feedback">
@@ -71,7 +75,9 @@
                     <select id="typeAlimentation" class="form-select" formControlName=typeAlimentation
                         [class.is-invalid]="isSubmitted && createAnimalForm.controls['typeAlimentation'].invalid">
                         <option disabled selected value="">Entrez les Informations</option>
-                        <option ngvalue="Todo">Todo</option>
+                        <option ngvalue="Croquêtes">Croquêtes</option>
+                        <option ngvalue="Pâtée">Pâtée</option>
+                        <option ngvalue="Spécifiques">Spécifiques</option>
                     </select>
                     <div *ngIf="isSubmitted && createAnimalForm.controls['typeAlimentation'].invalid"
                         class="invalid-feedback">

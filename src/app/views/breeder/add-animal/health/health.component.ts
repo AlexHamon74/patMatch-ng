@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AnimalService } from '../../../../core/services/animal.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -13,26 +13,20 @@ import { NavbarComponent } from '../../../../shared/navbar/navbar.component';
     templateUrl: './health.component.html',
     styleUrl: './../add-animal.component.css'
 })
-export class HealthComponent implements OnInit, OnDestroy {
+export class HealthComponent implements OnInit {
     // Propriétés
     isSubmitted = false;
 
     // Services
     router = inject(Router);
-    renderer = inject(Renderer2);
     animalService = inject(AnimalService);
 
     ngOnInit(): void {
-        this.renderer.addClass(document.body, 'no-padding');
-
         // Pré-remplis les champ si on fais retour
         const savedData = this.animalService.loadStepData('step2');
         if (savedData) {
             this.createAnimalForm.patchValue(savedData);
         }
-    }
-    ngOnDestroy(): void {
-        this.renderer.removeClass(document.body, 'no-padding');
     }
 
     // Formulaire avec validations

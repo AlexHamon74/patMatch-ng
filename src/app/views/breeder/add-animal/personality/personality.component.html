@@ -33,7 +33,9 @@
                     <select id="niveauEnergie" class="form-select" formControlName=niveauEnergie
                         [class.is-invalid]="isSubmitted && createAnimalForm.controls['niveauEnergie'].invalid">
                         <option disabled selected value="">Entrez les Informations</option>
-                        <option ngvalue="Todo">Todo</option>
+                        <option ngvalue="Calme">Calme</option>
+                        <option ngvalue="Modéré">Modéré</option>
+                        <option ngvalue="Agité">Agité</option>
                     </select>
                     @if (isSubmitted && createAnimalForm.controls['niveauEnergie'].invalid) {
                         <div class="invalid-feedback">
@@ -48,7 +50,8 @@
                     <select id="sociabilite" class="form-select" formControlName=sociabilite
                         [class.is-invalid]="isSubmitted && createAnimalForm.controls['sociabilite'].invalid">
                         <option disabled selected value="">Entrez les Informations</option>
-                        <option ngvalue="Todo">Todo</option>
+                        <option ngvalue="Timide">Timide</option>
+                        <option ngvalue="Sociable">Sociable</option>
                     </select>
                     @if (isSubmitted && createAnimalForm.controls['sociabilite'].invalid) {
                         <div class="invalid-feedback">
@@ -63,7 +66,8 @@
                     <select id="education" class="form-select" formControlName=education
                         [class.is-invalid]="isSubmitted && createAnimalForm.controls['education'].invalid">
                         <option disabled selected value="">Entrez les Informations</option>
-                        <option ngvalue="Todo">Todo</option>
+                        <option ngvalue="Aucune">Aucune</option>
+                        <option ngvalue="Bien éduqué">Bien éduqué</option>
                     </select>
                     @if (isSubmitted && createAnimalForm.controls['education'].invalid) {
                         <div class="invalid-feedback">
