@@ -10,6 +10,7 @@ import { UserService } from '../../../core/services/user.service';
 import { switchMap, tap } from 'rxjs';
 import { TokenService } from '../../../core/services/token.service';
 import { environment } from '../../../../environnement/environnement';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-home',
@@ -67,8 +68,7 @@ export class HomeComponent implements OnInit {
     // Gère le swipe à gauche ou à droite
     swipe(direction: 'left' | 'right'): void {
         if (!this.userService.isLogged()) {
-            // TODO : Afficher une erreur ou rediriger
-            alert('Veuillez vous connecter pour swiper les animaux.');
+            this.showErrorAlert('Veuillez vous connecter pour swiper les animaux.');
             return;
         }
 
@@ -101,11 +101,15 @@ export class HomeComponent implements OnInit {
                 if (this.animals.length > 0) {
                     this.swipeService.setCurrentAnimalId(this.animals[this.currentIndex].id);
                 }
+
+                if (type === 'like') {
+                    this.showToast(`Vous avez liké ${currentAnimal.nom} !`);
+                }
             },
             error: (err) => {
                 console.error('Erreur lors du swipe :', err);
                 if (err.statusText === "Forbidden") {
-                    alert('Vous ne pouvez pas swiper cet animal.');
+                    this.showErrorAlert("Vous n'avez pas les droits pour swiper cet animal.");
                 }
             }
         });
@@ -126,5 +130,27 @@ export class HomeComponent implements OnInit {
             // Sauvegarde à chaque changement
             this.swipeService.setCurrentAnimalId(this.animals[this.currentIndex].id);
         }
+    }
+
+    private showToast(message: string): void {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: message,
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true
+        });
+    }
+
+    private showErrorAlert(message: string): void {
+        Swal.fire({
+            icon: 'error',
+            title: 'Action non autorisée',
+            text: message,
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#d33'
+        });
     }
 }
