@@ -11,9 +11,6 @@ import { AdoptionService } from '../../../core/services/adoption.service';
 import { TokenService } from '../../../core/services/token.service';
 import Swal from 'sweetalert2';
 
-
-
-
 @Component({
     selector: 'app-matchs',
     standalone: true,
@@ -25,7 +22,6 @@ export class MatchsComponent implements OnInit {
     // Déclaration des variables
     matchs: SwipeInterface[] = [];
     toastVisible = false;
-    toastMessage = '';
     environment = environment;
 
     // Injection des services
