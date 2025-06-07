@@ -5,6 +5,7 @@ import { AdoptionService } from '../../../core/services/adoption.service';
 import { AdoptionListBreederInterface } from '../../../core/entities';
 import { CommonModule, DatePipe } from '@angular/common';
 import { environment } from '../../../../environnement/environnement';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-demande-adoption',
@@ -36,37 +37,77 @@ export class DemandeAdoptionComponent implements OnInit {
         });
     }
 
-    // Méthode lancée lors de la confirmation d'une adoption
-    confirmAdoption(adoption: AdoptionListBreederInterface) {
-        const confirm = window.confirm('Confirmer cette adoption ?');
-        if (!confirm) return;
-
-        this.adoptionService.updateStatus(adoption, 'Demande acceptée').subscribe({
-            next: (updated) => {
-                alert('Demande acceptée');
-                adoption.status = updated.status;
-            },
-            error: (err) => {
-                console.error('Erreur lors de la confirmation :', err);
-                alert('Erreur lors de la confirmation.');
+    confirmAdoption(adoption: AdoptionListBreederInterface): void {
+        Swal.fire({
+            title: "Confirmer l'adoption ?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Oui, confirmer',
+            cancelButtonText: 'Annuler',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#aaa'
+        }).then(result => {
+            if (result.isConfirmed) {
+                this.adoptionService.updateStatus(adoption, 'Demande acceptée').subscribe({
+                    next: (updated) => {
+                        adoption.status = updated.status;
+                        this.showToast("Demande d'adoption acceptée.");
+                    },
+                    error: (err) => {
+                        console.error('Erreur lors de la confirmation :', err);
+                        this.showErrorToast('Erreur lors de la confirmation.');
+                    }
+                });
             }
         });
     }
 
-    // Méthode lancée lors du refus d'une adoption
-    refuseAdoption(adoption: AdoptionListBreederInterface) {
-        const confirm = window.confirm('Refuser cette adoption ?');
-        if (!confirm) return;
-
-        this.adoptionService.updateStatus(adoption, 'Demande refusée').subscribe({
-            next: (updated) => {
-                alert('Demande refusée');
-                adoption.status = updated.status;
-            },
-            error: (err) => {
-                console.error('Erreur lors du refus :', err);
-                alert('Erreur lors du refus.');
+    refuseAdoption(adoption: AdoptionListBreederInterface): void {
+        Swal.fire({
+            title: "Refuser l'adoption ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Oui, refuser',
+            cancelButtonText: 'Annuler',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#aaa'
+        }).then(result => {
+            if (result.isConfirmed) {
+                this.adoptionService.updateStatus(adoption, 'Demande refusée').subscribe({
+                    next: (updated) => {
+                        adoption.status = updated.status;
+                        this.showToast("Demande d'adoption refusée.");
+                    },
+                    error: (err) => {
+                        console.error('Erreur lors du refus :', err);
+                        this.showErrorToast('Erreur lors du refus.');
+                    }
+                });
             }
+        });
+    }
+
+    private showToast(message: string): void {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: message,
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true
+        });
+    }
+
+    private showErrorToast(message: string): void {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: message,
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true
         });
     }
 }
