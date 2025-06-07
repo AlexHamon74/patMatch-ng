@@ -10,7 +10,7 @@ import { UserService } from '../../../core/services/user.service';
 import { switchMap, tap } from 'rxjs';
 import { TokenService } from '../../../core/services/token.service';
 import { environment } from '../../../../environnement/environnement';
-import Swal from 'sweetalert2';
+import { AlertService } from '../../../core/services/alert.service';
 
 @Component({
     selector: 'app-home',
@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
     swipeService = inject(SwipeService);
     userService = inject(UserService);
     tokenService = inject(TokenService);
+    alertService = inject(AlertService);
 
     ngOnInit(): void {
         // Récupérer l'id enregistré pour afficher le même animal après retour
@@ -68,7 +69,7 @@ export class HomeComponent implements OnInit {
     // Gère le swipe à gauche ou à droite
     swipe(direction: 'left' | 'right'): void {
         if (!this.userService.isLogged()) {
-            this.showErrorAlert('Veuillez vous connecter pour swiper les animaux.');
+            this.alertService.errorAlert('Action non autorisée', 'Veuillez vous connecter pour swiper les animaux.');
             return;
         }
 
@@ -103,13 +104,13 @@ export class HomeComponent implements OnInit {
                 }
 
                 if (type === 'like') {
-                    this.showToast(`Vous avez liké ${currentAnimal.nom} !`);
+                    this.alertService.successToast(`Vous avez liké ${currentAnimal.nom} !`);
                 }
             },
             error: (err) => {
                 console.error('Erreur lors du swipe :', err);
                 if (err.statusText === "Forbidden") {
-                    this.showErrorAlert("Vous n'avez pas les droits pour swiper cet animal.");
+                    this.alertService.errorAlert('Action non autorisée', "Vous n'avez pas les droits pour swiper cet animal.");
                 }
             }
         });
@@ -130,27 +131,5 @@ export class HomeComponent implements OnInit {
             // Sauvegarde à chaque changement
             this.swipeService.setCurrentAnimalId(this.animals[this.currentIndex].id);
         }
-    }
-
-    private showToast(message: string): void {
-        Swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'success',
-            title: message,
-            showConfirmButton: false,
-            timer: 2500,
-            timerProgressBar: true
-        });
-    }
-
-    private showErrorAlert(message: string): void {
-        Swal.fire({
-            icon: 'error',
-            title: 'Action non autorisée',
-            text: message,
-            confirmButtonText: 'OK',
-            confirmButtonColor: '#d33'
-        });
     }
 }

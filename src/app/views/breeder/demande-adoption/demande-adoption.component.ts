@@ -5,7 +5,7 @@ import { AdoptionService } from '../../../core/services/adoption.service';
 import { AdoptionListBreederInterface } from '../../../core/entities';
 import { CommonModule, DatePipe } from '@angular/common';
 import { environment } from '../../../../environnement/environnement';
-import Swal from 'sweetalert2';
+import { AlertService } from '../../../core/services/alert.service';
 
 @Component({
     selector: 'app-demande-adoption',
@@ -22,6 +22,7 @@ export class DemandeAdoptionComponent implements OnInit {
 
     // Injection des services
     adoptionService = inject(AdoptionService);
+    alertService = inject(AlertService);
 
     ngOnInit(): void {
         // Récupération des adoptions de l'utilisateur
@@ -38,24 +39,18 @@ export class DemandeAdoptionComponent implements OnInit {
     }
 
     confirmAdoption(adoption: AdoptionListBreederInterface): void {
-        Swal.fire({
+        this.alertService.confirmDialog({
             title: "Confirmer l'adoption ?",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonText: 'Oui, confirmer',
-            cancelButtonText: 'Annuler',
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#aaa'
-        }).then(result => {
-            if (result.isConfirmed) {
+        }).then(confirmed => {
+            if (confirmed) {
                 this.adoptionService.updateStatus(adoption, 'Demande acceptée').subscribe({
                     next: (updated) => {
                         adoption.status = updated.status;
-                        this.showToast("Demande d'adoption acceptée.");
+                        this.alertService.successToast("Demande d'adoption acceptée.");
                     },
                     error: (err) => {
                         console.error('Erreur lors de la confirmation :', err);
-                        this.showErrorToast('Erreur lors de la confirmation.');
+                        this.alertService.errorToast('Erreur lors de la confirmation.');
                     }
                 });
             }
@@ -63,51 +58,21 @@ export class DemandeAdoptionComponent implements OnInit {
     }
 
     refuseAdoption(adoption: AdoptionListBreederInterface): void {
-        Swal.fire({
+        this.alertService.confirmDialog({
             title: "Refuser l'adoption ?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Oui, refuser',
-            cancelButtonText: 'Annuler',
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#aaa'
-        }).then(result => {
-            if (result.isConfirmed) {
+        }).then(confirmed => {
+            if (confirmed) {
                 this.adoptionService.updateStatus(adoption, 'Demande refusée').subscribe({
                     next: (updated) => {
                         adoption.status = updated.status;
-                        this.showToast("Demande d'adoption refusée.");
+                        this.alertService.successToast("Demande d'adoption refusée.");
                     },
                     error: (err) => {
                         console.error('Erreur lors du refus :', err);
-                        this.showErrorToast('Erreur lors du refus.');
+                        this.alertService.errorToast('Erreur lors du refus.');
                     }
                 });
             }
-        });
-    }
-
-    private showToast(message: string): void {
-        Swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'success',
-            title: message,
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true
-        });
-    }
-
-    private showErrorToast(message: string): void {
-        Swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'error',
-            title: message,
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true
         });
     }
 }

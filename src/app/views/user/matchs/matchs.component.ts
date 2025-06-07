@@ -9,7 +9,7 @@ import { environment } from '../../../../environnement/environnement';
 import { AnimalService } from '../../../core/services/animal.service';
 import { AdoptionService } from '../../../core/services/adoption.service';
 import { TokenService } from '../../../core/services/token.service';
-import Swal from 'sweetalert2';
+import { AlertService } from '../../../core/services/alert.service';
 
 @Component({
     selector: 'app-matchs',
@@ -30,6 +30,7 @@ export class MatchsComponent implements OnInit {
     animalService = inject(AnimalService);
     adoptionService = inject(AdoptionService);
     tokenService = inject(TokenService);
+    alertService = inject(AlertService);
 
     ngOnInit(): void {
         // Récupération des matchs de l'utilisateur
@@ -43,49 +44,39 @@ export class MatchsComponent implements OnInit {
         });
     }
 
-    // Méthode pour supprimer un match
+    // Supprimer un match avec confirmation
     confirmDelete(swipeId: string, animalNom: string): void {
-        Swal.fire({
+        this.alertService.confirmDialog({
             title: 'Supprimer ce match ?',
             text: `Es-tu sûr de vouloir supprimer ${animalNom} de tes matchs ?`,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Oui, supprimer',
-            cancelButtonText: 'Annuler',
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#aaa'
-        }).then(result => {
-            if (result.isConfirmed) {
+        }).then(confirmed => {
+            if (confirmed) {
                 this.swipeService.deleteSwipe(swipeId).subscribe({
                     next: () => {
                         this.matchs = this.matchs.filter(match => match.id !== swipeId);
-                        this.showToast('Match supprimé avec succès.');
+                        this.alertService.successToast('Match supprimé avec succès.');
                     },
                     error: (err) => {
                         console.error('Erreur lors de la suppression du swipe :', err);
+                        this.alertService.errorToast("Erreur lors de la suppression.");
                     }
                 });
             }
         });
     }
 
-    // Méthode pour envoyer une demande d'adoption
+    // Envoyer une demande d’adoption
     sendAdoptionRequest(animalId: string, animalNom: string): void {
-        Swal.fire({
-            title: `Confirmer l'adoption`,
+        this.alertService.confirmDialog({
+            title: 'Confirmer l\'adoption',
             text: `Es-tu sûr de vouloir adopter ${animalNom} ?`,
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonText: 'Oui',
-            cancelButtonText: 'Annuler',
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-        }).then(result => {
-            if (result.isConfirmed) {
+        }).then(confirmed => {
+            if (confirmed) {
                 const clientId = this.tokenService.getUserId();
 
                 if (!clientId || !animalId) {
                     console.error("Identifiants manquants pour l'adoption");
+                    this.alertService.errorToast("Impossible d'envoyer la demande.");
                     return;
                 }
 
@@ -98,25 +89,14 @@ export class MatchsComponent implements OnInit {
 
                 this.adoptionService.createAdoption(adoptionPayload).subscribe({
                     next: () => {
-                        this.showToast("Demande d'adoption envoyée avec succès.");
+                        this.alertService.successToast("Demande d'adoption envoyée avec succès.");
                     },
                     error: (err) => {
                         console.error("Erreur lors de la demande d'adoption :", err);
+                        this.alertService.errorToast("Erreur lors de la demande.");
                     }
                 });
             }
-        });
-    }
-
-    private showToast(message: string): void {
-        Swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'success',
-            title: message,
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true
         });
     }
 }
