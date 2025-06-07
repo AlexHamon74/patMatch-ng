@@ -104,6 +104,9 @@ export class HomeComponent implements OnInit {
             },
             error: (err) => {
                 console.error('Erreur lors du swipe :', err);
+                if (err.statusText === "Forbidden") {
+                    alert('Vous ne pouvez pas swiper cet animal.');
+                }
             }
         });
     }
