@@ -48,7 +48,8 @@ export interface ClientInterface {
     sexeSouhaite: string;
     niveauExperience: string;
     misAJourLe: string;
-    swipes: string[];
+    swipes: Swipe[];
+    adoptions: AdoptionInterface[];
 }
 
 // Interface pour les éleveurs
@@ -156,6 +157,9 @@ export interface RaceInterface {
 
 // Interface pour les swipes
 // -------------------------
+export interface Swipe {
+    type: string;
+}
 export interface SwipeCreateInterface {
     animal: string;
     client: string | number;

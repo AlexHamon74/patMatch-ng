@@ -24,11 +24,26 @@ export class GeneralInformationsComponent {
     userRole!: string;
     environment = environment;
 
+    nbLikes = 0;
+    nbDemandesEnvoyees = 0;
+    nbDemandesAcceptees = 0;
+
     ngOnInit(): void {
         if (this.tokenService.hasRole('ROLE_CLIENT')) {
             this.userRole = 'ROLE_CLIENT';
             this.userService.getUserProfile<ClientInterface>().subscribe(profile => {
                 this.clientProfile = profile;
+
+                // 1. Nombre de likes
+                this.nbLikes = this.clientProfile.swipes.filter(swipe => swipe['type'] === 'like').length;
+
+                // 2. Nombre de demandes envoyées
+                this.nbDemandesEnvoyees = this.clientProfile.adoptions.length;
+
+                // 3. Nombre de demandes acceptées
+                this.nbDemandesAcceptees = this.clientProfile.adoptions
+                    .filter(adoption => adoption.status === 'Demande acceptée')
+                    .length;
             });
         } else if (this.tokenService.hasRole('ROLE_ELEVEUR')) {
             this.userRole = 'ROLE_ELEVEUR';
