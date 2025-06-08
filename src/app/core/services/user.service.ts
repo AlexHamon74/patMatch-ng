@@ -33,7 +33,6 @@ export class UserService {
         return this.http.get<T>(`${this.url}/me`);
     }
 
-    // ------------------------------------------------------------------------
     // Méthode pour afficher le nom et la photo de l'utilisateur dans le header
     // ------------------------------------------------------------------------
     loadUserInfo(): void {
@@ -56,14 +55,14 @@ export class UserService {
         });
     }
 
-    clearFirstName(): void {
-        this.firstNameSubject.next(null);
-        this.photoProfilSubject.next(null);
-        localStorage.removeItem('userFirstName');
-        localStorage.removeItem('userPhoto');
+
+    // Upload de la photo de profil du user
+    // ------------------------------------
+    uploadPhotoProfil(userId: string, file: File): Observable<any> {
+        const formData = new FormData();
+        formData.append('photoProfilFile', file);
+
+        return this.http.post(`${this.url}/users/${userId}/image`, formData);
     }
-    // ----------------------------------------------------------------
-    // FIN méthode pour afficher le nom de l'utilisateur dans le header
-    // ----------------------------------------------------------------
 
 }

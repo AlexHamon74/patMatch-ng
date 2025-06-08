@@ -25,7 +25,7 @@ export class EngagementBreederComponent implements OnInit, OnDestroy{
         this.renderer.addClass(document.body, 'no-padding');
 
         // Pré remplis les champs si retour
-        const savedData = this.authService.loadStepData('step5');
+        const savedData = this.authService.loadStepData('step6');
         if (savedData) {
             this.registerForm.patchValue(savedData);
         }
@@ -43,8 +43,8 @@ export class EngagementBreederComponent implements OnInit, OnDestroy{
 
     // Fonction attachée au bouton précédent
     goBack() {
-        this.authService.saveStepData('step5', this.registerForm.value);
-        this.router.navigate(['register/breeder/praticalInformationPart2']);
+        this.authService.saveStepData('step6', this.registerForm.value);
+        this.router.navigate(['register/breeder/photoProfil']);
     }
 
     // Soumission du formulaire

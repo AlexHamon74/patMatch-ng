@@ -22,8 +22,24 @@
         <!-- Formulaire d'inscription, partie 2 -->
         <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
 
+            <!-- Prénom -->
+            <label for="prenom">Prénom<span>*</span></label>
+            <input type="text" id="prenom" class="form-control" formControlName=prenom
+                [class.is-invalid]="isSubmitted && registerForm.controls['prenom'].invalid">
+            <div *ngIf="isSubmitted && registerForm.controls['prenom'].invalid" class="invalid-feedback">
+                <small>Ce champs est requis</small>
+            </div>
+
+            <!-- Nom -->
+            <label class="mt-3" for="nom">Nom<span>*</span></label>
+            <input type="text" id="nom" class="form-control" formControlName=nom
+                [class.is-invalid]="isSubmitted && registerForm.controls['nom'].invalid">
+            <div *ngIf="isSubmitted && registerForm.controls['nom'].invalid" class="invalid-feedback">
+                <small>Ce champs est requis</small>
+            </div>
+
             <!-- Nom Élevage / Association -->
-            <label for="nomElevageAssociation">Nom Élevage / Association<span>*</span></label>
+            <label class="mt-3" for="nomElevageAssociation">Nom Élevage / Association<span>*</span></label>
             <input type="text" id="nomElevageAssociation" class="form-control" formControlName=nomElevageAssociation
                 [class.is-invalid]="isSubmitted && registerForm.controls['nomElevageAssociation'].invalid">
             <div *ngIf="isSubmitted && registerForm.controls['nomElevageAssociation'].invalid" class="invalid-feedback">
@@ -45,10 +61,6 @@
             <div *ngIf="isSubmitted && registerForm.controls['presentation'].invalid" class="invalid-feedback">
                 <small>Ce champs est requis</small>
             </div>
-
-            <!-- Certificat -->
-            <label class="mt-3" for="certificat">Certificat d'élevage / Autorisation d'association<span>*</span></label>
-            <input type="file" id="certificat" class="form-control" formControlName=certificat>
 
             <!-- Bouton suivant -->
             <div class="row justify-content-end">

@@ -36,10 +36,11 @@ export class GeneralInformationBreederComponent implements OnInit, OnDestroy{
 
     // Formulaire avec validations
     public registerForm: FormGroup = new FormGroup({
+        nom: new FormControl('', [Validators.required]),
+        prenom: new FormControl('', [Validators.required]),
         nomElevageAssociation: new FormControl('', [Validators.required]),
         numeroEnregistrement: new FormControl('', [Validators.required]),
         presentation: new FormControl('', [Validators.required]),
-        certificat: new FormControl,
     });
 
     // Soumission du formulaire

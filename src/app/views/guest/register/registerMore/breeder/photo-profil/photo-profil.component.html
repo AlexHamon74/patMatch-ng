@@ -1,11 +1,11 @@
-<section class="register-container register-container-lightblue d-flex justify-content-center pt-5 pb-4">
+<section class="register-container register-container-pink d-flex justify-content-center pt-5 pb-4">
     <div class="conteneur">
 
         <div class="position-relative mb-5">
             <div class="progress">
-                <div class="progress-bar progress-bar-step3"></div>
+                <div class="progress-bar progress-bar-step5"></div>
             </div>
-            <svg class="progress-icon progress-icon-step3" width="30" height="30" viewBox="0 0 30 30" fill="none"
+            <svg class="progress-icon progress-icon-step5" width="30" height="30" viewBox="0 0 30 30" fill="none"
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <rect width="30" height="30" fill="url(#pattern0_1315_10309)" />
                 <defs>
@@ -18,34 +18,21 @@
             </svg>
         </div>
 
-        <h1 class="mb-5 text-center">Informations pratiques (1/2)</h1>
-        <!-- Formulaire d'inscription, partie 3 -->
+        <h1 class="mb-5 text-center">Photo de Profil</h1>
+        <!-- Formulaire d'inscription, partie 4 -->
         <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
 
-            <!-- Année de création -->
-            <label for="anneeCreation">Année de création</label>
-            <input type="text" id="anneeCreation" class="form-control" formControlName=anneeCreation>
-
-            <!-- Espèces proposées -->
-            <label class="mt-3" for="especeProposee">Espèces proposées<span>*</span></label>
-            <select id="especeProposee" class="form-select" formControlName=especeProposee [class.is-invalid]="isSubmitted && registerForm.controls['especeProposee'].invalid">
-                <option disabled selected value="">Indiquez les espèces proposés</option>
-                <option ngvalue="chien">Chien</option>
-                <option ngvalue="chat">Chat</option>
-                <option ngvalue="all">Les deux</option>
-            </select>
-            <div *ngIf="isSubmitted && registerForm.controls['especeProposee'].invalid" class="invalid-feedback">
-                <small>Ce champs est requis</small>
+            <div class="row">
+                <!-- Photos de profil -->
+                <label class="mt-3" for="photoProfilFile">Photo de profil</label>
+                <input  type="file" id="photoProfilFile" class="form-control" formControlName=photoProfilFile (change)="onFileSelected($event)">
             </div>
-
-            <!-- Horaires d'ouverture -->
-            <label class="mt-3" for="horaireOuverture">Horaires d'ouverture</label>
-            <input type="text" id="horaireOuverture" class="form-control" formControlName=horaireOuverture>
 
             <!-- Bouton continuer et précédent -->
             <div class="row">
                 <div class="col-6">
-                    <button type="button" (click)="goBack()" class="d-flex align-items-center justify-content-center btn-back mt-5 w-100">
+                    <button type="button" (click)="goBack()"
+                        class="d-flex align-items-center justify-content-center btn-back mt-5 w-100">
                         <i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp; Précédent
                     </button>
                 </div>

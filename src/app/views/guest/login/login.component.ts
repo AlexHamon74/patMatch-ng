@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         const state = history.state as { accountCreated?: boolean };
 
         if (state?.accountCreated) {
-            this.successMessage = 'Votre compte a bien été créé. Vous pouvez maintenant vous connecter.';
+            this.successMessage = 'Votre compte a bien été créé. Vous pouvez vous connecter.';
         }
     }
     ngOnDestroy(): void {

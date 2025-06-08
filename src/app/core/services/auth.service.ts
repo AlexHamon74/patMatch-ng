@@ -32,7 +32,6 @@ export class AuthService {
     // ------------------------------------------------------
     logout(): void {
         localStorage.clear();
-        this.userService.clearFirstName();
         console.log('Déconnexion réussie');
     };
 
@@ -94,6 +93,7 @@ export class AuthService {
         localStorage.removeItem('step3');
         localStorage.removeItem('step4');
         localStorage.removeItem('step5');
+        localStorage.removeItem('step6');
     }
     // ---------------------------------------------------------------
     // FIN méthodes pour gérer l'utilisateur en cours d'enregistrement

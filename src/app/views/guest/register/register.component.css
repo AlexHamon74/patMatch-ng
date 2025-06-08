@@ -36,18 +36,22 @@
 }
 
 .progress-bar-step2 {
-    width: 25%;
+    width: 20%;
 }
 
 .progress-bar-step3 {
-    width: 50%;
+    width: 40%;
 }
 
 .progress-bar-step4 {
-    width: 75%;
+    width: 60%;
 }
 
 .progress-bar-step5 {
+    width: 80%;
+}
+
+.progress-bar-step6 {
     width: 100%;
 }
 
@@ -62,18 +66,22 @@
 }
 
 .progress-icon-step2 {
-    left: 25%;
+    left: 20%;
 }
 
 .progress-icon-step3 {
-    left: 50%;
+    left: 40%;
 }
 
 .progress-icon-step4 {
-    left: 75%;
+    left: 60%;
 }
 
 .progress-icon-step5 {
+    left: 80%;
+}
+
+.progress-icon-step6 {
     left: 100%;
 }
 

@@ -33,6 +33,7 @@ import { AuthClientOrBreederGuard } from './core/guards/auth-client-or-breeder.g
 import { GeneralInformationsComponent } from './shared/profil/general-informations/general-informations.component';
 import { MesAdoptionsComponent } from './shared/profil/mes-adoptions/mes-adoptions.component';
 import { DemandeAdoptionComponent } from './views/breeder/demande-adoption/demande-adoption.component';
+import { PhotoProfil } from './views/guest/register/registerMore/breeder/photo-profil/photo-profil.component';
 
 export const routes: Routes = [
     {
@@ -58,6 +59,7 @@ export const routes: Routes = [
             { path: 'register/breeder/contactDetails', component: ContactDetailsComponent },
             { path: 'register/breeder/praticalInformationPart1', component: praticalInformationPart1Component },
             { path: 'register/breeder/praticalInformationPart2', component: praticalInformationPart2Component },
+            { path: 'register/breeder/photoProfil', component: PhotoProfil },
             { path: 'register/breeder/engagementBreeder', component: EngagementBreederComponent },
 
             // TODO : Page 403

@@ -37,7 +37,6 @@ export class praticalInformationPart1Component implements OnInit, OnDestroy{
     // Formulaire avec validations
     public registerForm: FormGroup = new FormGroup({
         anneeCreation: new FormControl,
-        photoProfil: new FormControl,
         especeProposee: new FormControl('', [Validators.required]),
         horaireOuverture: new FormControl,
     });

@@ -57,7 +57,7 @@ export class praticalInformationPart2Component implements OnInit, OnDestroy{
         
             this.authService.updateEleveur(formData).subscribe({
                 next: () => {
-                    this.router.navigate(['/register/breeder/engagementBreeder']);
+                    this.router.navigate(['/register/breeder/photoProfil']);
                 },
                 error: (err) => {
                     console.error('Erreur update step 4 :', err);
