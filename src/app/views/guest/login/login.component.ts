@@ -1,6 +1,6 @@
 import { Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../../core/services/user.service';
 import { TokenService } from '../../../core/services/token.service';
@@ -8,7 +8,7 @@ import { TokenService } from '../../../core/services/token.service';
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, RouterLink],
     templateUrl: './login.component.html',
     styleUrl: './login.component.css'
 })

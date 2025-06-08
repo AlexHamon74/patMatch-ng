@@ -13,6 +13,14 @@
     color: #FEFEFE;
 }
 
+.login-container p {
+    font-size: 14px;
+    color: #FEFEFE;
+}
+.login-container p span {
+    cursor: pointer;
+}
+
 .login-container label {
     font-family: "Lilita One", sans-serif;
     font-size: 18px;

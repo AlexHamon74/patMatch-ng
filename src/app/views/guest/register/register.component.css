@@ -77,12 +77,21 @@
     left: 100%;
 }
 
-/* Style Titer h1 */
+/* Style Titre h1 */
 /* -------------- */
 .register-container h1 {
     font-family: "Lilita One", sans-serif;
     font-size: 25px;
     color: #FEFEFE;
+}
+
+.register-container .lien-connexion {
+    font-size: 14px;
+    color: #FEFEFE;
+}
+
+.register-container .lien-connexion span {
+    cursor: pointer;
 }
 
 /* Style Formulaire */
