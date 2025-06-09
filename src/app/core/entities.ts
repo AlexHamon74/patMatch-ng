@@ -69,7 +69,7 @@ export interface BreederInterface {
     nom: string;
     prenom: string;
     dateDeNaissance: string;
-    numeroTelephone: string;
+    numeroDeTelephone: string;
     adresse: string;
     photoProfil: string;
     nomElevageAssociation: string;
@@ -90,6 +90,7 @@ export interface BreederInterface {
 // Interface pour les animaux
 // --------------------------
 export interface AnimalData {
+    id: string;
     nom: string;
     dateDeNaissance: string;
     sexe: string;
@@ -113,7 +114,6 @@ export interface AnimalData {
     animalImage: string;
 }
 export interface AnimalCreateInterface extends AnimalData {
-    id: string;
     eleveur: string;
     race: string;
 }
@@ -128,7 +128,6 @@ export interface AnimalApiResponse {
 
 export interface AnimalInterface extends AnimalData {
     '@id': string;
-    id: string;
     race: RaceInterface;
     eleveur: BreederInterface;
 }

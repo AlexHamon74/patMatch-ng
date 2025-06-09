@@ -3,14 +3,14 @@ import { NavbarComponent } from '../../../shared/navbar/navbar.component';
 import { HeaderComponent } from '../../../shared/header/header.component';
 import { BreederInterface } from '../../../core/entities';
 import { BreederService } from '../../../core/services/breeder.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Location } from '@angular/common';
 import { environment } from '../../../../environnement/environnement';
 
 @Component({
     selector: 'app-breeder-details',
     standalone: true,
-    imports: [NavbarComponent, HeaderComponent],
+    imports: [NavbarComponent, HeaderComponent, RouterLink],
     templateUrl: './breeder-details.component.html',
     styleUrl: './breeder-details.component.css'
 })
@@ -31,6 +31,7 @@ export class BreederDetailsComponent implements OnInit {
         this.breederService.fetchBreederById(id).subscribe({
             next: (breeder) => {
                 this.breeder = breeder;
+                console.log(breeder.animals);
             },
             error: (error) => {
                 console.error("Erreur lors de la récupération de l'éleveur :", error);

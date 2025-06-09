@@ -44,9 +44,9 @@
                     </div>
                 </div>
                 <div class="col-4 d-flex flex-column align-items-center">
-                    <div class="contact-btn d-flex justify-content-center align-items-center bg-lightviolet rounded-circle shadow">
+                    <a [href]="'mailto:' + breeder.email" class="contact-btn d-flex justify-content-center align-items-center bg-lightviolet rounded-circle shadow">
                         <i class="fa-solid fa-message"></i>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-4 d-flex flex-column align-items-center">
                     <div class="contact-btn d-flex justify-content-center align-items-center bg-blue rounded-circle shadow">
@@ -61,16 +61,17 @@
 <section class="info-animaux mb-5">
     <div class="container">
         <h2 class="mb-4">Nos animaux</h2>
-        <div class="animal-scroll d-flex gap-3 overflow-auto pb-2">
-            @for (animal of breeder.animals; track $index) {
-                <div class="img-container d-flex justify-content-center align-items-center">
-                    <img [src]="environment.uploadUrl + 'animals/' + animal.animalImage" alt="Photo de l'animal {{animal.nom}}" class="animal-img rounded-10">
-                </div>
-            }
-        </div>
-        <div class="text-end mt-4">
-            <a href="#" class="btn-premier">Voir les animaux &nbsp;<i class="fa-solid fa-bone fa-xs"></i></a>
-        </div>
+        @if(breeder.animals.length == 0) {
+            <h3>Aucun animal disponible.</h3>
+        } @else {
+            <div class="animal-scroll d-flex gap-3 overflow-auto pb-2">
+                @for (animal of breeder.animals; track $index) {
+                    <div class="img-container d-flex justify-content-center align-items-center">
+                        <img [routerLink]="(['/animals/', animal.id])" [src]="environment.uploadUrl + 'animals/' + animal.animalImage" alt="Photo de l'animal {{animal.nom}}" class="animal-img rounded-10">
+                    </div>
+                }
+            </div>
+        }
     </div>
 </section>
 
@@ -78,8 +79,8 @@
     <div class="container">
         <div class="row">
             <h2 class="mb-4">Informations pratiques</h2>
-            <p><strong>Horaires : </strong>{{ breeder.horaireOuverture }}</p>
-            <p><strong>Année de création de l'élevage : </strong>{{ breeder.anneeCreation }}</p>
+            <p><strong>Horaires : </strong>{{ breeder.horaireOuverture ? breeder.horaireOuverture : 'Non renseigné' }}</p>
+            <p><strong>Année de création de l'élevage : </strong>{{ breeder.anneeCreation ? breeder.anneeCreation : 'Non renseigné' }}</p>
             <p><strong>Espèces disponibles : </strong>{{ breeder.especeProposee }}</p>
             <p><strong>Lieu de l'élevage : </strong>{{ breeder.adresseElevage }}</p>
             <p><strong>Suivi Post-adoption : </strong> {{ breeder.suiviPostAdoption ? 'Oui' : 'Non' }}</p>

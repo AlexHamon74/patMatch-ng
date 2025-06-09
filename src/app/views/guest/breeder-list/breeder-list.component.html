@@ -31,8 +31,7 @@
                 <div class="bg-grey p-4 mb-5 rounded-20 shadow">
                     <div class="row">
                         <div class="col-6">
-                            <img src="images/profile_picture.jpg" alt="Photo de profil de l'eleveur"
-                                class="breeder-picture img-fluid rounded-10 mb-3">
+                            <img [src]="breeder.photoProfil ? (environment.uploadUrl + 'users/' + breeder.photoProfil) : 'images/profile_picture.jpg'" alt="Photo de profil de l'éleveur" class="breeder-picture img-fluid rounded-10 mb-3">
                             <h2>{{ breeder.nomElevageAssociation }}</h2>
                             <p>{{ breeder.adresseElevage }}</p>
                         </div>
