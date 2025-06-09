@@ -59,7 +59,7 @@ export class AdoptionPreferencesComponent implements OnInit, OnDestroy{
         
             this.authService.updateClient(formData).subscribe({
                 next: () => {
-                    this.router.navigate(['/register/customer/engagement']);
+                    this.router.navigate(['/register/customer/photoProfilCustomer']);
                 },
                 error: (err) => {
                     console.error('Erreur update step 4 :', err);

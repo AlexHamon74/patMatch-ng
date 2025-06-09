@@ -25,7 +25,7 @@ export class EngagementComponent implements OnInit, OnDestroy{
         this.renderer.addClass(document.body, 'no-padding');
 
         // Pré remplis les champs si retour
-        const savedData = this.authService.loadStepData('step5');
+        const savedData = this.authService.loadStepData('step6');
         if (savedData) {
             this.registerForm.patchValue(savedData);
         }
@@ -43,8 +43,8 @@ export class EngagementComponent implements OnInit, OnDestroy{
 
     // Fonction attachée au bouton précédent
     goBack() {
-        this.authService.saveStepData('step5', this.registerForm.value);
-        this.router.navigate(['register/customer/adoptionPreferences']);
+        this.authService.saveStepData('step6', this.registerForm.value);
+        this.router.navigate(['register/customer/photoProfilCustomer']);
     }
 
     // Soumission du formulaire
@@ -53,7 +53,7 @@ export class EngagementComponent implements OnInit, OnDestroy{
         if (this.registerForm.valid) {
             const formData = this.registerForm.value;
 
-            this.authService.saveStepData('step5', formData);
+            this.authService.saveStepData('step6', formData);
         
             this.authService.updateClient(formData).subscribe({
                 next: () => {
@@ -63,7 +63,7 @@ export class EngagementComponent implements OnInit, OnDestroy{
                     });
                 },
                 error: (err) => {
-                    console.error('Erreur update step 5 :', err);
+                    console.error('Erreur update step 6 :', err);
                 }
             });
         }
