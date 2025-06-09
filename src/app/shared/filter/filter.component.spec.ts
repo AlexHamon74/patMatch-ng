@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MesAdoptionsComponent } from './mes-adoptions.component';
+import { FilterComponent } from './filter.component';
 
-describe('MesAdoptionsComponent', () => {
-  let component: MesAdoptionsComponent;
-  let fixture: ComponentFixture<MesAdoptionsComponent>;
+describe('FilterComponent', () => {
+  let component: FilterComponent;
+  let fixture: ComponentFixture<FilterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MesAdoptionsComponent]
+      imports: [FilterComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MesAdoptionsComponent);
+    fixture = TestBed.createComponent(FilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
