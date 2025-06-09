@@ -11,11 +11,12 @@ import { switchMap, tap } from 'rxjs';
 import { TokenService } from '../../../core/services/token.service';
 import { environment } from '../../../../environnement/environnement';
 import { AlertService } from '../../../core/services/alert.service';
+import { FilterComponent } from '../../../shared/filter/filter.component';
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [HeaderComponent, NavbarComponent, CommonModule, RouterLink],
+    imports: [HeaderComponent, NavbarComponent, CommonModule, RouterLink, FilterComponent],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css'
 })

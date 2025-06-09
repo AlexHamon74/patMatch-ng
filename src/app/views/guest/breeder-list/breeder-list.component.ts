@@ -5,11 +5,12 @@ import { RouterLink } from '@angular/router';
 import { BreederInterface } from '../../../core/entities';
 import { BreederService } from '../../../core/services/breeder.service';
 import { environment } from '../../../../environnement/environnement';
+import { FilterComponent } from '../../../shared/filter/filter.component';
 
 @Component({
     selector: 'app-breeder-list',
     standalone: true,
-    imports: [NavbarComponent, HeaderComponent, RouterLink],
+    imports: [NavbarComponent, HeaderComponent, RouterLink, FilterComponent],
     templateUrl: './breeder-list.component.html',
     styleUrl: './breeder-list.component.css'
 })

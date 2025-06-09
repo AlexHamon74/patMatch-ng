@@ -25,21 +25,10 @@
 <section class="blog mb-4">
     <div class="container">
         <h1 class="mb-4">Blog</h1>
-        <!-- Filtre + input de recherche -->
-        <div class="row mb-4">
-            <div class="col-12 d-flex align-items-center justify-content-between gap-3">
-                <div class="input-group flex-grow-1">
-                    <span class="input-recherche input-group-text rounded-10" id="rechercher"><i
-                            class="fas fa-search"></i></span>
-                    <input type="text" class="input-recherche form-control rounded-10" aria-label="rechercher"
-                        aria-describedby="rechercher" />
-                </div>
-                <div class="filter-btn rounded-10 d-flex justify-content-center align-items-center flex-shrink-0">
-                    <i class="fa-solid fa-filter"></i>
-                </div>
-            </div>
-        </div>
+    </div>
+    <app-filter></app-filter>
 
+    <div class="container mt-4">
         <!-- Listes des articles -->
         <div class="row mb-4">
             <div class="col-4">

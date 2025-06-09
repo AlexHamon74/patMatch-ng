@@ -1,0 +1,31 @@
+h2 {
+    font-family: "Lilita One", sans-serif;
+    font-size: 20px;
+}
+h3 {
+    font-family: "Lilita One", sans-serif;
+    font-size: 16px;
+}
+
+.retour {
+    cursor: pointer;
+}
+
+.typo-custom {
+    font-family: "Lilita One", sans-serif;
+    font-size: 16px;
+}
+
+.lien-breeder:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.lien-animal {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.lien-animal:hover {
+    transform: scale(1.02);
+}
