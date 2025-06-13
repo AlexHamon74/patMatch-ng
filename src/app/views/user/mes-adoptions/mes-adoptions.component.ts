@@ -3,13 +3,9 @@ import { RouterLink } from '@angular/router';
 import { UserService } from '../../../core/services/user.service';
 import { AdoptionInterface, UserAdoptionInterface } from '../../../core/entities';
 import { CommonModule, DatePipe, Location } from '@angular/common';
-<<<<<<< HEAD:src/app/shared/profil/mes-adoptions/mes-adoptions.component.ts
 import { environment } from '../../../../environments/environment';
-=======
-import { environment } from '../../../../environnement/environnement';
-import { NavbarComponent } from '../../../shared/navbar/navbar.component';
 import { HeaderComponent } from '../../../shared/header/header.component';
->>>>>>> 7bd676898e8c927842e3643c04c067d7d4818fab:src/app/views/user/mes-adoptions/mes-adoptions.component.ts
+import { NavbarComponent } from '../../../shared/navbar/navbar.component';
 
 @Component({
     selector: 'app-mes-adoptions',
