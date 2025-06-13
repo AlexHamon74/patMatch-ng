@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BreederInterface, ClientInterface } from '../entities';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { environment } from '../../../environnement/environnement';
+import { environment } from '../../../environments/environment';
 import { TokenService } from './token.service';
 
 @Injectable({

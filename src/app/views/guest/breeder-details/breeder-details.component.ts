@@ -5,7 +5,7 @@ import { BreederInterface } from '../../../core/entities';
 import { BreederService } from '../../../core/services/breeder.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { environment } from '../../../../environnement/environnement';
+import { environment } from '../../../../environments/environment';
 
 @Component({
     selector: 'app-breeder-details',

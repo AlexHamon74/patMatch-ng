@@ -4,7 +4,7 @@ import { HeaderComponent } from '../../../shared/header/header.component';
 import { NavbarComponent } from '../../../shared/navbar/navbar.component';
 import { DashboardInterface } from '../../../core/entities';
 import { UserService } from '../../../core/services/user.service';
-import { environment } from '../../../../environnement/environnement';
+import { environment } from '../../../../environments/environment';
 
 @Component({
     selector: 'app-dashboard',

@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
 import { UserService } from '../../../core/services/user.service';
 import { AdoptionInterface, UserAdoptionInterface } from '../../../core/entities';
 import { CommonModule, DatePipe, Location } from '@angular/common';
-import { environment } from '../../../../environnement/environnement';
+import { environment } from '../../../../environments/environment';
 
 @Component({
     selector: 'app-mes-adoptions',

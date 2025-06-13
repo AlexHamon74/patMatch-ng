@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../../environnement/environnement';
+import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AnimalCreateInterface, AnimalInterface } from '../entities';
 import { Observable, throwError } from 'rxjs';

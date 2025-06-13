@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../../environnement/environnement';
+import { environment } from '../../../environments/environment';
 import { SwipeCreateInterface, SwipeInterface } from '../entities';
 import { UserService } from './user.service';
 import { map, Observable, throwError } from 'rxjs';

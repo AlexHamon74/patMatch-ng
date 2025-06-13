@@ -9,7 +9,7 @@ import { SwipeService } from '../../../core/services/swipe.service';
 import { UserService } from '../../../core/services/user.service';
 import { switchMap, tap } from 'rxjs';
 import { TokenService } from '../../../core/services/token.service';
-import { environment } from '../../../../environnement/environnement';
+import { environment } from '../../../../environments/environment';
 import { AlertService } from '../../../core/services/alert.service';
 
 @Component({

@@ -5,7 +5,7 @@ import { AnimalInterface } from '../../../core/entities';
 import { AnimalService } from '../../../core/services/animal.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule, Location } from '@angular/common';
-import { environment } from '../../../../environnement/environnement';
+import { environment } from '../../../../environments/environment';
 
 @Component({
     selector: 'app-animal-details',

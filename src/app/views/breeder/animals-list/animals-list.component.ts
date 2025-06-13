@@ -5,7 +5,7 @@ import { BreederAnimalInterface, BreederAnimalListInterface } from '../../../cor
 import { UserService } from '../../../core/services/user.service';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { environment } from '../../../../environnement/environnement';
+import { environment } from '../../../../environments/environment';
 
 @Component({
     selector: 'app-animals-list',

@@ -5,7 +5,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdoptionCreateInterface, SwipeInterface } from '../../../core/entities';
 import { SwipeService } from '../../../core/services/swipe.service';
-import { environment } from '../../../../environnement/environnement';
+import { environment } from '../../../../environments/environment';
 import { AnimalService } from '../../../core/services/animal.service';
 import { AdoptionService } from '../../../core/services/adoption.service';
 import { TokenService } from '../../../core/services/token.service';

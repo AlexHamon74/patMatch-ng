@@ -4,7 +4,7 @@ import { NavbarComponent } from '../../../shared/navbar/navbar.component';
 import { AdoptionService } from '../../../core/services/adoption.service';
 import { AdoptionListBreederInterface } from '../../../core/entities';
 import { CommonModule, DatePipe } from '@angular/common';
-import { environment } from '../../../../environnement/environnement';
+import { environment } from '../../../../environments/environment';
 import { AlertService } from '../../../core/services/alert.service';
 
 @Component({

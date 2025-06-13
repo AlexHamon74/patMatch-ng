@@ -6,7 +6,7 @@ import { TokenService } from '../../../core/services/token.service';
 import { BreederInterface, ClientInterface } from '../../../core/entities';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { environment } from '../../../../environnement/environnement';
+import { environment } from '../../../../environments/environment';
 
 @Component({
     selector: 'app-general-informations',
