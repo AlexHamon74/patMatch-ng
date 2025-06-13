@@ -2,37 +2,19 @@
 
 <app-navbar></app-navbar>
 
-<!-- BARRE DE RECHERCHE + BOUTON FILTRE -->
-<section class="pb-4 recherche">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 d-flex align-items-center justify-content-between gap-3">
-                <div class="input-group flex-grow-1">
-                    <span class="input-recherche input-group-text rounded-10" id="rechercher"><i
-                            class="fas fa-search"></i></span>
-                    <input type="text" class="input-recherche form-control rounded-10" aria-label="rechercher"
-                        aria-describedby="rechercher" />
-                </div>
-                <div class="filter-btn rounded-10 d-flex justify-content-center align-items-center flex-shrink-0">
-                    <i class="fa-solid fa-filter"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<app-filter></app-filter>
 
 <!-- LISTE DES ASSOCIATIONS / ELEVEURS -->
 <section class="breeder-list">
     @if(!isLoading) {
         <div class="container">
-            <h1 class="mb-4">Répertoire des éleveurs et associations</h1>
+            <h1 class="my-4">Répertoire des éleveurs et associations</h1>
 
             @for (breeder of breeders; track $index) {
                 <div class="bg-grey p-4 mb-5 rounded-20 shadow">
                     <div class="row">
                         <div class="col-6">
-                            <img src="images/profile_picture.jpg" alt="Photo de profil de l'eleveur"
-                                class="breeder-picture img-fluid rounded-10 mb-3">
+                            <img [src]="breeder.photoProfil ? (environment.uploadUrl + 'users/' + breeder.photoProfil) : 'images/profile_picture.jpg'" alt="Photo de profil de l'éleveur" class="breeder-picture img-fluid rounded-10 mb-3">
                             <h2>{{ breeder.nomElevageAssociation }}</h2>
                             <p>{{ breeder.adresseElevage }}</p>
                         </div>

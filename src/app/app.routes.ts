@@ -31,9 +31,10 @@ import { AuthBreederGuard } from './core/guards/auth-breeder.guards';
 import { AuthClientGuard } from './core/guards/auth-client.guards';
 import { AuthClientOrBreederGuard } from './core/guards/auth-client-or-breeder.guards';
 import { GeneralInformationsComponent } from './shared/profil/general-informations/general-informations.component';
-import { MesAdoptionsComponent } from './shared/profil/mes-adoptions/mes-adoptions.component';
 import { DemandeAdoptionComponent } from './views/breeder/demande-adoption/demande-adoption.component';
 import { PhotoProfil } from './views/guest/register/registerMore/breeder/photo-profil/photo-profil.component';
+import { PhotoProfilCustomer } from './views/guest/register/registerMore/customer/photo-profil-customer/photo-profil-customer.component';
+import { MesAdoptionsComponent } from './views/user/mes-adoptions/mes-adoptions.component';
 
 export const routes: Routes = [
     {
@@ -53,6 +54,7 @@ export const routes: Routes = [
             { path: 'register/customer/housingInformation', component: HousingInformationComponent },
             { path: 'register/customer/householdInformation', component: HouseholdInformationComponent },
             { path: 'register/customer/adoptionPreferences', component: AdoptionPreferencesComponent },
+            { path: 'register/customer/photoProfilCustomer', component: PhotoProfilCustomer },
             { path: 'register/customer/engagement', component: EngagementComponent },
 
             { path: 'register/breeder/generalInformationBreeder', component: GeneralInformationBreederComponent },

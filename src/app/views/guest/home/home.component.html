@@ -2,25 +2,10 @@
 
 <app-navbar></app-navbar>
 
-<!-- BARRE DE RECHERCHE + BOUTON FILTRE -->
-<section class="pb-3 recherche">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 d-flex align-items-center justify-content-between gap-3">
-                <div class="input-group flex-grow-1">
-                    <span class="input-recherche input-group-text rounded-10" id="rechercher"><i class="fas fa-search"></i></span>
-                    <input type="text" class="input-recherche form-control rounded-10" aria-label="rechercher" aria-describedby="rechercher" />
-                </div>
-                <div class="filter-btn rounded-10 d-flex justify-content-center align-items-center flex-shrink-0">
-                    <i class="fa-solid fa-filter"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<app-filter></app-filter>
 
 <!-- Image + Infos + Boutons -->
-<section class="animals-list">
+<section class="animals-list mt-4">
     @if(!isLoading) {
         <div class="container d-flex flex-column align-items-center">
 

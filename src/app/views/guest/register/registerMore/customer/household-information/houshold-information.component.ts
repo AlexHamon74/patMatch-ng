@@ -34,9 +34,9 @@ export class HouseholdInformationComponent implements OnInit, OnDestroy{
 
     // Formulaire avec validations
     public registerForm: FormGroup = new FormGroup({
-        autresAnimaux: new FormControl,
+        autresAnimaux: new FormControl(false),
         animauxDescription: new FormControl,
-        presenceEnfant: new FormControl,
+        presenceEnfant: new FormControl(false),
         enfantDescription: new FormControl,
     });
 

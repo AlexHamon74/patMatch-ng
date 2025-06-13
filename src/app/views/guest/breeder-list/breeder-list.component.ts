@@ -4,12 +4,17 @@ import { HeaderComponent } from '../../../shared/header/header.component';
 import { RouterLink } from '@angular/router';
 import { BreederInterface } from '../../../core/entities';
 import { BreederService } from '../../../core/services/breeder.service';
+<<<<<<< HEAD
 import { environment } from '../../../../environments/environment';
+=======
+import { environment } from '../../../../environnement/environnement';
+import { FilterComponent } from '../../../shared/filter/filter.component';
+>>>>>>> 7bd676898e8c927842e3643c04c067d7d4818fab
 
 @Component({
     selector: 'app-breeder-list',
     standalone: true,
-    imports: [NavbarComponent, HeaderComponent, RouterLink],
+    imports: [NavbarComponent, HeaderComponent, RouterLink, FilterComponent],
     templateUrl: './breeder-list.component.html',
     styleUrl: './breeder-list.component.css'
 })
