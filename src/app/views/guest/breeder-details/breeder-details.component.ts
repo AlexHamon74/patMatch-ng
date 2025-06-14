@@ -31,7 +31,6 @@ export class BreederDetailsComponent implements OnInit {
         this.breederService.fetchBreederById(id).subscribe({
             next: (breeder) => {
                 this.breeder = breeder;
-                console.log(breeder.animals);
             },
             error: (error) => {
                 console.error("Erreur lors de la récupération de l'éleveur :", error);

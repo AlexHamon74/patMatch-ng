@@ -33,7 +33,6 @@ export class GeneralInformationsComponent {
             this.userRole = 'ROLE_CLIENT';
             this.userService.getUserProfile<ClientInterface>().subscribe(profile => {
                 this.clientProfile = profile;
-                console.log(this.clientProfile);
 
                 // 1. Nombre de likes
                 this.nbLikes = this.clientProfile.swipes.filter(swipe => swipe['type'] === 'like').length;
